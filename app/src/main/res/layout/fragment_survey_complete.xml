@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragment.survey.SurveyCompleteFragment">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.hifit.android.mafit.viewmodel.MainViewModel" />
+    </data>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:layout_marginStart="5dp"
+            android:paddingHorizontal="50dp">
+
+            <TextView
+                android:id="@+id/survey_complete_txt_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/notosanskr_bold_hestia"
+                android:text="@string/survey_complete_title"
+                android:textColor="@color/violet2"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_marginTop="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/notosanskr_bold_hestia"
+                        android:textColor="@color/violet2"
+                        android:text="@string/sex"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/notosanskr_bold_hestia"
+                        android:textColor="@color/violet2"
+                        android:text="@string/name"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_bold_hestia"
+                        android:textColor="@color/violet2"
+                        android:text="@string/age"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="2dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginVertical="2dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/violet2"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/survey_complete_txt_sex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/notosanskr_bold_hestia"
+                        android:textColor="@color/black"
+                        tools:text="@string/sex"/>
+                    <TextView
+                        android:id="@+id/survey_complete_txt_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/notosanskr_bold_hestia"
+                        android:textColor="@color/black"
+                        tools:text="@string/name"/>
+                    <TextView
+                        android:id="@+id/survey_complete_txt_age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_bold_hestia"
+                        android:textColor="@color/black"
+                        tools:text="@string/age"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/survey_complete_img_result"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginBottom="30dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_survey_result1"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/notosanskr_bold_hestia"
+                    android:textSize="15sp"
+                    android:text="근감소증 "/>
+                <TextView
+                    android:id="@+id/survey_complete_txt_result_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/yellow"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/notosanskr_bold_hestia"
+                    android:text="중위험군"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/notosanskr_bold_hestia"
+                    android:text="입니다"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                android:textSize="14sp"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/notodanskr_regular_hestia"
+                android:text="조금만 더 노력해 주시면 생활습관만으로\n근감소증을 예방하실 수 있어요!\n근감소증 예방을 위해 꾸준한 운동과 올바른\n영양섭취를 해 주세요."/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="@string/survey_complete_content1"
+                android:textColor="@color/gray2"
+                android:layout_marginBottom="70dp"
+                android:fontFamily="@font/notodanskr_regular_hestia"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/survey_complete_btn_recommend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/violet_button"
+                android:fontFamily="@font/notosanskr_bold_hestia"
+                android:gravity="center"
+                android:paddingVertical="12dp"
+                android:text="@string/survey_complete_recommend"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:layout_marginTop="40dp"
+                android:textColor="@color/gray2"
+                android:fontFamily="@font/notodanskr_regular_hestia"
+                android:text="@string/survey_complete_content2"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/survey_complete_tip_title1"
+                android:textColor="@color/violet2"
+                android:textSize="22sp"
+                android:layout_marginTop="60dp"
+                android:fontFamily="@font/notosanskr_bold_hestia"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/notodanskr_regular_hestia"
+                android:layout_marginBottom="200dp"
+                android:text="@string/survey_complete_tip1"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/survey_complete_tip_title2"
+                android:textColor="@color/violet2"
+                android:textSize="22sp"
+                android:layout_marginTop="60dp"
+                android:fontFamily="@font/notosanskr_bold_hestia"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/notodanskr_regular_hestia"
+                android:layout_marginBottom="200dp"
+                android:text="@string/survey_complete_tip2"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/survey_complete_tip_title3"
+                android:textColor="@color/violet2"
+                android:textSize="22sp"
+                android:layout_marginTop="60dp"
+                android:fontFamily="@font/notosanskr_bold_hestia"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/notodanskr_regular_hestia"
+                android:layout_marginBottom="200dp"
+                android:text="@string/survey_complete_tip3"/>
+
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_square_violet"
+                android:layout_marginBottom="50dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
+
+</layout>

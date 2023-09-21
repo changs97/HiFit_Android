@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.fragment.survey.SurveyStep7Fragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="50dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/survey_step7_txt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="140dp"
+            android:fontFamily="@font/notosanskr_bold_hestia"
+            android:text="@string/survey_step7_title"
+            android:textColor="@color/violet2"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/notodanskr_regular_hestia"
+            android:text="@string/survey_step7_content"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/survey_step7_txt_title"
+            app:layout_constraintTop_toBottomOf="@+id/survey_step7_txt_title" />
+
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/survey_step7_btn_continue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingVertical="12dp"
+            android:fontFamily="@font/notosanskr_bold_hestia"
+            android:textColor="@color/white"
+            android:text="@string/survey_continue"
+            android:background="@drawable/violet_button"
+            android:layout_marginBottom="30dp"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
