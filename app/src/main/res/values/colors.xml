@@ -8,6 +8,8 @@
     <color name="gray2">#7a7a7a</color>
     <color name="gray3">#343434</color>
     <color name="yellow">#ffcc00</color>
+    <color name="green">#0cff00</color>
+    <color name="red">#ff005a</color>
     <color name="blue">#00a0e9</color>
     <color name="main_background">#f8f8f8</color>
 </resources>

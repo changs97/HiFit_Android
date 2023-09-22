@@ -68,4 +68,7 @@
     <string name="bmi">BMI</string>
     <string name="weight">몸무게</string>
     <string name="exercise_learn_exercise">운동 배우기</string>
+    <string name="survey_complete_contents1">조금만 더 노력해 주시면 생활습관만으로\n근감소증을 예방하실 수 있어요!\n근감소증 예방을 위해 꾸준한 운동과 올바른\n영양섭취를 해 주세요.</string>
+    <string name="survey_complete_contents2">앞으로도 좋은 생활습관 유지해주세요!\n근감소증 예방을 위해 꾸준한 운동과 올바른\n영양섭취를 해 주세요.</string>
+    <string name="survey_complete_contents3">근감소증에 많이 노출되어 있어요…!\n\n생활습관을 꼭 바꾸셔서 더욱 건강한 내일을 만들어보자구요~!\n\n근감소증 예방 및 치료를 위해 꾸준한 운동과\n올바른 영양섭취가 꼭 필요해요.</string>
 </resources>

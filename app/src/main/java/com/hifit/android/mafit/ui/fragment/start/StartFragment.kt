@@ -24,6 +24,7 @@ class StartFragment : BaseFragment<FragmentStartBinding>(R.layout.fragment_start
         }
         binding.root.setOnClickListener {
             viewModel.getToken()?.let {
+                Timber.tag("토큰").d("$it")
                 if (userSurveyParticipation != null) {
                     findNavController().navigate(R.id.action_startFragment_to_homeFragment)
                 } else {
