@@ -133,7 +133,7 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
         try {
             repository.storeToken(token)
         } catch (e: java.lang.Exception) {
-            Timber.e("network error: $e")
+            Timber.e("local error: $e")
         }
     }
 
