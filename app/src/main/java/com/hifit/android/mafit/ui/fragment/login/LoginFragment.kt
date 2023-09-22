@@ -77,7 +77,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
 
         binding.button.setOnClickListener {
             viewModel.getToken()?.let {
-                findNavController().navigate(R.id.action_loginFragment_to_surveyStartFragment)
+                if (viewModel.userInfo.value?.name != null) {
+                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                } else {
+                    findNavController().navigate(R.id.action_loginFragment_to_surveyStartFragment)
+                }
             } ?: run {
                 kakaoLogin()
             }
@@ -91,6 +95,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
                 Timber.e("연결 끊기 실패", error)
             } else {
                 Timber.i("연결 끊기 성공")
+                viewModel.deleteUserInfo()
                 activity?.finish()
             }
         }
