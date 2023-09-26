@@ -12,6 +12,14 @@ import androidx.navigation.fragment.findNavController
 import com.hifit.android.mafit.HiFitApplication
 import com.hifit.android.mafit.HiFitApplication.Companion.repository
 import com.hifit.android.mafit.R
+import com.hifit.android.mafit.data.model.home.BodyInfoData
+import com.hifit.android.mafit.data.model.home.BodyInfoResponse
+import com.hifit.android.mafit.data.model.home.DietData
+import com.hifit.android.mafit.data.model.home.DietResponse
+import com.hifit.android.mafit.data.model.home.ExerciseData
+import com.hifit.android.mafit.data.model.home.ExerciseResponse
+import com.hifit.android.mafit.data.model.home.WorkoutInfoData
+import com.hifit.android.mafit.data.model.home.WorkoutInfoResponse
 import com.hifit.android.mafit.data.model.login.LoginRequestBody
 import com.hifit.android.mafit.data.model.survey.HealthInfoRequestBody
 import com.hifit.android.mafit.data.repo.UserInfoRepository
@@ -25,12 +33,29 @@ import timber.log.Timber
 class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
     val userInfo: LiveData<UserInfo> = repository.userInfo.asLiveData()
     val surveyInfo = HealthInfoRequestBody()
+
+    val bodyInfo: LiveData<BodyInfoData> get() = _bodyInfo
+    private val _bodyInfo: MutableLiveData<BodyInfoData> = MutableLiveData()
+
+    val workoutInfo: LiveData<WorkoutInfoData> get() = _workoutInfo
+    private val _workoutInfo: MutableLiveData<WorkoutInfoData> = MutableLiveData()
+
+    val exercises: LiveData<List<ExerciseData>> get() = _exercises
+    private val _exercises: MutableLiveData<List<ExerciseData>> = MutableLiveData()
+
+    val diet: LiveData<DietData> get() = _diet
+    private val _diet: MutableLiveData<DietData> = MutableLiveData()
+
     val isProgressVisible: LiveData<Boolean> get() = _isProgressVisible
     private val _isProgressVisible: MutableLiveData<Boolean> = MutableLiveData(false)
 
     private val _navigateNext = MutableLiveData<Event<Boolean>>()
     val navigateNext: LiveData<Event<Boolean>>
         get() = _navigateNext
+
+    private val _showToast = MutableLiveData<Event<Boolean>>()
+    val showToast: LiveData<Event<Boolean>>
+        get() = _showToast
 
     fun deleteUserInfo() {
         _isProgressVisible.value = true
@@ -39,6 +64,7 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
                 repository.deleteUserInfo()
             } catch (e: Exception) {
                 Timber.e("network error", e)
+                _showToast.value = Event(true)
                 _isProgressVisible.value = false
             }
         }
@@ -50,6 +76,7 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
             try {
                 repository.insert(userInfo)
             } catch (e: Exception) {
+                _showToast.value = Event(true)
                 Timber.e("local error", e)
             } finally {
                 _isProgressVisible.value = false
@@ -67,9 +94,11 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
                     _navigateNext.value = Event(true)
                 } else {
                     Timber.e("network error: ${response.message}")
+                    _showToast.value = Event(true)
                 }
             } catch (e: Exception) {
                 Timber.e("network error", e)
+                _showToast.value = Event(true)
             } finally {
                 _isProgressVisible.value = false
             }
@@ -100,16 +129,18 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
                     insertUserInfo(userInfo)
                 } else {
                     Timber.e("network error: ${response.message}")
+                    _showToast.value = Event(true)
                 }
             } catch (e: Exception) {
                 Timber.e("network error: $e")
+                _showToast.value = Event(true)
             } finally {
                 _isProgressVisible.value = false
             }
         }
     }
 
-    fun postLogin(token: String) {
+    fun tryPostLogin(token: String) {
         _isProgressVisible.value = true
         viewModelScope.launch {
             try {
@@ -119,10 +150,92 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
                     _navigateNext.value = Event(true)
                 } else {
                     Timber.e("network error: ${response.message}")
+                    _showToast.value = Event(true)
                 }
 
             } catch (e: java.lang.Exception) {
                 Timber.e("network error: $e")
+                _showToast.value = Event(true)
+            } finally {
+                _isProgressVisible.value = false
+            }
+        }
+    }
+
+    fun tryGetBodyInfo() {
+        viewModelScope.launch {
+            _isProgressVisible.value = true
+            try {
+                val response = repository.getBodyInfo()
+                if (response.code == 200) {
+                    _bodyInfo.value = response.data
+                } else {
+                    Timber.e("network error: ${response.message}")
+                    _showToast.value = Event(true)
+                }
+            } catch (e: Exception) {
+                Timber.e("network error: $e")
+                _showToast.value = Event(true)
+            } finally {
+                _isProgressVisible.value = false
+            }
+        }
+    }
+
+    fun tryGetExercises() {
+        viewModelScope.launch {
+            _isProgressVisible.value = true
+            try {
+                val response = repository.getExercises()
+                if (response.code == 200) {
+                    _exercises.value = response.data
+                } else {
+                    Timber.e("network error: ${response.message}")
+                    _showToast.value = Event(true)
+                }
+            } catch (e: Exception) {
+                Timber.e("network error: $e")
+                _showToast.value = Event(true)
+            } finally {
+                _isProgressVisible.value = false
+            }
+        }
+    }
+
+    fun tryGetDiet() {
+        viewModelScope.launch {
+            _isProgressVisible.value = true
+            try {
+                val response = repository.getDiet()
+                if (response.code == 200) {
+                    _diet.value = response.data
+                } else {
+                    Timber.e("network error: ${response.message}")
+                    _showToast.value = Event(true)
+                }
+            } catch (e: Exception) {
+                Timber.e("network error: $e")
+                _showToast.value = Event(true)
+            } finally {
+                _isProgressVisible.value = false
+            }
+        }
+    }
+
+    fun tryGetWorkoutInfo() {
+        viewModelScope.launch {
+            _isProgressVisible.value = true
+            try {
+                val response = repository.getWorkoutInfo()
+                if (response.code == 200) {
+                    _workoutInfo.value = response.data
+                } else {
+                    Timber.e("network error: ${response.message}")
+                    _showToast.value = Event(true)
+                }
+            } catch (e: Exception) {
+                Timber.e("network error: $e")
+                _showToast.value = Event(true)
             } finally {
                 _isProgressVisible.value = false
             }
@@ -134,18 +247,17 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
             repository.storeToken(token)
         } catch (e: java.lang.Exception) {
             Timber.e("local error: $e")
+            _showToast.value = Event(true)
         }
     }
 
     fun getToken() = repository.getToken()
 
     companion object {
-
         val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel> create(
-                modelClass: Class<T>,
-                extras: CreationExtras
+                modelClass: Class<T>, extras: CreationExtras
             ): T {
                 return MainViewModel(
                     repository

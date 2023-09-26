@@ -5,6 +5,7 @@ import com.hifit.android.mafit.data.model.login.LoginRequestBody
 import com.hifit.android.mafit.data.model.survey.HealthInfoRequestBody
 import com.hifit.android.mafit.data.source.local.UserInfo
 import com.hifit.android.mafit.data.source.local.UserInfoDao
+import com.hifit.android.mafit.data.source.network.HomeRetrofitInterface
 import com.hifit.android.mafit.data.source.network.LoginRetrofitInterface
 import com.hifit.android.mafit.data.source.network.SurveyRetrofitInterface
 import com.hifit.android.mafit.util.Constant
@@ -12,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
+import retrofit2.create
 
 class UserInfoRepository(private val userInfoDao: UserInfoDao, private val retrofit: Retrofit) {
     val userInfo: Flow<UserInfo> = userInfoDao.loadUserById()
@@ -37,6 +39,14 @@ class UserInfoRepository(private val userInfoDao: UserInfoDao, private val retro
 
     suspend fun postLogin(loginRequestBody: LoginRequestBody) =
         retrofit.create(LoginRetrofitInterface::class.java).postLogin(loginRequestBody)
+
+    suspend fun getExercises() = retrofit.create(HomeRetrofitInterface::class.java).getExercises()
+
+    suspend fun getDiet() = retrofit.create(HomeRetrofitInterface::class.java).getDiet()
+
+    suspend fun getBodyInfo() = retrofit.create(HomeRetrofitInterface::class.java).getBodyInfo()
+
+    suspend fun getWorkoutInfo() = retrofit.create(HomeRetrofitInterface::class.java).getWorkoutInfo()
 
     fun storeToken(code: String) {
         HiFitApplication.sharedPreferences.edit().putString(
