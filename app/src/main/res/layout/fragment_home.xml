@@ -151,7 +151,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    bind:stamp="@{vm.workoutInfo}" />
+                    android:max="@{vm.workoutInfo.targetStamp ?? 0}"
+                    android:progress="@{vm.workoutInfo.stamp ?? 0}"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
