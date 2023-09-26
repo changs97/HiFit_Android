@@ -29,6 +29,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             }
         }
 
+        binding.homeLlCoinContainer.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_productFragment)
+        }
+
         binding.homeBtnStamp.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_exerciseFragment)
         }

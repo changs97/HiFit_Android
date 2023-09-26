@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.fragment.product.OrderFragment">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.hifit.android.mafit.viewmodel.MainViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_background">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/violet"
+                android:elevation="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="30dp"
+                android:paddingVertical="10dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/order_img_profile"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@color/white" />
+
+                <TextView
+                    android:id="@+id/order_txt_profile"
+                    style="@style/customTextViewShadows"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/notosanskr_medium_hestia"
+                    android:text='@{vm.userInfo.name + "님"}'
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    tools:text="ooo님" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/order_ll_coin_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_coin" />
+
+                    <TextView
+                        android:id="@+id/order_txt_coin"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/notosanskr_bold_hestia"
+                        android:text='@{vm.workoutInfo.point + " 코인"}'
+                        android:textColor="@color/black"
+                        tools:text="240코인" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <com.google.android.material.card.MaterialCardView
+                app:strokeColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="40dp"
+                android:elevation="7dp"
+                app:cardCornerRadius="@dimen/common_radius_8">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/order_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/ic_sample1" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                app:strokeColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="10dp"
+                android:elevation="7dp"
+                app:cardCornerRadius="@dimen/common_radius_8">
+
+                <TextView
+                    android:id="@+id/order_txt_brand"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/notosanskr_medium_hestia"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    tools:text="신세계몰" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="10dp"
+                android:elevation="7dp"
+                app:cardCornerRadius="@dimen/common_radius_8">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp">
+
+                    <TextView
+                        android:id="@+id/order_txt_product_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="[스타벅스] SS 사이렌 ㅡ토퍼 콜드컵 531ml" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout"
+                        android:layout_width="86dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="@+id/order_txt_product_name"
+                        app:layout_constraintTop_toBottomOf="@+id/order_txt_product_name">
+
+                        <ImageView
+                            android:id="@+id/order_img_decrease"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_cart_item_minus_off" />
+
+                        <TextView
+                            android:id="@+id/order_txt_product_count"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="1" />
+
+                        <ImageView
+                            android:id="@+id/order_img_increase"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_cart_item_plus_on" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/order_txt_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium_hestia"
+                        android:text="12,000원"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="10dp"
+                android:elevation="7dp"
+                app:cardCornerRadius="@dimen/common_radius_8">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:padding="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="총 합계"
+                        android:textSize="20sp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/notosanskr_bold_hestia"
+                        android:layout_marginEnd="20dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/order_txt_amount"
+                        app:layout_constraintEnd_toStartOf="@+id/order_txt_amount"
+                        app:layout_constraintTop_toTopOf="@+id/order_txt_amount" />
+
+                    <TextView
+                        android:id="@+id/order_txt_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_bold_hestia"
+                        android:text="12,000원"
+                        android:textColor="@color/pink"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/order_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="선물하기"
+                android:textColor="@color/white"
+                android:fontFamily="@font/notosanskr_medium_hestia"
+                android:textSize="20sp"
+                android:paddingVertical="15dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginHorizontal="30dp"
+                android:background="@drawable/pink_button"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

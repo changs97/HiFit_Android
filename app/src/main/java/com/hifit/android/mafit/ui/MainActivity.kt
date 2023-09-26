@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         navHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
             when(destination.id) {
-                R.id.startFragment, R.id.loginFragment, R.id.exerciseFragment -> setStatusBarColor(getColor(R.color.violet))
+                R.id.startFragment, R.id.loginFragment, R.id.exerciseFragment, R.id.productFragment, R.id.orderFragment -> setStatusBarColor(getColor(R.color.violet))
                 else -> setStatusBarColor(getColor(R.color.white))
             }
         }
