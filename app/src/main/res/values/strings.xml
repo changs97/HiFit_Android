@@ -58,7 +58,7 @@
     <string name="home_greeting">오늘도 반가워요 ;)\noo님을 위해 오늘도 맞춤형 운동과 영양 정보를\n준비했어요! 건강한 생활 습관도 만들고\n코인으로 상품도 받아가세요~</string>
     <string name="home_greeting_title">OOO님\n안녕하세요!</string>
     <string name="home_exercise_status_title">OOO님의\n5월 운동 현황</string>
-    <string name="home_exercise_status_content">벌써 5월도 중반이 넘어섰네요!\n지금까지 해오셨던 것처럼\n<b>8회</b>만 더 열심히 운동해봐요!</string>
+    <string name="home_exercise_status_content">벌써 %d월도 중반이 넘어섰네요!\n지금까지 해오셨던 것처럼\n<b>%d회</b>만 더 열심히 운동해봐요!</string>
     <string name="home_stamp">오늘의 운동하고\n스탬프 적립하기</string>
     <string name="home_my_coupon"><u>내 쿠폰함</u></string>
     <string name="home_guide">내 몸을 위한\n영양섭취 가이드</string>
@@ -71,4 +71,5 @@
     <string name="survey_complete_contents1">조금만 더 노력해 주시면 생활습관만으로\n근감소증을 예방하실 수 있어요!\n근감소증 예방을 위해 꾸준한 운동과 올바른\n영양섭취를 해 주세요.</string>
     <string name="survey_complete_contents2">앞으로도 좋은 생활습관 유지해주세요!\n근감소증 예방을 위해 꾸준한 운동과 올바른\n영양섭취를 해 주세요.</string>
     <string name="survey_complete_contents3">근감소증에 많이 노출되어 있어요…!\n\n생활습관을 꼭 바꾸셔서 더욱 건강한 내일을 만들어보자구요~!\n\n근감소증 예방 및 치료를 위해 꾸준한 운동과\n올바른 영양섭취가 꼭 필요해요.</string>
+    <string name="network_error_message">네트워크 오류가 발생했습니다.</string>
 </resources>
