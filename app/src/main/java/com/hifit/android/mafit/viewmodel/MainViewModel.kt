@@ -57,6 +57,7 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
     val navigateNext: LiveData<Event<Boolean>>
         get() = _navigateNext
 
+    // TODO: message를 직접 전달해서 처리하도록 수정
     private val _showToast = MutableLiveData<Event<Boolean>>()
     val showToast: LiveData<Event<Boolean>>
         get() = _showToast
@@ -114,15 +115,21 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
             _isProgressVisible.value = true
             try {
                 val response = repository.patchStamps()
-                if (response.code == 200) {
-                    _navigateNext.value = Event(true)
-                } else {
-                    Timber.e("network error: ${response.message}")
-                    // _showToast.value = Event(true)
+                when (response.code) {
+                    200 -> {
+                        _navigateNext.value = Event(true)
+                    }
+                    400 -> {
+                        _navigateNext.value = Event(true)
+                    }
+                    else -> {
+                        Timber.e("network error: ${response.message}")
+                        _showToast.value = Event(true)
+                    }
                 }
             } catch (e: Exception) {
                 Timber.e("network error", e)
-                // _showToast.value = Event(true)
+                _showToast.value = Event(true)
             } finally {
                 _isProgressVisible.value = false
             }
