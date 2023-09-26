@@ -32,6 +32,10 @@ import timber.log.Timber
 
 class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
     val userInfo: LiveData<UserInfo> = repository.userInfo.asLiveData()
+    var userAge = 0
+    var userGender = "MALE"
+    var userSarcopenia = "HIGH"
+
     val surveyInfo = HealthInfoRequestBody()
 
     val bodyInfo: LiveData<BodyInfoData> get() = _bodyInfo
@@ -134,13 +138,13 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
                     val userInfo = with(response.data) {
                         UserInfo(
                             0,
-                            age,
+                            age ?: userAge,
                             diastolicBloodPressure,
-                            gender,
+                            gender ?: userGender,
                             heartRate,
                             height,
                             name,
-                            sarcopenia,
+                            sarcopenia ?: userSarcopenia,
                             systolicBloodPressure,
                             waistSize,
                             weight

@@ -14,11 +14,12 @@ import com.hifit.android.mafit.viewmodel.MainViewModel
 
 class SurveyStep1Fragment :
     BaseFragment<FragmentSurveyStep1Binding>(R.layout.fragment_survey_step1) {
+    private val viewModel: MainViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var gender: String?  = null
+        var gender: String? = null
 
         binding.surveyStep1BtnContinue.setOnClickListener {
             if (gender == null) {
@@ -30,8 +31,16 @@ class SurveyStep1Fragment :
 
         binding.surveyStep1RadioGroup.setOnCheckedChangeListener { group, checkedId ->
             gender = when (checkedId) {
-                R.id.survey_step1_radio_btn_male -> "MALE"
-                R.id.survey_step1_radio_btn_female -> "FEMALE"
+                R.id.survey_step1_radio_btn_male -> {
+                    viewModel.userGender = "MALE"
+                    "MALE"
+                }
+
+                R.id.survey_step1_radio_btn_female -> {
+                    viewModel.userGender = "FEMALE"
+                    "FEMALE"
+                }
+
                 else -> null
             }
 
