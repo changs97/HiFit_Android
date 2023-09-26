@@ -11,7 +11,7 @@ import com.hifit.android.mafit.viewmodel.MainViewModel
 
 
 class SurveyStep2Fragment : BaseFragment<FragmentSurveyStep2Binding>(R.layout.fragment_survey_step2) {
-
+    private val viewModel: MainViewModel by activityViewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -19,6 +19,7 @@ class SurveyStep2Fragment : BaseFragment<FragmentSurveyStep2Binding>(R.layout.fr
             if (binding.surveyStep2Edit.text.isNullOrEmpty()) {
                 showCustomToast("나이를 입력해주세요")
             } else {
+                viewModel.userAge = binding.surveyStep2Edit.text.toString().toInt()
                 findNavController().navigate(R.id.action_surveyStep2Fragment_to_surveyStep3Fragment)
             }
         }
