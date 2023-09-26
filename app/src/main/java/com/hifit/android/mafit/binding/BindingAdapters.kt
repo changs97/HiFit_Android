@@ -1,9 +1,13 @@
 package com.hifit.android.mafit.binding
 
+import android.content.Context
 import android.view.View
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
+import com.hifit.android.mafit.R
+import com.hifit.android.mafit.data.model.home.WorkoutInfoData
 
 
 @BindingAdapter("bind:isVisible")
@@ -18,6 +22,21 @@ fun TextView.setGender(gender: String?) {
         "FEMALE" -> "여성"
         else -> ""
     }
+}
+
+@BindingAdapter("bind:stamp")
+fun ProgressBar.setProgress(workOutInfo: WorkoutInfoData?) {
+    this.progress = workOutInfo?.stamp ?: 0
+    this.max = workOutInfo?.targetStamp ?: 0
+}
+
+@BindingAdapter("bind:workoutInfo")
+fun TextView.setText(workOutInfo: WorkoutInfoData?) {
+    val remainNum = (workOutInfo?.targetStamp ?: 0) - (workOutInfo?.stamp ?: 0)
+    this.text =
+        this.context.getString(R.string.home_exercise_status_content).format(
+            workOutInfo?.month ?: 0, remainNum
+        )
 }
 
 

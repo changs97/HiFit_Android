@@ -147,7 +147,9 @@
         tools:layout="@layout/fragment_survey_step11" >
         <action
             android:id="@+id/action_surveyStep11Fragment_to_surveyCompleteFragment"
-            app:destination="@id/surveyCompleteFragment" />
+            app:destination="@id/surveyCompleteFragment"
+            app:popUpTo="@id/surveyStep1Fragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/surveyCompleteFragment"

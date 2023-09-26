@@ -35,12 +35,18 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
             Timber.e("로그인 실패 $error")
         } else if (token != null) {
             Timber.d("로그인 성공 ${token.accessToken}")
-            viewModel.postLogin(token.accessToken)
+            viewModel.tryPostLogin(token.accessToken)
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.showToast.observe(viewLifecycleOwner) { event ->
+            event.getContentIfNotHandled()?.let {
+                if (it) showCustomToast(getString(R.string.network_error_message))
+            }
+        }
 
         viewModel.navigateNext.observe(viewLifecycleOwner) { event ->
             event.getContentIfNotHandled()?.let {
@@ -122,7 +128,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
                 // 로그인 성공 부분
                 else if (token != null) {
                     Timber.d("로그인 성공 ${token.accessToken}")
-                    viewModel.postLogin(token.accessToken)
+                    viewModel.tryPostLogin(token.accessToken)
                 }
             }
         } else { // 카카오 이메일 로그인

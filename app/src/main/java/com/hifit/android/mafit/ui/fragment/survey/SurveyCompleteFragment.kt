@@ -21,6 +21,12 @@ class SurveyCompleteFragment :
 
         viewModel.tryGetUserInfo()
 
+        viewModel.showToast.observe(viewLifecycleOwner) { event ->
+            event.getContentIfNotHandled()?.let {
+                if (it) showCustomToast(getString(R.string.network_error_message))
+            }
+        }
+
         viewModel.userInfo.observe(viewLifecycleOwner) { userInfo ->
             Timber.tag("테스트").d("$userInfo")
             userInfo?.let {
@@ -48,6 +54,10 @@ class SurveyCompleteFragment :
                         sarcopeniaName = "고위험군"
                         textColor = resources.getColor(R.color.red, null)
                         contents = getString(R.string.survey_complete_contents3)
+                    }
+
+                    else -> {
+                        // TODO: 빈 화면 또는 에러 화면 표시
                     }
                 }
 

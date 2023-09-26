@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hifit.android.mafit.R
 import com.hifit.android.mafit.base.BaseFragment
@@ -11,12 +12,23 @@ import com.hifit.android.mafit.data.model.ExerciseItem
 import com.hifit.android.mafit.databinding.FragmentExerciseBinding
 import com.hifit.android.mafit.ui.fragment.exercise.adapter.ExerciseAdapterListener
 import com.hifit.android.mafit.ui.fragment.exercise.adapter.ExercisePageAdapter
+import com.hifit.android.mafit.viewmodel.MainViewModel
 
 class ExerciseFragment : BaseFragment<FragmentExerciseBinding>(R.layout.fragment_exercise),
     ExerciseAdapterListener {
+    private val viewModel: MainViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.vm = viewModel
+
+        viewModel.tryGetBodyInfo()
+
+        viewModel.showToast.observe(viewLifecycleOwner) { event ->
+            event.getContentIfNotHandled()?.let {
+                if (it) showCustomToast(getString(R.string.network_error_message))
+            }
+        }
 
         val sampleData = arrayListOf(
             arrayListOf(

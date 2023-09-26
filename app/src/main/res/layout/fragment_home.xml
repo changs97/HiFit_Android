@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.fragment.home.HomeFragment">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.hifit.android.mafit.viewmodel.MainViewModel" />
+    </data>
 
 
     <ScrollView
@@ -34,6 +41,7 @@
                     android:textSize="25sp" />
 
                 <TextView
+                    android:id="@+id/home_txt_survey_result"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="@drawable/violet_stroke_button"
@@ -57,7 +65,8 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/notosanskr_bold_hestia"
-                android:text="@string/home_greeting_title"
+                tools:text="@string/home_greeting_title"
+                android:text='@{vm.userInfo.name + "님\n안녕하세요!"}'
                 android:textColor="@color/violet2"
                 android:textSize="25sp" />
 
@@ -67,7 +76,8 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/notosanskr_light_hestia"
-                android:text="@string/home_greeting"
+                tools:text="@string/home_greeting"
+                android:text='@{"오늘도 반가워요 ;)\n" + vm.userInfo.name + "님을 위해 오늘도 맞춤형 운동과 영양 정보를\n준비했어요! 건강한 생활 습관도 만들고\n코인으로 상품도 받아가세요~"}'
                 android:textColor="@color/black" />
 
             <TextView
@@ -78,7 +88,8 @@
                 android:layout_marginTop="100dp"
                 android:layout_marginBottom="15dp"
                 android:fontFamily="@font/notosanskr_bold_hestia"
-                android:text="@string/home_exercise_status_title"
+                tools:text="@string/home_exercise_status_title"
+                android:text='@{vm.userInfo.name + "님의\n"+vm.workoutInfo.month +"월 운동 현황"}'
                 android:textColor="@color/violet2"
                 android:textSize="20sp" />
 
@@ -90,12 +101,14 @@
                 android:background="@color/violet2" />
 
             <TextView
+                android:id="@+id/home_txt_exercise_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:fontFamily="@font/notodanskr_regular_hestia"
                 android:gravity="center"
-                android:text="@string/home_exercise_status_content"
+                bind:workoutInfo="@{vm.workoutInfo}"
+                tools:text="@string/home_exercise_status_content"
                 android:textSize="15sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -119,12 +132,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/notosanskr_bold_hestia"
-                    android:text="12/20회"
+                    android:text='@{vm.workoutInfo.stamp.toString() + "/" + vm.workoutInfo.targetStamp.toString() + "회"}'
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                    app:layout_constraintTop_toBottomOf="@+id/imageView"
+                    tools:text="12/20회" />
 
                 <ProgressBar
                     android:id="@+id/progressBar"
@@ -132,13 +146,12 @@
                     android:layout_height="220dp"
                     android:background="@drawable/custom_progress_background"
                     android:indeterminateOnly="false"
-                    android:max="10"
-                    android:progress="10"
                     android:progressDrawable="@drawable/custom_progress"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    bind:stamp="@{vm.workoutInfo}" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -180,8 +193,9 @@
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/notosanskr_bold_hestia"
-                    android:text="240 코인"
-                    android:textColor="@color/black" />
+                    android:text='@{vm.workoutInfo.point + " 코인"}'
+                    android:textColor="@color/black"
+                    tools:text="240코인" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -216,10 +230,11 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="5dp"
                     android:fontFamily="@font/notosanskr_light_hestia"
-                    android:text="OO님의 일일 단백질 섭취 적정량 : 55g"
+                    tools:text="OO님의 일일 단백질 섭취 적정량 : 55g"
+                    android:text='@{vm.userInfo.name + "님의 일일 단백질 섭취 적정량 : " + vm.diet.protein + "g"}'
                     android:textColor="@color/black" />
 
                 <LinearLayout
@@ -256,32 +271,38 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/home_txt_egg"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/notosanskr_bold_hestia"
                         android:gravity="center"
-                        android:text="16"
+                        tools:text="10"
+                        android:text="@{vm.diet.eggCount.toString()}"
                         android:textColor="@color/violet2"
                         android:textSize="25sp" />
 
                     <TextView
+                        android:id="@+id/home_txt_tofu"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/notosanskr_bold_hestia"
                         android:gravity="center"
-                        android:text="20"
+                        tools:text="10"
+                        android:text="@{vm.diet.tofuCount.toString()}"
                         android:textColor="@color/violet2"
                         android:textSize="25sp" />
 
                     <TextView
+                        android:id="@+id/home_txt_chicken"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/notosanskr_bold_hestia"
                         android:gravity="center"
-                        android:text="8"
+                        tools:text="10"
+                        android:text="@{vm.diet.chickenBreastCount.toString()}"
                         android:textColor="@color/violet2"
                         android:textSize="25sp" />
                 </LinearLayout>

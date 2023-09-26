@@ -4,6 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.fragment.exercise.ExerciseFragment">
 
+    <data>
+        <variable
+            name="vm"
+            type="com.hifit.android.mafit.viewmodel.MainViewModel" />
+    </data>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -65,7 +71,8 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/notodanskr_regular_hestia"
-                android:text="__님을 위한 최적은 운동 프로그램을 만들어 드릴게요!"
+                tools:text="__님을 위한 최적은 운동 프로그램을 만들어 드릴게요!"
+                android:text='@{vm.userInfo.name + "님을 위한 최적은 운동 프로그램을 만들어 드릴게요!"}'
                 android:textColor="@color/gray3" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -151,7 +158,9 @@
                                 android:layout_weight="1"
                                 android:fontFamily="@font/notosanskr_light_hestia"
                                 android:gravity="center"
-                                android:text="29.4"
+                                tools:text="29.4"
+                                android:maxLength="4"
+                                android:text="@{vm.bodyInfo.currentBmi.toString()}"
                                 android:textColor="@color/black" />
 
                             <TextView
@@ -160,7 +169,9 @@
                                 android:layout_weight="1"
                                 android:fontFamily="@font/notosanskr_light_hestia"
                                 android:gravity="center"
-                                android:text="85.0"
+                                android:maxLength="4"
+                                tools:text="85.0"
+                                android:text="@{vm.bodyInfo.currentWeight.toString()}"
                                 android:textColor="@color/black" />
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -175,7 +186,9 @@
                                 android:layout_weight="1"
                                 android:fontFamily="@font/notosanskr_light_hestia"
                                 android:gravity="center"
-                                android:text="27.9"
+                                tools:text="27.9"
+                                android:maxLength="4"
+                                android:text="@{vm.bodyInfo.targetBmi.toString()}"
                                 android:textColor="@color/black" />
 
                             <TextView
@@ -184,7 +197,9 @@
                                 android:layout_weight="1"
                                 android:fontFamily="@font/notosanskr_light_hestia"
                                 android:gravity="center"
-                                android:text="80.8"
+                                android:maxLength="4"
+                                tools:text="80.8"
+                                android:text="@{vm.bodyInfo.targetWeight.toString()}"
                                 android:textColor="@color/black" />
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
