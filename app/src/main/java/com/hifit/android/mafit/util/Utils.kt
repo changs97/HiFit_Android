@@ -4,6 +4,7 @@ import android.app.Activity
 import android.graphics.Color
 import android.view.View
 import android.widget.Toast
+import java.text.DecimalFormat
 
 @Suppress("DEPRECATION")
 fun Activity.setStatusBarColor(color: Int) {
@@ -27,3 +28,5 @@ private fun isColorDark(color: Int): Boolean {
         )) / 255
     return darkness >= 0.5
 }
+
+fun Int.toKRW() = "${DecimalFormat("#,###").format(this)}원"
