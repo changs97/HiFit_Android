@@ -118,11 +118,11 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
                     _navigateNext.value = Event(true)
                 } else {
                     Timber.e("network error: ${response.message}")
-                    _showToast.value = Event(true)
+                    // _showToast.value = Event(true)
                 }
             } catch (e: Exception) {
                 Timber.e("network error", e)
-                _showToast.value = Event(true)
+                // _showToast.value = Event(true)
             } finally {
                 _isProgressVisible.value = false
             }
