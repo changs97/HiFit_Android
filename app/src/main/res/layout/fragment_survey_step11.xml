@@ -84,7 +84,7 @@
             android:fontFamily="@font/notosanskr_bold_hestia"
             android:textColor="@color/white"
             android:text="@string/complete"
-            android:onClick="@{() -> vm.patchUserInfo()}"
+            android:onClick="@{() -> vm.tryPatchUserInfo()}"
             android:background="@drawable/violet_button"
             android:layout_marginBottom="30dp"
             android:textSize="20sp"

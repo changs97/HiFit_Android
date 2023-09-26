@@ -33,6 +33,9 @@ class UserInfoRepository(private val userInfoDao: UserInfoDao, private val retro
     suspend fun patchUserInfo(userInfo: HealthInfoRequestBody) =
         retrofit.create(SurveyRetrofitInterface::class.java).patchHealthInfo(userInfo)
 
+    suspend fun patchStamps() =
+        retrofit.create(HomeRetrofitInterface::class.java).patchStamps()
+
 
     suspend fun getUserInfo() =
         retrofit.create(SurveyRetrofitInterface::class.java).getHealthStatusInfo()
