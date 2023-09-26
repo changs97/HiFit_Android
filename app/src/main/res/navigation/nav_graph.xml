@@ -148,7 +148,7 @@
         <action
             android:id="@+id/action_surveyStep11Fragment_to_surveyCompleteFragment"
             app:destination="@id/surveyCompleteFragment"
-            app:popUpTo="@id/startFragment"
+            app:popUpTo="@id/surveyStartFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
