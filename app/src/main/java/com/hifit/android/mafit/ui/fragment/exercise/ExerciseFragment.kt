@@ -17,10 +17,12 @@ import com.hifit.android.mafit.viewmodel.MainViewModel
 class ExerciseFragment : BaseFragment<FragmentExerciseBinding>(R.layout.fragment_exercise),
     ExerciseAdapterListener {
     private val viewModel: MainViewModel by activityViewModels()
+    private lateinit var link: String
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.vm = viewModel
+        link = ""
 
         viewModel.tryGetBodyInfo()
 
@@ -328,11 +330,20 @@ class ExerciseFragment : BaseFragment<FragmentExerciseBinding>(R.layout.fragment
         TabLayoutMediator(binding.exerciseTab, binding.exercisePager) { tab, position ->
             tab.text = tabTitles[position]
         }.attach()
+
+        viewModel.navigateNext.observe(viewLifecycleOwner) { event ->
+            event.getContentIfNotHandled()?.let {
+                if (it) {
+                    val uri = Uri.parse(link)
+                    val intent = Intent(Intent.ACTION_VIEW, uri)
+                    startActivity(intent)
+                }
+            }
+        }
     }
 
     override fun onExerciseClicked(link: String) {
-        val uri = Uri.parse(link)
-        val intent = Intent(Intent.ACTION_VIEW, uri)
-        startActivity(intent)
+        viewModel.tryPatchStamps()
+        this.link = link
     }
 }

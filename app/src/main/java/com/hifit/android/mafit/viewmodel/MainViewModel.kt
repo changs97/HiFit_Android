@@ -84,12 +84,32 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
         }
     }
 
-    fun patchUserInfo() {
+    fun tryPatchUserInfo() {
         viewModelScope.launch {
             _isProgressVisible.value = true
 
             try {
                 val response = repository.patchUserInfo(surveyInfo)
+                if (response.code == 200) {
+                    _navigateNext.value = Event(true)
+                } else {
+                    Timber.e("network error: ${response.message}")
+                    _showToast.value = Event(true)
+                }
+            } catch (e: Exception) {
+                Timber.e("network error", e)
+                _showToast.value = Event(true)
+            } finally {
+                _isProgressVisible.value = false
+            }
+        }
+    }
+
+    fun tryPatchStamps() {
+        viewModelScope.launch {
+            _isProgressVisible.value = true
+            try {
+                val response = repository.patchStamps()
                 if (response.code == 200) {
                     _navigateNext.value = Event(true)
                 } else {
