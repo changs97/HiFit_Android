@@ -63,11 +63,16 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
     val showToast: LiveData<Event<String>>
         get() = _showToast
 
+
+    // TODO: API ERROR 분기 처리를 위한 API 요청 반환 값 Response 래퍼 씌우기,
+    //  토큰 만료 시 deleteToken 요청 후 로그인 화면으로 이동하도록 처리
+
     fun deleteUserInfo() {
         _isProgressVisible.value = true
         viewModelScope.launch {
             try {
                 repository.deleteUserInfo()
+                repository.deleteToken()
             } catch (e: Exception) {
                 Timber.e("network error", e)
                 _showToast.value = Event("네트워크 에러가 발생했습니다.")
@@ -276,7 +281,15 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
     private fun storeToken(token: String) {
         try {
             repository.storeToken(token)
-        } catch (e: java.lang.Exception) {
+        } catch (e: Exception) {
+            Timber.e("local error: $e")
+        }
+    }
+
+    private fun deleteToken() {
+        try {
+            repository.deleteToken()
+        } catch (e: Exception) {
             Timber.e("local error: $e")
         }
     }

@@ -57,5 +57,9 @@ class UserInfoRepository(private val userInfoDao: UserInfoDao, private val retro
         ).apply()
     }
 
+    fun deleteToken() {
+        HiFitApplication.sharedPreferences.edit().clear().apply()
+    }
+
     fun getToken() = HiFitApplication.sharedPreferences.getString(Constant.X_ACCESS_TOKEN, null)
 }
