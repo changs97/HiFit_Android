@@ -45,7 +45,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/notosanskr_medium_hestia"
-                    android:text='@{vm.userInfo.name ?? "" + "님"}'
+                    android:text='@{(vm.userInfo.name ?? "") + "님"}'
                     android:textColor="@color/white"
                     android:textSize="15sp"
                     tools:text="ooo님" />
@@ -68,7 +68,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/notosanskr_bold_hestia"
-                        android:text='@{vm.workoutInfo.point ?? "" + " 코인"}'
+                        android:text='@{(vm.workoutInfo.point ?? "") + " 코인"}'
                         android:textColor="@color/black"
                         tools:text="240코인" />
                 </androidx.appcompat.widget.LinearLayoutCompat>

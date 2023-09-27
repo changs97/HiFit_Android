@@ -72,7 +72,7 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/notodanskr_regular_hestia"
                 tools:text="__님을 위한 최적은 운동 프로그램을 만들어 드릴게요!"
-                android:text='@{vm.userInfo.name ?? "" + "님을 위한 최적은 운동 프로그램을 만들어 드릴게요!"}'
+                android:text='@{(vm.userInfo.name ?? "") + "님을 위한 최적은 운동 프로그램을 만들어 드릴게요!"}'
                 android:textColor="@color/gray3" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
