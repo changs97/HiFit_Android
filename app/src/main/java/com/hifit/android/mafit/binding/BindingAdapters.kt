@@ -33,6 +33,13 @@ fun TextView.setText(workOutInfo: WorkoutInfoData?) {
     )
 }
 
+@BindingAdapter("bind:realNumFormatText")
+fun TextView.setText(num: Double?) {
+    num?.let {
+        this.text = String.format("%.1f", num)
+    }
+}
+
 
 
 

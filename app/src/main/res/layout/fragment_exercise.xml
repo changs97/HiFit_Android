@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.exercise.ExerciseFragment">
 
     <data>
@@ -159,7 +160,7 @@
                                 android:fontFamily="@font/notosanskr_light_hestia"
                                 android:gravity="center"
                                 tools:text="29.4"
-                                android:text='@{String.format("%.1f", vm.bodyInfo.currentBmi)}'
+                                bind:realNumFormatText="@{vm.bodyInfo.currentBmi}"
                                 android:textColor="@color/black" />
 
                             <TextView
@@ -169,7 +170,7 @@
                                 android:fontFamily="@font/notosanskr_light_hestia"
                                 android:gravity="center"
                                 tools:text="85.0"
-                                android:text='@{String.format("%.1f", vm.bodyInfo.currentWeight)}'
+                                bind:realNumFormatText="@{vm.bodyInfo.currentWeight}"
                                 android:textColor="@color/black" />
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -185,7 +186,7 @@
                                 android:fontFamily="@font/notosanskr_light_hestia"
                                 android:gravity="center"
                                 tools:text="27.9"
-                                android:text='@{String.format("%.1f", vm.bodyInfo.targetBmi)}'
+                                bind:realNumFormatText="@{vm.bodyInfo.targetBmi}"
                                 android:textColor="@color/black" />
 
                             <TextView
@@ -195,7 +196,7 @@
                                 android:fontFamily="@font/notosanskr_light_hestia"
                                 android:gravity="center"
                                 tools:text="80.8"
-                                android:text='@{String.format("%.1f", vm.bodyInfo.targetWeight)}'
+                                bind:realNumFormatText="@{vm.bodyInfo.targetWeight}"
                                 android:textColor="@color/black" />
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
