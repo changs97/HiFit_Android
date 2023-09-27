@@ -23,7 +23,7 @@ class SurveyCompleteFragment :
 
         viewModel.showToast.observe(viewLifecycleOwner) { event ->
             event.getContentIfNotHandled()?.let {
-                if (it) showCustomToast(getString(R.string.network_error_message))
+                if (it.isNotEmpty()) showCustomToast(it)
             }
         }
 

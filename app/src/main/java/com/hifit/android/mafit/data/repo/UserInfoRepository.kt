@@ -36,7 +36,6 @@ class UserInfoRepository(private val userInfoDao: UserInfoDao, private val retro
     suspend fun patchStamps() =
         retrofit.create(HomeRetrofitInterface::class.java).patchStamps()
 
-
     suspend fun getUserInfo() =
         retrofit.create(SurveyRetrofitInterface::class.java).getHealthStatusInfo()
 
@@ -49,7 +48,8 @@ class UserInfoRepository(private val userInfoDao: UserInfoDao, private val retro
 
     suspend fun getBodyInfo() = retrofit.create(HomeRetrofitInterface::class.java).getBodyInfo()
 
-    suspend fun getWorkoutInfo() = retrofit.create(HomeRetrofitInterface::class.java).getWorkoutInfo()
+    suspend fun getWorkoutInfo() =
+        retrofit.create(HomeRetrofitInterface::class.java).getWorkoutInfo()
 
     fun storeToken(code: String) {
         HiFitApplication.sharedPreferences.edit().putString(

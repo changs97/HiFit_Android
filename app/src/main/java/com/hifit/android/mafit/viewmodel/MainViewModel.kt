@@ -9,9 +9,11 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.navigation.fragment.findNavController
+import com.google.gson.Gson
 import com.hifit.android.mafit.HiFitApplication
 import com.hifit.android.mafit.HiFitApplication.Companion.repository
 import com.hifit.android.mafit.R
+import com.hifit.android.mafit.base.BaseResponse
 import com.hifit.android.mafit.data.model.home.BodyInfoData
 import com.hifit.android.mafit.data.model.home.BodyInfoResponse
 import com.hifit.android.mafit.data.model.home.DietData
@@ -57,9 +59,8 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
     val navigateNext: LiveData<Event<Boolean>>
         get() = _navigateNext
 
-    // TODO: message를 직접 전달해서 처리하도록 수정
-    private val _showToast = MutableLiveData<Event<Boolean>>()
-    val showToast: LiveData<Event<Boolean>>
+    private val _showToast = MutableLiveData<Event<String>>()
+    val showToast: LiveData<Event<String>>
         get() = _showToast
 
     fun deleteUserInfo() {
@@ -69,7 +70,7 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
                 repository.deleteUserInfo()
             } catch (e: Exception) {
                 Timber.e("network error", e)
-                _showToast.value = Event(true)
+                _showToast.value = Event("네트워크 에러가 발생했습니다.")
                 _isProgressVisible.value = false
             }
         }
@@ -81,7 +82,6 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
             try {
                 repository.insert(userInfo)
             } catch (e: Exception) {
-                _showToast.value = Event(true)
                 Timber.e("local error", e)
             } finally {
                 _isProgressVisible.value = false
@@ -99,11 +99,11 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
                     _navigateNext.value = Event(true)
                 } else {
                     Timber.e("network error: ${response.message}")
-                    _showToast.value = Event(true)
+                    _showToast.value = Event("네트워크 에러가 발생했습니다.")
                 }
             } catch (e: Exception) {
                 Timber.e("network error", e)
-                _showToast.value = Event(true)
+                _showToast.value = Event("네트워크 에러가 발생했습니다.")
             } finally {
                 _isProgressVisible.value = false
             }
@@ -115,21 +115,21 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
             _isProgressVisible.value = true
             try {
                 val response = repository.patchStamps()
-                when (response.code) {
-                    200 -> {
-                        _navigateNext.value = Event(true)
-                    }
-                    400 -> {
-                        _navigateNext.value = Event(true)
-                    }
-                    else -> {
-                        Timber.e("network error: ${response.message}")
-                        _showToast.value = Event(true)
-                    }
+                if (response.isSuccessful) {
+                    _navigateNext.value = Event(true)
+                } else {
+                    val message = response.errorBody()?.string().run {
+                        Gson().fromJson(this, BaseResponse::class.java)
+                    }.message
+
+                    Timber.e("network error: $message")
+                    _showToast.value = Event(message)
+
+                    _navigateNext.value = Event(true)
                 }
             } catch (e: Exception) {
                 Timber.e("network error", e)
-                _showToast.value = Event(true)
+                _showToast.value = Event("네트워크 에러가 발생했습니다.")
             } finally {
                 _isProgressVisible.value = false
             }
@@ -160,11 +160,11 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
                     insertUserInfo(userInfo)
                 } else {
                     Timber.e("network error: ${response.message}")
-                    _showToast.value = Event(true)
+                    _showToast.value = Event("네트워크 에러가 발생했습니다.")
                 }
             } catch (e: Exception) {
                 Timber.e("network error: $e")
-                _showToast.value = Event(true)
+                _showToast.value = Event("네트워크 에러가 발생했습니다.")
             } finally {
                 _isProgressVisible.value = false
             }
@@ -181,12 +181,12 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
                     _navigateNext.value = Event(true)
                 } else {
                     Timber.e("network error: ${response.message}")
-                    _showToast.value = Event(true)
+                    _showToast.value = Event("네트워크 에러가 발생했습니다.")
                 }
 
             } catch (e: java.lang.Exception) {
                 Timber.e("network error: $e")
-                _showToast.value = Event(true)
+                _showToast.value = Event("네트워크 에러가 발생했습니다.")
             } finally {
                 _isProgressVisible.value = false
             }
@@ -202,11 +202,11 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
                     _bodyInfo.value = response.data
                 } else {
                     Timber.e("network error: ${response.message}")
-                    _showToast.value = Event(true)
+                    _showToast.value = Event("네트워크 에러가 발생했습니다.")
                 }
             } catch (e: Exception) {
                 Timber.e("network error: $e")
-                _showToast.value = Event(true)
+                _showToast.value = Event("네트워크 에러가 발생했습니다.")
             } finally {
                 _isProgressVisible.value = false
             }
@@ -222,11 +222,11 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
                     _exercises.value = response.data
                 } else {
                     Timber.e("network error: ${response.message}")
-                    _showToast.value = Event(true)
+                    _showToast.value = Event("네트워크 에러가 발생했습니다.")
                 }
             } catch (e: Exception) {
                 Timber.e("network error: $e")
-                _showToast.value = Event(true)
+                _showToast.value = Event("네트워크 에러가 발생했습니다.")
             } finally {
                 _isProgressVisible.value = false
             }
@@ -242,11 +242,11 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
                     _diet.value = response.data
                 } else {
                     Timber.e("network error: ${response.message}")
-                    _showToast.value = Event(true)
+                    _showToast.value = Event("네트워크 에러가 발생했습니다.")
                 }
             } catch (e: Exception) {
                 Timber.e("network error: $e")
-                _showToast.value = Event(true)
+                _showToast.value = Event("네트워크 에러가 발생했습니다.")
             } finally {
                 _isProgressVisible.value = false
             }
@@ -262,11 +262,11 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
                     _workoutInfo.value = response.data
                 } else {
                     Timber.e("network error: ${response.message}")
-                    _showToast.value = Event(true)
+                    _showToast.value = Event("네트워크 에러가 발생했습니다.")
                 }
             } catch (e: Exception) {
                 Timber.e("network error: $e")
-                _showToast.value = Event(true)
+                _showToast.value = Event("네트워크 에러가 발생했습니다.")
             } finally {
                 _isProgressVisible.value = false
             }
@@ -278,7 +278,6 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
             repository.storeToken(token)
         } catch (e: java.lang.Exception) {
             Timber.e("local error: $e")
-            _showToast.value = Event(true)
         }
     }
 

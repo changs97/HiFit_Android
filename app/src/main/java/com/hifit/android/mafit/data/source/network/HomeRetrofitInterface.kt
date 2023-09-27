@@ -5,6 +5,7 @@ import com.hifit.android.mafit.data.model.home.BodyInfoResponse
 import com.hifit.android.mafit.data.model.home.DietResponse
 import com.hifit.android.mafit.data.model.home.ExerciseResponse
 import com.hifit.android.mafit.data.model.home.WorkoutInfoResponse
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.PATCH
 
@@ -22,5 +23,5 @@ interface HomeRetrofitInterface {
     suspend fun getWorkoutInfo(): WorkoutInfoResponse
 
     @PATCH("/users/stamps")
-    suspend fun patchStamps(): BaseResponse
+    suspend fun patchStamps(): Response<BaseResponse>
 }
