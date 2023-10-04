@@ -63,6 +63,10 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
     val showToast: LiveData<Event<String>>
         get() = _showToast
 
+    private val _errorEvent = MutableLiveData<Event<Int>>()
+    val errorEvent: LiveData<Event<Int>>
+        get() = _errorEvent
+
 
     // TODO: API ERROR 분기 처리를 위한 API 요청 반환 값 Response 래퍼 씌우기,
     //  토큰 만료 시 deleteToken 요청 후 로그인 화면으로 이동하도록 처리
@@ -100,11 +104,23 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
 
             try {
                 val response = repository.patchUserInfo(surveyInfo)
-                if (response.code == 200) {
+                if (response.isSuccessful) {
                     _navigateNext.value = Event(true)
                 } else {
-                    Timber.e("network error: ${response.message}")
-                    _showToast.value = Event("네트워크 에러가 발생했습니다.")
+                    val errorBody = response.errorBody()?.string().run {
+                        Gson().fromJson(this, BaseResponse::class.java)
+                    }
+
+                    val message = errorBody.message
+                    val code = errorBody.code
+
+                    if (code == 40103) {
+                        deleteUserInfo()
+                        _errorEvent.value = Event(40103)
+                    }
+
+                    Timber.e("network error: $message")
+                    _showToast.value = Event(message)
                 }
             } catch (e: Exception) {
                 Timber.e("network error", e)
@@ -123,14 +139,20 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
                 if (response.isSuccessful) {
                     _navigateNext.value = Event(true)
                 } else {
-                    val message = response.errorBody()?.string().run {
+                    val errorBody = response.errorBody()?.string().run {
                         Gson().fromJson(this, BaseResponse::class.java)
-                    }.message
+                    }
+
+                    val message = errorBody.message
+                    val code = errorBody.code
+
+                    if (code == 40103) {
+                        deleteUserInfo()
+                        _errorEvent.value = Event(40103)
+                    }
 
                     Timber.e("network error: $message")
                     _showToast.value = Event(message)
-
-                    _navigateNext.value = Event(true)
                 }
             } catch (e: Exception) {
                 Timber.e("network error", e)
@@ -146,8 +168,8 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = repository.getUserInfo()
-                if (response.code == 200) {
-                    val userInfo = with(response.data) {
+                if (response.isSuccessful && response.body() != null) {
+                    val userInfo = with(response.body()!!.data) {
                         UserInfo(
                             0,
                             age ?: userAge,
@@ -164,8 +186,20 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
                     }
                     insertUserInfo(userInfo)
                 } else {
-                    Timber.e("network error: ${response.message}")
-                    _showToast.value = Event("네트워크 에러가 발생했습니다.")
+                    val errorBody = response.errorBody()?.string().run {
+                        Gson().fromJson(this, BaseResponse::class.java)
+                    }
+
+                    val message = errorBody.message
+                    val code = errorBody.code
+
+                    if (code == 40103) {
+                        deleteUserInfo()
+                        _errorEvent.value = Event(40103)
+                    }
+
+                    Timber.e("network error: $message")
+                    _showToast.value = Event(message)
                 }
             } catch (e: Exception) {
                 Timber.e("network error: $e")
@@ -181,12 +215,24 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = repository.postLogin(LoginRequestBody(token))
-                if (response.code == 200) {
-                    storeToken(response.data.code)
+                if (response.isSuccessful && response.body() != null) {
+                    storeToken(response.body()!!.data.code)
                     _navigateNext.value = Event(true)
                 } else {
-                    Timber.e("network error: ${response.message}")
-                    _showToast.value = Event("네트워크 에러가 발생했습니다.")
+                    val errorBody = response.errorBody()?.string().run {
+                        Gson().fromJson(this, BaseResponse::class.java)
+                    }
+
+                    val message = errorBody.message
+                    val code = errorBody.code
+
+                    if (code == 40103) {
+                        deleteUserInfo()
+                        _errorEvent.value = Event(40103)
+                    }
+
+                    Timber.e("network error: $message")
+                    _showToast.value = Event(message)
                 }
 
             } catch (e: java.lang.Exception) {
@@ -203,10 +249,10 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
             _isProgressVisible.value = true
             try {
                 val response = repository.getBodyInfo()
-                if (response.code == 200) {
-                    _bodyInfo.value = response.data
+                if (response.isSuccessful && response.body() != null) {
+                    _bodyInfo.value = response.body()!!.data
                 } else {
-                    Timber.e("network error: ${response.message}")
+                    Timber.e("network error: ${response.message()}")
                     _showToast.value = Event("네트워크 에러가 발생했습니다.")
                 }
             } catch (e: Exception) {
@@ -223,11 +269,23 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
             _isProgressVisible.value = true
             try {
                 val response = repository.getExercises()
-                if (response.code == 200) {
-                    _exercises.value = response.data
+                if (response.isSuccessful && response.body() != null) {
+                    _exercises.value = response.body()!!.data
                 } else {
-                    Timber.e("network error: ${response.message}")
-                    _showToast.value = Event("네트워크 에러가 발생했습니다.")
+                    val errorBody = response.errorBody()?.string().run {
+                        Gson().fromJson(this, BaseResponse::class.java)
+                    }
+
+                    val message = errorBody.message
+                    val code = errorBody.code
+
+                    if (code == 40103) {
+                        deleteUserInfo()
+                        _errorEvent.value = Event(40103)
+                    }
+
+                    Timber.e("network error: $message")
+                    _showToast.value = Event(message)
                 }
             } catch (e: Exception) {
                 Timber.e("network error: $e")
@@ -243,11 +301,23 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
             _isProgressVisible.value = true
             try {
                 val response = repository.getDiet()
-                if (response.code == 200) {
-                    _diet.value = response.data
+                if (response.isSuccessful && response.body() != null) {
+                    _diet.value = response.body()!!.data
                 } else {
-                    Timber.e("network error: ${response.message}")
-                    _showToast.value = Event("네트워크 에러가 발생했습니다.")
+                    val errorBody = response.errorBody()?.string().run {
+                        Gson().fromJson(this, BaseResponse::class.java)
+                    }
+
+                    val message = errorBody.message
+                    val code = errorBody.code
+
+                    if (code == 40103) {
+                        deleteUserInfo()
+                        _errorEvent.value = Event(40103)
+                    }
+
+                    Timber.e("network error: $message")
+                    _showToast.value = Event(message)
                 }
             } catch (e: Exception) {
                 Timber.e("network error: $e")
@@ -263,11 +333,23 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
             _isProgressVisible.value = true
             try {
                 val response = repository.getWorkoutInfo()
-                if (response.code == 200) {
-                    _workoutInfo.value = response.data
+                if (response.isSuccessful && response.body() != null) {
+                    _workoutInfo.value = response.body()!!.data
                 } else {
-                    Timber.e("network error: ${response.message}")
-                    _showToast.value = Event("네트워크 에러가 발생했습니다.")
+                    val errorBody = response.errorBody()?.string().run {
+                        Gson().fromJson(this, BaseResponse::class.java)
+                    }
+
+                    val message = errorBody.message
+                    val code = errorBody.code
+
+                    if (code == 40103) {
+                        deleteUserInfo()
+                        _errorEvent.value = Event(40103)
+                    }
+
+                    Timber.e("network error: $message")
+                    _showToast.value = Event(message)
                 }
             } catch (e: Exception) {
                 Timber.e("network error: $e")

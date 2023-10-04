@@ -11,16 +11,16 @@ import retrofit2.http.PATCH
 
 interface HomeRetrofitInterface {
     @GET("/users/exercises")
-    suspend fun getExercises(): ExerciseResponse
+    suspend fun getExercises(): Response<ExerciseResponse>
 
     @GET("/users/diet")
-    suspend fun getDiet(): DietResponse
+    suspend fun getDiet(): Response<DietResponse>
 
     @GET("/users/bodyInfo")
-    suspend fun getBodyInfo(): BodyInfoResponse
+    suspend fun getBodyInfo(): Response<BodyInfoResponse>
 
     @GET("/users/workoutInfo")
-    suspend fun getWorkoutInfo(): WorkoutInfoResponse
+    suspend fun getWorkoutInfo(): Response<WorkoutInfoResponse>
 
     @PATCH("/users/stamps")
     suspend fun patchStamps(): Response<BaseResponse>

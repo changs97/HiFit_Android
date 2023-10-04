@@ -10,6 +10,7 @@ import com.hifit.android.mafit.R
 import com.hifit.android.mafit.base.BaseFragment
 import com.hifit.android.mafit.data.model.ExerciseItem
 import com.hifit.android.mafit.databinding.FragmentExerciseBinding
+import com.hifit.android.mafit.test.LivePreviewActivity
 import com.hifit.android.mafit.ui.fragment.exercise.adapter.ExerciseAdapterListener
 import com.hifit.android.mafit.ui.fragment.exercise.adapter.ExercisePageAdapter
 import com.hifit.android.mafit.viewmodel.MainViewModel
@@ -26,9 +27,20 @@ class ExerciseFragment : BaseFragment<FragmentExerciseBinding>(R.layout.fragment
 
         viewModel.tryGetBodyInfo()
 
+        binding.exerciseBtnStartExercise.setOnClickListener {
+            val intent = Intent(requireContext(), LivePreviewActivity::class.java)
+            startActivity(intent)
+        }
+
         viewModel.showToast.observe(viewLifecycleOwner) { event ->
             event.getContentIfNotHandled()?.let {
                 if (it.isNotEmpty()) showCustomToast(it)
+            }
+        }
+
+        viewModel.errorEvent.observe(viewLifecycleOwner) { event ->
+            event.getContentIfNotHandled()?.let {
+                if (it == 40103) activity?.finish()
             }
         }
 

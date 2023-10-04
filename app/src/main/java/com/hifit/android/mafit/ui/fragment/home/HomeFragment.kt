@@ -29,6 +29,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             }
         }
 
+        viewModel.errorEvent.observe(viewLifecycleOwner) { event ->
+            event.getContentIfNotHandled()?.let {
+                if (it == 40103) activity?.finish()
+            }
+        }
+
         binding.homeLlCoinContainer.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_productFragment)
         }

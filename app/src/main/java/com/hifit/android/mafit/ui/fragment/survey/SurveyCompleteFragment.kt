@@ -27,6 +27,12 @@ class SurveyCompleteFragment :
             }
         }
 
+        viewModel.errorEvent.observe(viewLifecycleOwner) { event ->
+            event.getContentIfNotHandled()?.let {
+                if (it == 40103) activity?.finish()
+            }
+        }
+
         viewModel.userInfo.observe(viewLifecycleOwner) { userInfo ->
             Timber.tag("테스트").d("$userInfo")
             userInfo?.let {

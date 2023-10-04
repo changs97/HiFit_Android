@@ -279,7 +279,7 @@
                         android:fontFamily="@font/notosanskr_bold_hestia"
                         android:gravity="center"
                         tools:text="10"
-                        android:text='@{vm.diet.eggCount ?? "" }'
+                        android:text='@{vm.diet.eggCount != null ? vm.diet.eggCount.toString() : ""}'
                         android:textColor="@color/violet2"
                         android:textSize="25sp" />
 
@@ -291,7 +291,7 @@
                         android:fontFamily="@font/notosanskr_bold_hestia"
                         android:gravity="center"
                         tools:text="10"
-                        android:text='@{vm.diet.tofuCount ?? ""}'
+                        android:text='@{vm.diet.tofuCount != null ? vm.diet.tofuCount.toString() : ""}'
                         android:textColor="@color/violet2"
                         android:textSize="25sp" />
 
@@ -303,7 +303,7 @@
                         android:fontFamily="@font/notosanskr_bold_hestia"
                         android:gravity="center"
                         tools:text="10"
-                        android:text='@{vm.diet.chickenBreastCount ?? ""}'
+                        android:text='@{vm.diet.chickenBreastCount != null ? vm.diet.chickenBreastCount.toString() : ""}'
                         android:textColor="@color/violet2"
                         android:textSize="25sp" />
                 </LinearLayout>
