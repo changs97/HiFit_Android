@@ -5,19 +5,25 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/startFragment">
     <fragment
+        android:id="@+id/surveyCompleteFragment"
+        android:name="com.hifit.android.mafit.ui.fragment.survey.SurveyCompleteFragment"
+        android:label="fragment_survey_complete"
+        tools:layout="@layout/fragment_survey_complete"/>
+    <fragment
         android:id="@+id/startFragment"
         android:name="com.hifit.android.mafit.ui.fragment.start.StartFragment"
         android:label="fragment_start"
         tools:layout="@layout/fragment_start" >
         <action
             android:id="@+id/action_startFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/startFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_startFragment_to_surveyStartFragment"
-            app:destination="@id/surveyStartFragment" />
-        <action
-            android:id="@+id/action_startFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/surveyStartFragment"
+            app:popUpTo="@id/startFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -27,19 +33,13 @@
         <action
             android:id="@+id/action_loginFragment_to_surveyStartFragment"
             app:destination="@id/surveyStartFragment"
-            app:popUpTo="@id/startFragment"
+            app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_loginFragment_to_kakaoLoginWebFragment"
-            app:destination="@id/kakaoLoginWebFragment" />
         <argument
             android:name="code"
             app:argType="string"
             app:nullable="true"
             android:defaultValue="@null" />
-        <action
-            android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/surveyStartFragment"
@@ -147,65 +147,6 @@
         tools:layout="@layout/fragment_survey_step11" >
         <action
             android:id="@+id/action_surveyStep11Fragment_to_surveyCompleteFragment"
-            app:destination="@id/surveyCompleteFragment"
-            app:popUpTo="@id/surveyStartFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/surveyCompleteFragment"
-        android:name="com.hifit.android.mafit.ui.fragment.survey.SurveyCompleteFragment"
-        android:label="fragment_survey_complete"
-        tools:layout="@layout/fragment_survey_complete" >
-        <action
-            android:id="@+id/action_surveyCompleteFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.hifit.android.mafit.ui.fragment.home.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_homeFragment_to_surveyCompleteFragment"
             app:destination="@id/surveyCompleteFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_exerciseFragment"
-            app:destination="@id/exerciseFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_productFragment"
-            app:destination="@id/productFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/exerciseFragment"
-        android:name="com.hifit.android.mafit.ui.fragment.exercise.ExerciseFragment"
-        android:label="fragment_exercise"
-        tools:layout="@layout/fragment_exercise" />
-    <fragment
-        android:id="@+id/kakaoLoginWebFragment"
-        android:name="com.hifit.android.mafit.ui.fragment.login.KakaoLoginWebFragment"
-        android:label="KakaoLoginWebFragment" >
-        <action
-            android:id="@+id/action_kakaoLoginWebFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:popUpTo="@id/loginFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/productFragment"
-        android:name="com.hifit.android.mafit.ui.fragment.product.ProductFragment"
-        android:label="fragment_product"
-        tools:layout="@layout/fragment_product" >
-        <action
-            android:id="@+id/action_productFragment_to_orderFragment"
-            app:destination="@id/orderFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/orderFragment"
-        android:name="com.hifit.android.mafit.ui.fragment.product.OrderFragment"
-        android:label="fragment_order"
-        tools:layout="@layout/fragment_order" >
-        <argument
-            android:name="productItem"
-            app:argType="com.hifit.android.mafit.data.model.ProductItem" />
     </fragment>
 </navigation>

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.fragment.exercise.ExerciseFragment">
 
     <data>
+
         <variable
             name="vm"
             type="com.hifit.android.mafit.viewmodel.MainViewModel" />
@@ -14,98 +15,81 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/main_background">
+        android:background="@color/white">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/violet"
-                android:elevation="10dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingHorizontal="30dp"
-                android:paddingVertical="10dp">
-
-                <ImageView
-                    android:id="@+id/exercise_img_menu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_setting" />
-
-                <TextView
-                    style="@style/customTextViewShadows"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:fontFamily="@font/notosanskr_medium_hestia"
-                    android:text="@string/exercise_title"
-                    android:textColor="@color/white"
-                    android:textSize="23sp" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="25dp"
-                android:fontFamily="@font/notosanskr_medium_hestia"
-                android:text="@string/exercise_subtitle"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginVertical="11dp"
+                android:text="운동하기"
+                android:textColor="@color/gray4"
+                android:textSize="18sp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/violet" />
+                android:background="@color/gray5"/>
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/exercise_subtitle"
+                android:textStyle="bold"
+                android:textColor="@color/violet3"
+                android:textSize="16sp" />
+
 
             <TextView
                 android:id="@+id/exercise_txt_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/notodanskr_regular_hestia"
-                tools:text="__님을 위한 최적은 운동 프로그램을 만들어 드릴게요!"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:textSize="12sp"
                 android:text='@{(vm.userInfo.name ?? "") + "님을 위한 최적은 운동 프로그램을 만들어 드릴게요!"}'
-                android:textColor="@color/gray3" />
+                android:textColor="@color/gray4"
+                tools:text="__님을 위한 최적은 운동 프로그램을 만들어 드릴게요!" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="55dp"
+                android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginEnd="10dp"
                     android:elevation="10dp"
                     app:cardCornerRadius="@dimen/common_radius_8">
 
                     <TextView
-                        style="@style/customTextViewShadows"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@color/violet"
                         android:gravity="center"
-                        android:paddingHorizontal="20dp"
-                        android:paddingVertical="50dp"
+                        android:paddingHorizontal="40dp"
+                        android:paddingVertical="40dp"
                         android:text="4주"
+                        android:textStyle="bold"
                         android:textColor="@color/white"
-                        android:textSize="30sp" />
+                        android:textSize="20sp" />
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:elevation="10dp"
                     app:cardCornerRadius="@dimen/common_radius_8">
@@ -114,6 +98,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
+                        android:background="@drawable/background_radius_10dp_stroke_violet"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="10dp">
 
@@ -127,23 +112,26 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:fontFamily="@font/notosanskr_bold_hestia"
                                 android:gravity="center"
                                 android:text="@string/bmi"
-                                android:textColor="@color/black" />
+                                android:textStyle="bold"
+                                android:textSize="16sp"
+                                android:textColor="@color/gray4" />
 
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:fontFamily="@font/notosanskr_bold_hestia"
+                                android:textStyle="bold"
+                                android:textSize="16sp"
+                                android:textColor="@color/gray4"
                                 android:gravity="center"
                                 android:text="@string/weight" />
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
                         <View
                             android:layout_width="match_parent"
-                            android:layout_height="2dp"
+                            android:layout_height="1dp"
                             android:layout_marginBottom="10dp"
                             android:background="@color/violet" />
 
@@ -157,21 +145,21 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:fontFamily="@font/notosanskr_light_hestia"
                                 android:gravity="center"
-                                tools:text="29.4"
+                                android:textSize="16sp"
+                                android:textColor="@color/gray4"
                                 bind:realNumFormatText="@{vm.bodyInfo.currentBmi}"
-                                android:textColor="@color/black" />
+                                tools:text="29.4" />
 
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:fontFamily="@font/notosanskr_light_hestia"
+                                android:textSize="16sp"
+                                android:textColor="@color/gray4"
                                 android:gravity="center"
-                                tools:text="85.0"
                                 bind:realNumFormatText="@{vm.bodyInfo.currentWeight}"
-                                android:textColor="@color/black" />
+                                tools:text="85.0" />
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
                         <androidx.appcompat.widget.LinearLayoutCompat
@@ -183,21 +171,21 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:fontFamily="@font/notosanskr_light_hestia"
                                 android:gravity="center"
-                                tools:text="27.9"
+                                android:textSize="16sp"
+                                android:textColor="@color/gray4"
                                 bind:realNumFormatText="@{vm.bodyInfo.targetBmi}"
-                                android:textColor="@color/black" />
+                                tools:text="27.9" />
 
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:fontFamily="@font/notosanskr_light_hestia"
                                 android:gravity="center"
-                                tools:text="80.8"
+                                android:textSize="16sp"
+                                android:textColor="@color/gray4"
                                 bind:realNumFormatText="@{vm.bodyInfo.targetWeight}"
-                                android:textColor="@color/black" />
+                                tools:text="80.8" />
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
                     </LinearLayout>
@@ -205,55 +193,54 @@
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/exercise_btn_start_exercise"
-                style="@style/customTextViewShadows"
-                android:layout_width="match_parent"
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="90dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
-                android:background="@drawable/violet_radius_8dp_button"
-                android:fontFamily="@font/notodanskr_regular_hestia"
-                android:gravity="center"
-                android:paddingVertical="12dp"
-                android:text="@string/exercise_title"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:layout_marginTop="18dp"
+                android:gravity="center_vertical"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/exercise_title"
+                    android:layout_marginEnd="4dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/gray4"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/exercise_btn_start_exercise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/btn_arrow"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginTop="26dp"
+                android:layout_height="4dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/gray5" />
+
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
-                android:fontFamily="@font/notodanskr_regular_hestia"
+                android:layout_marginHorizontal="16dp"
                 android:text="@string/exercise_learn_exercise"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginHorizontal="50dp"
-                android:layout_marginVertical="10dp"
-                android:background="@color/violet" />
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/exercise_tab"
-                app:tabTextAppearance="@style/tab_text"
-                android:layout_marginHorizontal="50dp"
-                app:tabPaddingStart="2dp"
-                app:tabPaddingEnd="2dp"
-                android:background="@color/main_background"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:textStyle="bold"
+                android:textColor="@color/violet3"
+                android:textSize="16sp" />
 
             <androidx.viewpager2.widget.ViewPager2
-                android:layout_marginTop="20dp"
                 android:id="@+id/exercise_pager"
                 android:layout_width="match_parent"
                 android:layout_height="600dp"
-                android:layout_marginHorizontal="45dp"/>
-
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="10dp" />
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>

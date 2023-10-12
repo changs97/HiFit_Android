@@ -29,7 +29,7 @@ fun TextView.setGender(gender: String?) {
 fun TextView.setText(workOutInfo: WorkoutInfoData?) {
     val remainNum = (workOutInfo?.targetStamp ?: 0) - (workOutInfo?.stamp ?: 0)
     this.text = this.context.getString(R.string.home_exercise_status_content).format(
-        workOutInfo?.month ?: 0, remainNum
+        remainNum
     )
 }
 

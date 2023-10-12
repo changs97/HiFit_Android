@@ -7,13 +7,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="50dp"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:paddingHorizontal="20dp">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/survey_start_img"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginTop="40dp"
             android:src="@drawable/ic_square_violet"
             app:layout_constraintEnd_toEndOf="parent"
@@ -24,45 +24,34 @@
             android:id="@+id/survey_start_txt_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:fontFamily="@font/notosanskr_bold_hestia"
+            android:layout_marginTop="18dp"
+            android:gravity="center"
             android:text="@string/survey_start_title"
-            android:textColor="@color/violet2"
-            android:textSize="18sp"
+            android:textColor="@color/violet4"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/survey_start_img" />
 
         <TextView
             android:id="@+id/survey_start_txt_explanation1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:fontFamily="@font/notodanskr_regular_hestia"
-            android:text="@string/survey_start_explanation1"
-            android:textColor="@color/black"
+            android:layout_marginTop="80dp"
+            android:gravity="center"
+            android:text="@string/survey_start_explanation"
+            android:textColor="@color/gray4"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/survey_start_txt_title"
             app:layout_constraintStart_toStartOf="@+id/survey_start_txt_title"
             app:layout_constraintTop_toBottomOf="@+id/survey_start_txt_title" />
 
-
-        <TextView
-            android:id="@+id/survey_start_txt_explanation2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/notodanskr_regular_hestia"
-            android:text="@string/survey_start_explanation2"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="@+id/survey_start_txt_explanation1"
-            app:layout_constraintTop_toBottomOf="@+id/survey_start_txt_explanation1" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/notodanskr_regular_hestia"
-            android:text="@string/survey_start_touch"
-            android:textColor="@color/gray"
-            android:textSize="18sp"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="254dp"
+            android:layout_height="254dp"
+            android:src="@drawable/img_start_survey"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -71,11 +60,26 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="11sp"
-            android:layout_marginBottom="50dp"
-            android:text="@string/survey_start_explanation3"
+            android:text="@string/survey_start_touch"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/background_radius_10dp_solid_violet5"
+            android:paddingHorizontal="26dp"
+            android:paddingVertical="20dp"
+            android:text="@string/survey_start_explanation3"
+            android:textColor="@color/violet4"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

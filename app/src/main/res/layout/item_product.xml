@@ -5,91 +5,70 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:layout_marginBottom="30dp"
-        android:elevation="35dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="6dp"
+        android:layout_marginBottom="22dp"
         app:cardCornerRadius="@dimen/common_radius_8">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="15dp">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <com.google.android.material.card.MaterialCardView
-                app:strokeColor="@color/black"
-                app:cardCornerRadius="0dp"
+            <androidx.cardview.widget.CardView
                 android:id="@+id/item_product_card_img_container"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_width="match_parent"
+                android:layout_height="158dp"
+                app:cardCornerRadius="8dp">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/item_product_img"
-                    android:layout_width="120dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_sample1" />
-            </com.google.android.material.card.MaterialCardView>
+                    tools:src="@drawable/ic_sample1" />
 
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/item_product_ll_coin_container"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:src="@drawable/ic_coin" />
-
-                <TextView
-                    android:id="@+id/item_product_txt_coin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/notosanskr_medium_hestia"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"
-                    tools:text="240코인" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/item_product_txt_brand_name"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="30dp"
+                android:layout_marginVertical="8dp"
                 android:ellipsize="end"
-                android:fontFamily="@font/notosanskr_medium_hestia"
                 android:maxLines="1"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toStartOf="@+id/item_product_ll_coin_container"
-                app:layout_constraintStart_toEndOf="@+id/item_product_card_img_container"
-                app:layout_constraintTop_toTopOf="@+id/item_product_card_img_container"
+                android:layout_marginStart="2dp"
+                android:textColor="@color/gray6"
+                android:textSize="12sp"
                 tools:text="모두의 단백질" />
 
             <TextView
                 android:id="@+id/item_product_txt_product_name"
-                android:layout_width="0dp"
-                android:layout_height="27dp"
-                android:layout_marginTop="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="2dp"
                 android:ellipsize="end"
-                android:fontFamily="@font/notosanskr_medium_hestia"
-                android:maxLines="1"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/item_product_txt_brand_name"
-                app:layout_constraintTop_toBottomOf="@+id/item_product_txt_brand_name"
+                android:maxLines="2"
+                android:textColor="@color/gray4"
+                android:textSize="14sp"
                 tools:text="단백질 52g 폴드포크 수비돈" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/item_product_txt_coin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginBottom="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/gray4"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="240코인" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.cardview.widget.CardView>
 </layout>

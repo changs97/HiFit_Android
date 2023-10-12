@@ -35,14 +35,14 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(R.layout.fragment_order
 
         val productItem = args.productItem
 
-        Glide.with(this).load(R.drawable.exercise_sample).centerCrop().into(binding.orderImg)
+        Glide.with(this).load(productItem.img).centerCrop().into(binding.orderImg)
 
-        binding.orderTxtBrand.text = productItem.brand
         binding.orderTxtProductName.text = productItem.name
+        binding.orderTxtProductCoin.text = "${productItem.coin}코인"
 
-        val samplePrice = 12000
+        val samplePrice = productItem.coin
 
-        binding.orderTxtPrice.text = samplePrice.toKRW()
+        binding.orderTxtProductCoin.text = samplePrice.toKRW()
         binding.orderTxtAmount.text = samplePrice.toKRW()
 
         var curQuantity = 1
@@ -79,7 +79,7 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(R.layout.fragment_order
 
                 binding.orderTxtProductCount.text = "${amountOfItem.inc()}"
                 binding.orderTxtAmount.text =
-                    "${DecimalFormat("#,###").format(samplePrice * amountOfItem.inc())}원"
+                    "${DecimalFormat("#,###").format(samplePrice * amountOfItem.inc())}코인"
                 binding.orderImgDecrease.isEnabled = true
                 binding.orderImgDecrease.setImageResource(R.drawable.ic_cart_item_minus_on)
             }
@@ -96,7 +96,7 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(R.layout.fragment_order
 
                 binding.orderTxtProductCount.text = "${amountOfItem.dec()}"
                 binding.orderTxtAmount.text =
-                    "${DecimalFormat("#,###").format(samplePrice * amountOfItem.dec())}원"
+                    "${DecimalFormat("#,###").format(samplePrice * amountOfItem.dec())}코인"
                 binding.orderImgIncrease.isEnabled = true
                 binding.orderImgIncrease.setImageResource(R.drawable.ic_cart_item_plus_on)
             }

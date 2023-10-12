@@ -8,10 +8,56 @@ import com.hifit.android.mafit.base.BaseFragment
 import com.hifit.android.mafit.databinding.FragmentSurveyStep8Binding
 
 
-class SurveyStep8Fragment : BaseFragment<FragmentSurveyStep8Binding>(R.layout.fragment_survey_step8) {
+class SurveyStep8Fragment :
+    BaseFragment<FragmentSurveyStep8Binding>(R.layout.fragment_survey_step8) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.surveyStep8ImgBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        binding.surveyStep8RadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.survey_step8_radio_btn1 -> {
+                    binding.surveyStep8RadioBtn1.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_on, 0, 0, 0
+                    )
+                    binding.surveyStep8RadioBtn2.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_off, 0, 0, 0
+                    )
+                    binding.surveyStep8RadioBtn3.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_off, 0, 0, 0
+                    )
+                }
+
+                R.id.survey_step8_radio_btn2 -> {
+                    binding.surveyStep8RadioBtn1.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_off, 0, 0, 0
+                    )
+                    binding.surveyStep8RadioBtn2.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_on, 0, 0, 0
+                    )
+                    binding.surveyStep8RadioBtn3.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_off, 0, 0, 0
+                    )
+                }
+
+
+                else -> {
+                    binding.surveyStep8RadioBtn1.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_off, 0, 0, 0
+                    )
+                    binding.surveyStep8RadioBtn2.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_off, 0, 0, 0
+                    )
+                    binding.surveyStep8RadioBtn3.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_on, 0, 0, 0
+                    )
+                }
+            }
+        }
 
         binding.surveyStep8BtnContinue.setOnClickListener {
             findNavController().navigate(R.id.action_surveyStep8Fragment_to_surveyStep9Fragment)

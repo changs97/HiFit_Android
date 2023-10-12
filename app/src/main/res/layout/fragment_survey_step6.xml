@@ -7,91 +7,123 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="50dp"
         android:background="@color/white">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/survey_step6_img_back"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/survey_step6_txt_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="26dp"
+            android:layout_marginTop="48dp"
+            android:fontFamily="sans-serif-black"
+            android:text="6/10"
+            android:textColor="@color/violet4"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/survey_step6_img_back" />
 
         <TextView
             android:id="@+id/survey_step6_txt_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="140dp"
-            android:fontFamily="@font/notosanskr_bold_hestia"
+            android:layout_marginTop="10dp"
             android:text="@string/survey_step6_title"
-            android:textColor="@color/violet2"
+            android:textColor="@color/gray4"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/survey_step6_txt_progress"
+            app:layout_constraintTop_toBottomOf="@+id/survey_step6_txt_progress" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:fontFamily="@font/notodanskr_regular_hestia"
+            android:layout_marginTop="14dp"
             android:text="@string/survey_step6_content"
-            android:textColor="@color/black"
+            android:textColor="@color/gray6"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/survey_step6_txt_title"
             app:layout_constraintTop_toBottomOf="@+id/survey_step6_txt_title" />
 
-        <LinearLayout
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/survey_step6_edit1"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="26dp"
             android:layout_marginTop="60dp"
-            android:padding="5dp"
-            android:orientation="horizontal"
-            android:background="@drawable/gray_stroke_button"
+            android:maxLength="3"
+            android:background="@drawable/background_stroke_gray7"
+            android:hint="@string/survey_step6_hint1"
+            android:inputType="number"
+            android:padding="12dp"
+            android:textColor="@color/gray4"
+            android:textColorHint="@color/gray"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            android:layout_height="wrap_content">
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/survey_step6_edit"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:fontFamily="@font/notosanskr_medium_hestia"
-                android:inputType="number"
-                android:maxLength="3"
-                android:maxLines="1"
-                android:paddingVertical="12dp"
-                android:layout_marginStart="20dp"
-                android:textColor="@color/gray2"
-                android:textColorHint="@color/gray"
-                android:textSize="20sp" />
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/survey_step6_edit2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:inputType="number"
+            android:background="@drawable/background_stroke_gray7"
+            android:hint="@string/survey_step6_hint2"
+            android:maxLength="3"
+            android:padding="12dp"
+            android:textColor="@color/gray4"
+            android:textColorHint="@color/gray"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/survey_step6_edit1"
+            app:layout_constraintStart_toStartOf="@+id/survey_step6_edit1"
+            app:layout_constraintTop_toBottomOf="@+id/survey_step6_edit1" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="cm"
-                android:textSize="20sp"
-                android:fontFamily="@font/notodanskr_regular_hestia"
-                android:layout_marginEnd="40dp"
-                android:gravity="center"
-                android:textColorHint="@color/gray"/>
-
-
-
-        </LinearLayout>
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/survey_step6_edit3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:inputType="number"
+            android:background="@drawable/background_stroke_gray7"
+            android:hint="@string/survey_step6_hint3"
+            android:maxLength="3"
+            android:padding="12dp"
+            android:textColor="@color/gray4"
+            android:textColorHint="@color/gray"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/survey_step6_edit2"
+            app:layout_constraintStart_toStartOf="@+id/survey_step6_edit2"
+            app:layout_constraintTop_toBottomOf="@+id/survey_step6_edit2" />
 
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/survey_step6_btn_continue"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="26dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/background_radius_10dp_solid_violet4"
             android:gravity="center"
             android:paddingVertical="12dp"
-            android:fontFamily="@font/notosanskr_bold_hestia"
-            android:textColor="@color/white"
             android:text="@string/survey_continue"
-            android:background="@drawable/violet_button"
-            android:layout_marginBottom="30dp"
-            android:textSize="20sp"
+            android:textColor="@color/gray5"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,15 +2,30 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="violet">#be7bd3</color>
+    <color name="violet">#B981D1</color>
     <color name="violet2">#8500b0</color>
+    <color name="violet3">#4C0070</color>
+    <color name="violet4">#7A16A9</color>
+    <color name="violet5">#F4E8FA</color>
+    <color name="violet6">#F7F4F9</color>
     <color name="gray">#b2b2b2</color>
     <color name="gray2">#7a7a7a</color>
     <color name="gray3">#343434</color>
-    <color name="yellow">#ffcc00</color>
-    <color name="green">#0cff00</color>
-    <color name="red">#ff005a</color>
-    <color name="blue">#00a0e9</color>
+    <color name="gray4">#090808</color>
+    <color name="gray5">#F9F8FA</color>
+    <color name="gray6">#848484</color>
+    <color name="gray7">#F9F9F9</color>
+    <color name="green">#9AE200</color>
+    <color name="green2">#1ED800</color>
+    <color name="yellow">#FFC701</color>
+    <color name="yellow2">#FEBF1D</color>
+    <color name="orange">#FF813A</color>
+    <color name="red">#FF4343</color>
+    <color name="red2">#F42254</color>
+    <color name="blue">#6197FF</color>
+    <color name="blue2">#F1F8FF</color>
+    <color name="blue3">#235ED1</color>
     <color name="main_background">#f8f8f8</color>
     <color name="pink">#ff8181</color>
+    <color name="kakao_btn_background">#FAE100</color>
 </resources>

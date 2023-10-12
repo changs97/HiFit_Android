@@ -24,10 +24,10 @@ class ProductViewHolder(
 
     fun bind(item: ProductItem) {
         // set item
-/*        Glide.with(itemView.context)
-            .load(R.drawable.ic_sample1)
+        Glide.with(itemView.context)
+            .load(item.img)
             .centerCrop()
-            .into(binding.itemProductImg)*/
+            .into(binding.itemProductImg)
 
         binding.itemProductTxtBrandName.text = item.brand
         binding.itemProductTxtProductName.text = item.name

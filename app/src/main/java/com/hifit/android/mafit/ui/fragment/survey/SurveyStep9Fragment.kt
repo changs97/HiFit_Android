@@ -13,6 +13,51 @@ class SurveyStep9Fragment : BaseFragment<FragmentSurveyStep9Binding>(R.layout.fr
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.surveyStep9ImgBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        binding.surveyStep9RadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.survey_step9_radio_btn1 -> {
+                    binding.surveyStep9RadioBtn1.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_on, 0, 0, 0
+                    )
+                    binding.surveyStep9RadioBtn2.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_off, 0, 0, 0
+                    )
+                    binding.surveyStep9RadioBtn3.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_off, 0, 0, 0
+                    )
+                }
+
+                R.id.survey_step9_radio_btn2 -> {
+                    binding.surveyStep9RadioBtn1.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_off, 0, 0, 0
+                    )
+                    binding.surveyStep9RadioBtn2.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_on, 0, 0, 0
+                    )
+                    binding.surveyStep9RadioBtn3.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_off, 0, 0, 0
+                    )
+                }
+
+
+                else -> {
+                    binding.surveyStep9RadioBtn1.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_off, 0, 0, 0
+                    )
+                    binding.surveyStep9RadioBtn2.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_off, 0, 0, 0
+                    )
+                    binding.surveyStep9RadioBtn3.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_on, 0, 0, 0
+                    )
+                }
+            }
+        }
+
         binding.surveyStep9BtnContinue.setOnClickListener {
             findNavController().navigate(R.id.action_surveyStep9Fragment_to_surveyStep10Fragment)
         }

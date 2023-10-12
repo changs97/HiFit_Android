@@ -36,8 +36,8 @@ class KakaoLoginWebFragment :
                 Timber.i("current uri: $uri")
 
                 if (code != null) {
-                    val action = KakaoLoginWebFragmentDirections.actionKakaoLoginWebFragmentToLoginFragment(code)
-                    findNavController().navigate(action)
+      /*              val action = KakaoLoginWebFragmentDirections.actionKakaoLoginWebFragmentToLoginFragment(code)
+                    findNavController().navigate(action)*/
                 } else {
                     Timber.i("code 파라미터를 찾을 수 없습니다.")
                 }

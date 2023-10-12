@@ -1,16 +1,23 @@
 package com.hifit.android.mafit.ui.fragment.start
 
+import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.hifit.android.mafit.HiFitApplication
 import com.hifit.android.mafit.R
 import com.hifit.android.mafit.base.BaseFragment
 import com.hifit.android.mafit.data.source.local.UserInfo
 import com.hifit.android.mafit.databinding.FragmentStartBinding
+import com.hifit.android.mafit.ui.HomeActivity
 import com.hifit.android.mafit.viewmodel.MainViewModel
 import com.kakao.sdk.user.UserApiClient
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class StartFragment : BaseFragment<FragmentStartBinding>(R.layout.fragment_start) {
@@ -22,11 +29,15 @@ class StartFragment : BaseFragment<FragmentStartBinding>(R.layout.fragment_start
         viewModel.userInfo.observe(viewLifecycleOwner) {
             userSurveyParticipation = it
         }
-        binding.root.setOnClickListener {
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            delay(1000)
             viewModel.getToken()?.let {
                 Timber.tag("토큰").d("$it")
                 if (userSurveyParticipation != null) {
-                    findNavController().navigate(R.id.action_startFragment_to_homeFragment)
+                    val intent = Intent(requireContext(), HomeActivity::class.java)
+                    intent.flags = FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
                 } else {
                     findNavController().navigate(R.id.action_startFragment_to_surveyStartFragment)
                 }

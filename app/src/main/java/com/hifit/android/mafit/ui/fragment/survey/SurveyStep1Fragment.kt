@@ -1,6 +1,7 @@
 package com.hifit.android.mafit.ui.fragment.survey
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import android.widget.RadioGroup
 import androidx.fragment.app.activityViewModels
@@ -12,6 +13,7 @@ import com.hifit.android.mafit.databinding.FragmentSurveyStep1Binding
 import com.hifit.android.mafit.viewmodel.MainViewModel
 
 
+
 class SurveyStep1Fragment :
     BaseFragment<FragmentSurveyStep1Binding>(R.layout.fragment_survey_step1) {
     private val viewModel: MainViewModel by activityViewModels()
@@ -21,6 +23,10 @@ class SurveyStep1Fragment :
 
         var gender: String? = null
 
+        binding.surveyStep1ImgBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         binding.surveyStep1BtnContinue.setOnClickListener {
             if (gender == null) {
                 showCustomToast("성별을 선택해주세요")
@@ -29,7 +35,7 @@ class SurveyStep1Fragment :
             }
         }
 
-        binding.surveyStep1RadioGroup.setOnCheckedChangeListener { group, checkedId ->
+        binding.surveyStep1RadioGroup.setOnCheckedChangeListener { _, checkedId ->
             gender = when (checkedId) {
                 R.id.survey_step1_radio_btn_male -> {
                     viewModel.userGender = "MALE"

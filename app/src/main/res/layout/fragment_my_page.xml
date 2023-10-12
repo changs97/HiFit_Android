@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.hifit.android.mafit.viewmodel.MainViewModel" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray5"
+        android:orientation="vertical"
+        tools:context=".ui.fragment.my.MyPageFragment">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="2dp"
+            android:background="@color/white">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="11dp"
+                android:text="마이페이지"
+                android:textSize="18sp"
+                android:textColor="@color/gray4"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="14dp"
+            android:paddingHorizontal="16dp"
+            android:layout_marginBottom="6dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_profile"
+                    android:layout_marginEnd="8dp"/>
+
+                <TextView
+                    android:id="@+id/my_txt_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text='@{vm.userInfo.name ?? ""}'
+                    tools:text="박보검"
+                    android:textColor="@color/gray4"
+                    android:textStyle="bold"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray4"
+                    android:text="님"
+                    android:layout_marginStart="2dp"
+                    android:textSize="16sp"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <LinearLayout
+                android:id="@+id/my_ll_point_stamp_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/background_radius_10dp_solid_gray5">
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:paddingVertical="14dp"
+                    android:gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/my_txt_point"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="240"
+                        android:textColor="@color/violet4"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="12dp"
+                        android:textStyle="bold"
+                        android:text='@{(vm.workoutInfo.point ?? "") + ""}'/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="운동 포인트"
+                        android:textSize="14sp"
+                        android:textColor="@color/gray4"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="28dp"
+                    android:background="@color/gray"/>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:paddingVertical="14dp"
+                    android:gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/my_txt_stamp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/violet4"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="12dp"
+                        android:textStyle="bold"
+                        tools:text="12 / 20"
+                        android:text='@{(vm.workoutInfo.stamp ?? "") + "/" + (vm.workoutInfo.targetStamp ?? "")}'/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="이달의 운동 현황"
+                        android:textSize="14sp"
+                        android:textColor="@color/gray4"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </LinearLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:id="@+id/my_txt_survey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="12dp"
+            android:background="@color/white"
+            android:paddingHorizontal="16dp"
+            android:layout_marginBottom="1dp"
+            android:textColor="@color/gray4"
+            android:textSize="14sp"
+            android:text="내 건강  관리 (설문 다시 하기)"/>
+
+        <TextView
+            android:id="@+id/my_txt_contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="12dp"
+            android:background="@color/white"
+            android:paddingHorizontal="16dp"
+            android:layout_marginBottom="1dp"
+            android:textColor="@color/gray4"
+            android:textSize="14sp"
+            android:text="문의하기"/>
+
+        <TextView
+            android:id="@+id/my_txt_withdrawal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="12dp"
+            android:background="@color/white"
+            android:paddingHorizontal="16dp"
+            android:layout_marginBottom="1dp"
+            android:textColor="@color/gray4"
+            android:textSize="14sp"
+            android:text="회원 탈퇴"/>
+
+        <TextView
+            android:id="@+id/my_txt_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="12dp"
+            android:background="@color/white"
+            android:paddingHorizontal="16dp"
+            android:layout_marginBottom="1dp"
+            android:textColor="@color/gray4"
+            android:textSize="14sp"
+            android:text="로그아웃"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

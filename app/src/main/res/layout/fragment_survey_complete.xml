@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.fragment.survey.SurveyCompleteFragment">
 
     <data>
+
         <variable
             name="vm"
             type="com.hifit.android.mafit.viewmodel.MainViewModel" />
@@ -17,231 +18,811 @@
         android:layout_height="match_parent"
         android:scrollbars="none">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:orientation="vertical"
-            android:layout_marginStart="5dp"
-            android:paddingHorizontal="50dp">
+            android:background="@color/white">
 
             <TextView
                 android:id="@+id/survey_complete_txt_title"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:fontFamily="@font/notosanskr_bold_hestia"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
                 android:text="@string/survey_complete_title"
-                android:textColor="@color/violet2"
-                android:textSize="20sp" />
+                android:textColor="@color/gray4"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
-                android:layout_marginTop="30dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/survey_complete_cl_result_sheet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@color/violet6"
+                android:padding="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/survey_complete_txt_title">
+
+                <TextView
+                    android:id="@+id/survey_complete_txt_title_test_result_sheet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="검사 결과지"
+                    android:textColor="@color/violet3"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/survey_complete_txt_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:textColor="@color/gray4"
+                    android:textSize="24sp"
+                    android:text='@{vm.userInfo.name ?? ""}'
+                    app:layout_constraintStart_toStartOf="@id/survey_complete_txt_title_test_result_sheet"
+                    app:layout_constraintTop_toBottomOf="@id/survey_complete_txt_title_test_result_sheet"
+                    tools:text="이름" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="님의 결과입니다"
+                    android:textColor="@color/gray6"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/survey_complete_txt_name"
+                    app:layout_constraintStart_toEndOf="@id/survey_complete_txt_name"
+                    app:layout_constraintTop_toTopOf="@+id/survey_complete_txt_name" />
+
+                <TextView
+                    android:id="@+id/survey_complete_txt_basic_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="64dp"
+                    android:text="기본정보"
+                    android:textColor="@color/violet3"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/survey_complete_txt_name"
+                    app:layout_constraintTop_toBottomOf="@+id/survey_complete_txt_name" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="-8dp"
+                    android:src="@drawable/img_survey_complete"
+                    app:layout_constraintBottom_toTopOf="@+id/survey_complete_ll_result_container"
+                    app:layout_constraintEnd_toEndOf="@+id/survey_complete_ll_result_container" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/survey_complete_ll_result_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/background_stroke_violet5_white_solid"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/survey_complete_txt_basic_info">
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:text="성별"
+                            android:textColor="@color/gray4"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="체질량"
+                            android:textColor="@color/gray4"
+                            android:textSize="14sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/survey_complete_txt_gender"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:textColor="@color/gray6"
+                            android:textSize="14sp"
+                            tools:text="남자" />
+
+                        <TextView
+                            android:id="@+id/survey_complete_txt_bmi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/gray6"
+                            android:textSize="14sp"
+                            tools:text="21.2 정상체중" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="9dp"
+                        android:background="@color/violet5" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:text="나이"
+                            android:textColor="@color/gray4"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="근감소"
+                            android:textColor="@color/gray4"
+                            android:textSize="14sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/survey_complete_txt_age"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:text='@{"만 " + (vm.userInfo.age ?? "") + "세"}'
+                            tools:text="만 28세"
+                            android:textColor="@color/gray6"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/survey_complete_txt_result_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="저위험군"
+                            android:textColor="@color/gray6"
+                            android:textSize="14sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/survey_complete_ll_bmi_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="56dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/survey_complete_ll_result_container">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/background_radius_left_20dp_solid_blue"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="6dp"
+                        android:paddingVertical="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:gravity="center"
+                            android:text="저체중"
+                            android:textColor="@color/violet6"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="18.5 이하"
+                            android:textColor="@color/violet6"
+                            android:textSize="10sp" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/green"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="6dp"
+                        android:paddingVertical="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:gravity="center"
+                            android:text="정상체중"
+                            android:textColor="@color/violet6"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="18.5 ~ 22.9"
+                            android:textColor="@color/violet6"
+                            android:textSize="10sp" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/yellow"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="6dp"
+                        android:paddingVertical="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:gravity="center"
+                            android:text="과체중"
+                            android:textColor="@color/violet6"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="23 ~ 24.9"
+                            android:textColor="@color/violet6"
+                            android:textSize="10sp" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/orange"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="6dp"
+                        android:paddingVertical="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:gravity="center"
+                            android:text="비만"
+                            android:textColor="@color/violet6"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="25 ~ 29.9"
+                            android:textColor="@color/violet6"
+                            android:textSize="10sp" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/background_radius_right_20dp_solid_red"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="6dp"
+                        android:paddingVertical="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:gravity="center"
+                            android:text="고도비만"
+                            android:textColor="@color/violet6"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="30 ~ 39.9"
+                            android:textColor="@color/violet6"
+                            android:textSize="10sp" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/survey_complete_ll_result_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:fontFamily="@font/notosanskr_bold_hestia"
-                        android:textColor="@color/violet2"
-                        android:text="@string/sex"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:fontFamily="@font/notosanskr_bold_hestia"
-                        android:textColor="@color/violet2"
-                        android:text="@string/name"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/notosanskr_bold_hestia"
-                        android:textColor="@color/violet2"
-                        android:text="@string/age"/>
-                </LinearLayout>
-                <View
-                    android:layout_width="2dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginVertical="2dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/violet2"/>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/survey_complete_txt_sex"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:fontFamily="@font/notosanskr_bold_hestia"
-                        android:textColor="@color/black"
-                        tools:text="@string/sex"/>
-                    <TextView
-                        android:id="@+id/survey_complete_txt_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:fontFamily="@font/notosanskr_bold_hestia"
-                        android:textColor="@color/black"
-                        tools:text="@string/name"/>
-                    <TextView
-                        android:id="@+id/survey_complete_txt_age"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/notosanskr_bold_hestia"
-                        android:textColor="@color/black"
-                        tools:text="@string/age"/>
-                </LinearLayout>
-            </LinearLayout>
+                android:layout_marginTop="31dp"
+                android:gravity="center_vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/survey_complete_cl_result_sheet">
 
-            <ImageView
-                android:id="@+id/survey_complete_img_result"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginBottom="30dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_survey_result1"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/notosanskr_bold_hestia"
-                    android:textSize="15sp"
-                    android:text="근감소증 "/>
-                <TextView
-                    android:id="@+id/survey_complete_txt_result_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textColor="@color/yellow"
-                    android:textSize="15sp"
-                    android:fontFamily="@font/notosanskr_bold_hestia"
-                    android:text="중위험군"/>
+                <ImageView
+                    android:id="@+id/survey_complete_img_result"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_square_mint" />
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textSize="15sp"
-                    android:fontFamily="@font/notosanskr_bold_hestia"
-                    android:text="입니다"/>
-            </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:text="근감소증"
+                    android:textColor="@color/gray4"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/survey_complete_txt_contents"
+                <TextView
+                    android:id="@+id/survey_complete_txt_result_type2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="6dp"
+                    android:text="저위험군"
+                    android:textColor="@color/green2"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="입니다"
+                    android:textColor="@color/gray4"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/survey_complete_ll_content1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="20dp"
-                android:textSize="14sp"
-                android:layout_marginStart="5dp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/notodanskr_regular_hestia"
-                android:text="@string/survey_complete_contents1"/>
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/background_radius_10dp_solid_gray5"
+                android:orientation="vertical"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/survey_complete_ll_result_type">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:text="@string/survey_complete_content1"
-                android:textColor="@color/gray2"
-                android:layout_marginBottom="70dp"
-                android:fontFamily="@font/notodanskr_regular_hestia"/>
+                <TextView
+                    android:id="@+id/survey_complete_txt_contents"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="앞으로도 좋은 생활습관을 유지해주세요 !\n근감소증 예방을 위해 꾸준한 운동과 올바른\n영양섭취를 해 주세요."
+                    android:textColor="@color/gray4"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="본 검사결과는 의사의 처방을 대신하지 않습니다"
+                    android:textColor="@color/gray"
+                    android:textSize="12sp" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/survey_complete_btn_recommend"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:background="@drawable/violet_button"
-                android:fontFamily="@font/notosanskr_bold_hestia"
+                android:layout_marginHorizontal="26dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/background_radius_10dp_solid_violet4"
                 android:gravity="center"
                 android:paddingVertical="12dp"
                 android:text="@string/survey_complete_recommend"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textColor="@color/gray5"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/survey_complete_ll_content1" />
 
-            <TextView
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/survey_complete_ll_scroll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="31dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/survey_complete_btn_recommend">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="스크롤 하여 더 많은 정보 확인"
+                    android:textColor="@color/gray"
+                    android:textSize="16sp" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:src="@drawable/ic_scroll_arrow" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/survey_complete_ll_content2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textSize="20sp"
-                android:layout_marginTop="40dp"
-                android:textColor="@color/gray2"
-                android:fontFamily="@font/notodanskr_regular_hestia"
-                android:text="@string/survey_complete_content2"/>
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/background_radius_10dp_solid_gray5"
+                android:orientation="vertical"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/survey_complete_ll_scroll">
 
-            <TextView
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="#근감소증 예방하기"
+                    android:textColor="@color/violet3"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="근감소증은 2016년 WHO에서 질병코드를 부여받으며 더 이상 노화로 인한 증상이 아닌 공식적인 질병으로 인정받고 있어요.\n\n2021년 기준, 한국의 근감소증 유병률은 40~64세 중년에서는 약 29.5% , 65세 이상 노인에서는 약 42% 로 총 900만명 이상으로 빠르게 증가하고 있어요."
+                    android:textColor="@color/gray4"
+                    android:textSize="16sp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/survey_complete_ll_content3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/survey_complete_tip_title1"
-                android:textColor="@color/violet2"
-                android:textSize="22sp"
-                android:layout_marginTop="60dp"
-                android:fontFamily="@font/notosanskr_bold_hestia"/>
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/background_radius_10dp_solid_gray5"
+                android:orientation="vertical"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/survey_complete_ll_content2">
 
-            <TextView
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="#근감소증 예방 운동"
+                    android:textColor="@color/violet3"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="꾸준히 걷는 것 으로도 근감소증 예방에 도움이 되지만, 유럽 근감소증 학회인 EWGSOP에서는 추가적인 주 3회 이상의 근력운동을 권장하고 있어요.\n\n단, 자신의 몸 상태를 면밀히 살펴 몸에 무리가 가지 않으면서 근육량과 근력을 향상시킬 수 있는 적절한 운동을 해야해요.\n\n또한, 낙상을 방지하기 위한 밸런스 강화 운동과 유연성을 길러주는 스트레칭도 동시에 진행해주면 더 좋아요."
+                    android:textColor="@color/gray4"
+                    android:textSize="16sp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/survey_complete_ll_content4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/notodanskr_regular_hestia"
-                android:layout_marginBottom="200dp"
-                android:text="@string/survey_complete_tip1"/>
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/background_radius_10dp_solid_gray5"
+                android:orientation="vertical"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/survey_complete_ll_content3">
 
-            <TextView
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="#근감소증에 도움이 되는 성분"
+                    android:textColor="@color/violet3"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="단백질은 식품을 통해 동물성 단백질과 식물성 단백질을 골고루 섭취하는 것이 가장 좋지만, 음식만으로 일일  단백질 섭취량을 충족시키기 어렵다면 분말, 음료수, 간식 형태의 보충제를 섭취해도 좋아요.\n\n비타민 D는 근육 세포 내 비타민 수용체와 결합해 단백질 합성을 촉진, 근육세포를 성장시키는 역할을 해요.\n\n비타민 D는 햇빛 노출을 통해 몸 안에서 만들어지지만, 야외 생활이 많지 않은 현대인들의 생활을 고려해 주기적으로 섭취해 주는 것도 좋아요."
+                    android:textColor="@color/gray4"
+                    android:textSize="16sp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/survey_complete_cl_content5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/survey_complete_tip_title2"
-                android:textColor="@color/violet2"
-                android:textSize="22sp"
-                android:layout_marginTop="60dp"
-                android:fontFamily="@font/notosanskr_bold_hestia"/>
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/background_radius_10dp_solid_gray5"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/survey_complete_ll_content4">
 
-            <TextView
+                <TextView
+                    android:id="@+id/survey_complete_txt_content5_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="#나만의 식단 도우미"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:textColor="@color/violet3"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/survey_complete_txt_content5_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="박보검"
+                    android:text='@{(vm.userInfo.name ?? "")}'
+                    android:textColor="@color/gray4"
+                    app:layout_constraintTop_toBottomOf="@+id/survey_complete_txt_content5_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:textStyle="bold"
+                    android:layout_marginTop="16dp"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="님의 하루 총 섭취 칼로리는"
+                    android:textColor="@color/gray4"
+                    app:layout_constraintStart_toEndOf="@id/survey_complete_txt_content5_name"
+                    android:layout_marginStart="6dp"
+                    app:layout_constraintTop_toTopOf="@id/survey_complete_txt_content5_name"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/survey_complete_txt_content5_kcal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/survey_complete_txt_content5_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/gray4"
+                    tools:text="3,900"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/gray4"
+                    app:layout_constraintStart_toEndOf="@id/survey_complete_txt_content5_kcal"
+                    android:layout_marginStart="6dp"
+                    app:layout_constraintTop_toTopOf="@id/survey_complete_txt_content5_kcal"
+                    android:text="(표준 체중 키 - 100)*0.9 X 30) kcal"/>
+
+
+                <TextView
+                    android:id="@+id/survey_complete_txt_content5_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray4"
+                    android:textSize="16sp"
+                    app:layout_constraintTop_toBottomOf="@+id/survey_complete_txt_content5_kcal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:text="입니다.\n건강을 위해서 탄수화물, 단백질, 지방을 골고루 섭취해주면 좋아요.\n\n특히 근육 유지를 위한 적정 단백질 섭취량은"/>
+
+                <TextView
+                    android:id="@+id/survey_complete_txt_content5_intake"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="1,200"
+                    android:textSize="16sp"
+                    android:textColor="@color/gray4"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/survey_complete_txt_content5_content"
+                    app:layout_constraintStart_toStartOf="parent"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/gray4"
+                    app:layout_constraintStart_toEndOf="@id/survey_complete_txt_content5_intake"
+                    android:layout_marginStart="6dp"
+                    app:layout_constraintTop_toTopOf="@id/survey_complete_txt_content5_intake"
+                    android:text="(몸무게 X 1.2)g 으로 섭취해주세요!"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/survey_complete_ll_content6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/notodanskr_regular_hestia"
-                android:layout_marginBottom="200dp"
-                android:text="@string/survey_complete_tip2"/>
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/background_radius_10dp_solid_gray5"
+                android:orientation="vertical"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/survey_complete_cl_content5">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/survey_complete_tip_title3"
-                android:textColor="@color/violet2"
-                android:textSize="22sp"
-                android:layout_marginTop="60dp"
-                android:fontFamily="@font/notosanskr_bold_hestia"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="#내 몸을 위한 영양섭취 가이드"
+                    android:textColor="@color/violet3"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/notodanskr_regular_hestia"
-                android:layout_marginBottom="200dp"
-                android:text="@string/survey_complete_tip3"/>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/survey_complete_txt_content6_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text='@{vm.userInfo.name ?? ""}'
+                        android:textColor="@color/gray4"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tools:text="박보검" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="6dp"
+                        android:text="님의 일일 섭취 적정량"
+                        android:textColor="@color/gray4"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/survey_complete_txt_content6_kcal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text='@{": " +(vm.diet.calorie ?? "") + "g"}'
+                        android:textColor="@color/gray4"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tools:text=": 55g" />
 
 
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_square_violet"
-                android:layout_marginBottom="50dp"/>
-        </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_sample1" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_sample2" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_sample3" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/survey_complete_txt_content6_txt_egg"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text='@{(vm.diet.eggCount != null ? vm.diet.eggCount.toString() : "") + "g"}'
+                        android:textColor="@color/violet3"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tools:text="10g" />
+
+                    <TextView
+                        android:id="@+id/survey_complete_txt_content6_txt_tofu"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text='@{(vm.diet.tofuCount != null ? vm.diet.tofuCount.toString() : "") + "g"}'
+                        android:textColor="@color/violet3"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tools:text="10g" />
+
+                    <TextView
+                        android:id="@+id/survey_complete_txt_content6_txt_chicken"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text='@{(vm.diet.chickenBreastCount != null ? vm.diet.chickenBreastCount.toString() : "") + "g"}'
+                        android:textColor="@color/violet3"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tools:text="10g" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="대표적인 단백질 식품인 닭가슴살의 경우 1회 섭취 100g 당 단백질을 약20g 을 함유하고 있고, 두부 한 모와 계란 한 개에는 단백질 약 8g 이 포함되어 있습니다.\n닭가슴살 한 덩이, 달걀 2개, 두부 한 모를 이용해 식단을 구성 하시길 추천드려요."
+                    android:textColor="@color/gray4"
+                    android:textSize="16sp" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
 </layout>

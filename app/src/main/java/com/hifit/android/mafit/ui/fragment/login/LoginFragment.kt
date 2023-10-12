@@ -1,8 +1,11 @@
 package com.hifit.android.mafit.ui.fragment.login
 
+import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
 
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
@@ -14,6 +17,7 @@ import com.hifit.android.mafit.base.BaseFragment
 import com.hifit.android.mafit.data.model.login.LoginRequestBody
 import com.hifit.android.mafit.data.source.network.LoginRetrofitInterface
 import com.hifit.android.mafit.databinding.FragmentLoginBinding
+import com.hifit.android.mafit.ui.HomeActivity
 import com.hifit.android.mafit.ui.MainActivity
 import com.hifit.android.mafit.util.Constant.Companion.X_ACCESS_TOKEN
 import com.hifit.android.mafit.viewmodel.MainViewModel
@@ -90,7 +94,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
         binding.button.setOnClickListener {
             viewModel.getToken()?.let {
                 if (viewModel.userInfo.value?.name != null) {
-                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                    val intent = Intent(requireContext(), HomeActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
                 } else {
                     findNavController().navigate(R.id.action_loginFragment_to_surveyStartFragment)
                 }

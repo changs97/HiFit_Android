@@ -29,12 +29,10 @@ class ProductFragment : BaseFragment<FragmentProductBinding>(R.layout.fragment_p
         binding.vm = viewModel
 
         val sampleData = arrayListOf(
-            ProductItem("", "모두의 단백질", "단백질 52g 폴드포크 수비돈", 80),
-            ProductItem("", "모두의 단백질", "단백질 52g 폴드포크 수비돈", 80),
-            ProductItem("", "모두의 단백질", "단백질 52g 폴드포크 수비돈", 80),
-            ProductItem("", "모두의 단백질", "단백질 52g 폴드포크 수비돈", 80),
-            ProductItem("", "모두의 단백질", "단백질 52g 폴드포크 수비돈", 80),
-            ProductItem("", "모두의 단백질", "단백질 52g 폴드포크 수비돈", 80)
+            ProductItem("https://shop-phinf.pstatic.net/20220624_290/1655998258517QThc5_PNG/57134100934040595_1514577604.png?type=m510", "모두의 단백질", "모두의 단백질 고단백 돼지육포 포돈 40g 돼지고기 육포 단백질 식품", 80),
+            ProductItem("https://shop-phinf.pstatic.net/20220624_185/1655997805128yKUdl_PNG/57133647615639690_966436732.png?type=m510", "모두의 단백질", "모두의 단백질 고단백 돼지육포 포돈 40g x 12팩", 80),
+            ProductItem("https://shop-phinf.pstatic.net/20220624_290/1655998258517QThc5_PNG/57134100934040595_1514577604.png?type=m510", "모두의 단백질", "모두의 단백질 고단백 돼지육포 포돈 40g x 24팩", 80),
+            ProductItem("https://shop-phinf.pstatic.net/20220324_36/1648084949876ciyHf_PNG/49220729502980496_736494807.png?type=m510", "모두의 단백질", "모두의 단백질 수비돈 풀드포크 바베큐맛 칠리맛 두 가지 맛 패키지 총 4팩 중량 480g", 80)
         )
 
         binding.productRecycle.adapter = adapter

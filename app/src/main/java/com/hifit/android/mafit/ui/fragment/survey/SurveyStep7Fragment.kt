@@ -13,6 +13,10 @@ class SurveyStep7Fragment : BaseFragment<FragmentSurveyStep7Binding>(R.layout.fr
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.surveyStep7ImgBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         binding.surveyStep7BtnContinue.setOnClickListener {
             findNavController().navigate(R.id.action_surveyStep7Fragment_to_surveyStep8Fragment)
         }

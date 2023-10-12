@@ -18,6 +18,51 @@ class SurveyStep11Fragment :
         super.onViewCreated(view, savedInstanceState)
         binding.vm = viewModel
 
+        binding.surveyStep11ImgBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        binding.surveyStep11RadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.survey_step11_radio_btn1 -> {
+                    binding.surveyStep11RadioBtn1.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_on, 0, 0, 0
+                    )
+                    binding.surveyStep11RadioBtn2.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_off, 0, 0, 0
+                    )
+                    binding.surveyStep11RadioBtn3.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_off, 0, 0, 0
+                    )
+                }
+
+                R.id.survey_step11_radio_btn2 -> {
+                    binding.surveyStep11RadioBtn1.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_off, 0, 0, 0
+                    )
+                    binding.surveyStep11RadioBtn2.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_on, 0, 0, 0
+                    )
+                    binding.surveyStep11RadioBtn3.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_off, 0, 0, 0
+                    )
+                }
+
+
+                else -> {
+                    binding.surveyStep11RadioBtn1.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_off, 0, 0, 0
+                    )
+                    binding.surveyStep11RadioBtn2.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_off, 0, 0, 0
+                    )
+                    binding.surveyStep11RadioBtn3.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.btn_radio_on, 0, 0, 0
+                    )
+                }
+            }
+        }
+
         viewModel.navigateNext.observe(viewLifecycleOwner) {
             it.getContentIfNotHandled()?.let { next ->
                 if (next) {

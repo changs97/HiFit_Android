@@ -17,111 +17,142 @@
         android:layout_height="match_parent"
         android:background="@color/main_background"
         android:scrollbars="none">
-
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:background="@color/white"
-            android:orientation="vertical">
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/notosanskr_bold_hestia"
-                    android:text="@string/home_title"
-                    android:textColor="@color/violet2"
-                    android:textSize="25sp" />
-
-                <TextView
-                    android:id="@+id/home_txt_survey_result"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/violet_stroke_button"
-                    android:fontFamily="@font/notosanskr_bold_hestia"
-                    android:gravity="center"
-                    android:paddingHorizontal="10dp"
-                    android:text="@string/home_survey_result"
-                    android:textColor="@color/gray2" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginHorizontal="5dp"
-                android:background="@color/violet2" />
-
-            <TextView
-                android:id="@+id/home_txt_greeting"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/notosanskr_bold_hestia"
-                tools:text="@string/home_greeting_title"
-                android:text='@{(vm.userInfo.name ?? "") + "님\n안녕하세요!"}'
-                android:textColor="@color/violet2"
-                android:textSize="25sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/notosanskr_light_hestia"
-                tools:text="@string/home_greeting"
-                android:text='@{"오늘도 반가워요 ;)\n" + (vm.userInfo.name ?? "") + "님을 위해 오늘도 맞춤형 운동과 영양 정보를\n준비했어요! 건강한 생활 습관도 만들고\n코인으로 상품도 받아가세요~"}'
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/home_txt_exercise_status_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="100dp"
-                android:layout_marginBottom="15dp"
-                android:fontFamily="@font/notosanskr_bold_hestia"
-                tools:text="@string/home_exercise_status_title"
-                android:text='@{(vm.userInfo.name ?? "") + "님의\n"+(vm.workoutInfo.month ?? "") +"월 운동 현황"}'
-                android:textColor="@color/violet2"
-                android:textSize="20sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginHorizontal="5dp"
-                android:layout_marginBottom="15dp"
-                android:background="@color/violet2" />
-
-            <TextView
-                android:id="@+id/home_txt_exercise_status"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:fontFamily="@font/notodanskr_regular_hestia"
-                android:gravity="center"
-                bind:workoutInfo='@{vm.workoutInfo}'
-                tools:text="@string/home_exercise_status_content"
-                android:textSize="15sp" />
+            android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/home_cl_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:paddingHorizontal="16dp"
+                android:background="@color/violet3">
+                <TextView
+                    android:id="@+id/home_txt_header_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hi-Fit"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="28sp"/>
+                <TextView
+                    android:id="@+id/home_txt_header_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="박보검 님"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/home_txt_header_title"
+                    app:layout_constraintStart_toStartOf="@id/home_txt_header_title"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="25dp"
+                    android:text='@{(vm.userInfo.name ?? "")+" 님"}'/>
+
+                <TextView
+                    android:id="@+id/home_txt_header_hello"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="안녕하세요 :)"
+                    app:layout_constraintTop_toTopOf="@id/home_txt_header_name"
+                    app:layout_constraintBottom_toBottomOf="@id/home_txt_header_name"
+                    app:layout_constraintStart_toEndOf="@id/home_txt_header_name"
+                    android:textSize="18sp"
+                    android:layout_marginStart="4dp"
+                    android:textColor="@color/white"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/home_btn_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="내 결과표"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/home_txt_header_hello"
+                    app:layout_constraintBottom_toBottomOf="@id/home_txt_header_hello"
+                    android:textColor="@color/violet6"
+                    android:paddingHorizontal="10dp"
+                    android:background="@drawable/background_radius_6dp_solid_violet"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="56dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/home_txt_header_name"
+                    app:layout_constraintTop_toBottomOf="@id/home_txt_header_name"
+                    bind:workoutInfo='@{vm.workoutInfo}'
+                    tools:text="@string/home_exercise_status_content" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/home_ll_coin_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="-30dp"
+                android:background="@drawable/background_radius_10dp_solid_white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="18dp"
+                android:paddingVertical="14dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/home_cl_header">
+
+                <ImageView
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/ic_coin" />
+
+                <TextView
+                    android:id="@+id/home_txt_coin"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:text='@{(vm.workoutInfo.point ?? "") + " 코인"}'
+                    android:textColor="@color/gray4"
+                    tools:text="240 코인" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:text="선물 교환하기"
+                    android:paddingVertical="6dp"
+                    android:paddingHorizontal="10dp"
+                    android:drawablePadding="4dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/background_radius_6dp_solid_blue2"
+                    android:drawableStart="@drawable/ic_gift2"
+                    android:textColor="@color/gray4" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/home_cl_progress_container"
+                app:layout_constraintTop_toBottomOf="@id/home_ll_coin_container"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp">
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="108dp"
+                    android:layout_height="108dp"
                     android:layout_marginBottom="20dp"
-                    android:src="@drawable/exercise"
+                    android:src="@drawable/ic_runnig_boy"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -130,213 +161,294 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/notosanskr_bold_hestia"
-                    android:text='@{(vm.workoutInfo.stamp ?? "") + "/" + (vm.workoutInfo.targetStamp ?? "") + "회"}'
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:layout_marginTop="2dp"
+                    android:text='@{(vm.workoutInfo.stamp ?? "") + "/" + (vm.workoutInfo.targetStamp ?? "")}'
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="2dp"
+                    android:background="@drawable/background_radius_20dp_solid_violet3"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView"
-                    tools:text="12/20회" />
+                    tools:text="12/20" />
 
                 <ProgressBar
                     android:id="@+id/progressBar"
                     android:layout_width="220dp"
                     android:layout_height="220dp"
+                    android:elevation="10dp"
                     android:background="@drawable/custom_progress_background"
                     android:indeterminateOnly="false"
+                    android:max="@{vm.workoutInfo.targetStamp ?? 0}"
+                    android:progress="@{vm.workoutInfo.stamp ?? 0}"
                     android:progressDrawable="@drawable/custom_progress"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:max="@{vm.workoutInfo.targetStamp ?? 0}"
-                    android:progress="@{vm.workoutInfo.stamp ?? 0}"/>
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:max="20"
+                    tools:progress="12" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/home_btn_stamp"
-                android:layout_width="match_parent"
+                android:text="오늘의 운동하고 스탬프 적립하기"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="65dp"
-                android:layout_marginBottom="30dp"
-                android:background="@drawable/violet_button"
-                android:fontFamily="@font/notosanskr_bold_hestia"
                 android:gravity="center"
                 android:paddingVertical="12dp"
-                android:text="@string/home_stamp"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/home_ll_coin_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
-                android:layout_marginBottom="150dp"
-                android:background="@drawable/gray_stroke_button"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="15dp">
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/ic_coin" />
-
-                <TextView
-                    android:id="@+id/home_txt_coin"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/notosanskr_bold_hestia"
-                    android:text='@{(vm.workoutInfo.point ?? "") + " 코인"}'
-                    android:textColor="@color/black"
-                    tools:text="240코인" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosanskr_bold_hestia"
-                    android:text="@string/home_my_coupon"
-                    android:textColor="@color/gray3" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:background="@drawable/gray_stroke_button"
-                android:orientation="vertical"
-                android:padding="30dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosanskr_bold_hestia"
-                    android:text="@string/home_guide"
-                    android:textColor="@color/violet2"
-                    android:textSize="22sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@color/violet2" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/notosanskr_light_hestia"
-                    tools:text="OO님의 일일 단백질 섭취 적정량 : 55g"
-                    android:text='@{(vm.userInfo.name ?? "") + "님의 일일 단백질 섭취 적정량 : " + (vm.diet.protein ?? "")  + "g"}'
-                    android:textColor="@color/black" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginVertical="30dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_sample1" />
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_sample2" />
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_sample3" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/home_txt_egg"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/notosanskr_bold_hestia"
-                        android:gravity="center"
-                        tools:text="10"
-                        android:text='@{vm.diet.eggCount != null ? vm.diet.eggCount.toString() : ""}'
-                        android:textColor="@color/violet2"
-                        android:textSize="25sp" />
-
-                    <TextView
-                        android:id="@+id/home_txt_tofu"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/notosanskr_bold_hestia"
-                        android:gravity="center"
-                        tools:text="10"
-                        android:text='@{vm.diet.tofuCount != null ? vm.diet.tofuCount.toString() : ""}'
-                        android:textColor="@color/violet2"
-                        android:textSize="25sp" />
-
-                    <TextView
-                        android:id="@+id/home_txt_chicken"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/notosanskr_bold_hestia"
-                        android:gravity="center"
-                        tools:text="10"
-                        android:text='@{vm.diet.chickenBreastCount != null ? vm.diet.chickenBreastCount.toString() : ""}'
-                        android:textColor="@color/violet2"
-                        android:textSize="25sp" />
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:fontFamily="@font/notosanskr_light_hestia"
-                    android:text="@string/home_guide_content"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                android:textColor="@color/gray5"
+                android:background="@drawable/background_radius_10dp_solid_violet4"
+                android:textSize="16sp"
+                android:layout_marginTop="36dp"
+                android:layout_marginHorizontal="26dp"
+                app:layout_constraintTop_toBottomOf="@id/home_cl_progress_container"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <TextView
+                android:id="@+id/home_txt_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="기본정보"
+                android:textStyle="bold"
+                android:textColor="@color/gray4"
+                app:layout_constraintTop_toBottomOf="@id/home_btn_stamp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="24dp"/>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="150dp"
-                android:layout_marginBottom="400dp"
-                android:fontFamily="@font/notosanskr_bold_hestia"
-                android:gravity="center_horizontal"
-                android:text="오늘의 운동"
-                android:textColor="@color/violet2"
-                android:textSize="22sp" />
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/background_radius_10dp_solid_white"
+                android:orientation="vertical"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/home_txt_info">
 
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="50dp"
-                android:src="@drawable/ic_square_violet" />
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="체질량"
+                            android:layout_marginEnd="8dp"
+                            android:textColor="@color/gray4"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/home_txt_bmi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/gray6"
+                            android:textSize="14sp"
+                            tools:text="21.2 정상체중" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="근감소"
+                            android:layout_marginEnd="8dp"
+                            android:textColor="@color/gray4"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/home_txt_result_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="저위험군"
+                            android:textColor="@color/gray6"
+                            android:textSize="14sp" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/home_ll_bmi_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="40dp"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/background_radius_left_20dp_solid_blue"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="6dp"
+                        android:paddingVertical="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:gravity="center"
+                            android:text="저체중"
+                            android:textColor="@color/violet6"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="18.5 이하"
+                            android:textColor="@color/violet6"
+                            android:textSize="10sp" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/green"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="6dp"
+                        android:paddingVertical="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:gravity="center"
+                            android:text="정상체중"
+                            android:textColor="@color/violet6"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="18.5 ~ 22.9"
+                            android:textColor="@color/violet6"
+                            android:textSize="10sp" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/yellow"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="6dp"
+                        android:paddingVertical="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:gravity="center"
+                            android:text="과체중"
+                            android:textColor="@color/violet6"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="23 ~ 24.9"
+                            android:textColor="@color/violet6"
+                            android:textSize="10sp" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/orange"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="6dp"
+                        android:paddingVertical="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:gravity="center"
+                            android:text="비만"
+                            android:textColor="@color/violet6"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="25 ~ 29.9"
+                            android:textColor="@color/violet6"
+                            android:textSize="10sp" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/background_radius_right_20dp_solid_red"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="6dp"
+                        android:paddingVertical="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:gravity="center"
+                            android:text="고도비만"
+                            android:textColor="@color/violet6"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="30 ~ 39.9"
+                            android:textColor="@color/violet6"
+                            android:textSize="10sp" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
 </layout>

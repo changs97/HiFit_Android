@@ -46,6 +46,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ui.HomeActivity"/>
+
         <activity android:name=".test.LivePreviewActivity" />
         <activity android:name=".test.SettingsActivity"/>
 
