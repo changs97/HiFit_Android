@@ -149,10 +149,9 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
                     if (code == 40103) {
                         deleteUserInfo()
                         _errorEvent.value = Event(40103)
+                    } else {
+                        _navigateNext.value = Event(true)
                     }
-
-                    Timber.e("network error: $message")
-                    _showToast.value = Event(message)
                 }
             } catch (e: Exception) {
                 Timber.e("network error", e)
