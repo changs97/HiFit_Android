@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.core.view.children
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.hifit.android.mafit.R
 import com.hifit.android.mafit.base.BaseFragment
 import com.hifit.android.mafit.data.model.home.ExerciseData
@@ -48,6 +49,10 @@ class CalenderFragment : BaseFragment<FragmentCalenderBinding>(R.layout.fragment
 
         binding.calendarView.monthScrollListener = { month ->
             binding.calendarTxtMonth.text = month.yearMonth.displayText()
+        }
+
+        binding.calenderImgBack.setOnClickListener {
+            findNavController().popBackStack()
         }
 
         binding.calenderImgNext.setOnClickListener {

@@ -16,20 +16,35 @@
         android:background="@color/gray5"
         tools:context=".ui.fragment.calender.CalenderFragment">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
+            android:paddingHorizontal="16dp"
+            android:background="@color/white"
             android:layout_marginBottom="2dp"
-            android:background="@color/white">
+            android:paddingVertical="8dp">
+
+            <ImageView
+                android:id="@+id/calender_img_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingVertical="11dp"
                 android:text="운동현황"
+                android:textColor="@color/gray4"
                 android:textSize="18sp"
-                android:textColor="@color/gray4"/>
-        </androidx.appcompat.widget.LinearLayoutCompat>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
