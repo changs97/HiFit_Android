@@ -110,6 +110,10 @@ dependencies {
     // Kizitonwose Calendar
     implementation 'com.kizitonwose.calendar:view:2.0.3'
 
+    // Youtube Player
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0'
+
+
     //Room
     def room_version = "2.5.0"
     implementation "androidx.room:room-runtime:$room_version"

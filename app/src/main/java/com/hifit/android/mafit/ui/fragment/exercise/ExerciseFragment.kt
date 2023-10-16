@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hifit.android.mafit.R
 import com.hifit.android.mafit.base.BaseFragment
@@ -14,6 +15,7 @@ import com.hifit.android.mafit.test.LivePreviewActivity
 import com.hifit.android.mafit.ui.fragment.exercise.adapter.ExerciseAdapterListener
 import com.hifit.android.mafit.ui.fragment.exercise.adapter.ExercisePageAdapter
 import com.hifit.android.mafit.viewmodel.MainViewModel
+import timber.log.Timber
 
 class ExerciseFragment : BaseFragment<FragmentExerciseBinding>(R.layout.fragment_exercise),
     ExerciseAdapterListener {
@@ -77,9 +79,11 @@ class ExerciseFragment : BaseFragment<FragmentExerciseBinding>(R.layout.fragment
         viewModel.navigateNext.observe(viewLifecycleOwner) { event ->
             event.getContentIfNotHandled()?.let {
                 if (it) {
-                    val uri = Uri.parse(link)
-                    val intent = Intent(Intent.ACTION_VIEW, uri)
-                    startActivity(intent)
+                    val videoId = link.substringAfterLast("/")
+                    Timber.tag("테스트").d("Video link: $videoId")
+
+                    val action = ExerciseFragmentDirections.actionExerciseFragmentToYoutubePlayerFragment(videoId)
+                    findNavController().navigate(action)
                 }
             }
         }
