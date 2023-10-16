@@ -43,9 +43,21 @@ class HomeActivity : AppCompatActivity() {
 
         navHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.homeFragment -> setStatusBarColor(getColor(R.color.violet3))
+                R.id.homeFragment -> {
+                    setStatusBarColor(getColor(R.color.violet3))
+                    binding.bottomNav.visibility = View.VISIBLE
+                }
 
-                else -> setStatusBarColor(getColor(R.color.white))
+                R.id.exerciseFragment, R.id.productFragment, R.id.myPageFragment -> {
+                    setStatusBarColor(getColor(R.color.white))
+                    binding.bottomNav.visibility = View.VISIBLE
+                }
+
+
+                else -> {
+                    setStatusBarColor(getColor(R.color.white))
+                    binding.bottomNav.visibility = View.GONE
+                }
             }
         }
     }
