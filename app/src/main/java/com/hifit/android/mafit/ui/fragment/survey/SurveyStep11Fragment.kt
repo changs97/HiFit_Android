@@ -22,7 +22,10 @@ class SurveyStep11Fragment :
             findNavController().popBackStack()
         }
 
+        var isCheckedRadio = false
+
         binding.surveyStep11RadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            isCheckedRadio = true
             when (checkedId) {
                 R.id.survey_step11_radio_btn1 -> {
                     binding.surveyStep11RadioBtn1.setCompoundDrawablesWithIntrinsicBounds(
@@ -65,7 +68,7 @@ class SurveyStep11Fragment :
 
         viewModel.navigateNext.observe(viewLifecycleOwner) {
             it.getContentIfNotHandled()?.let { next ->
-                if (next) {
+                if (next && isCheckedRadio) {
                     findNavController().navigate(R.id.action_surveyStep11Fragment_to_surveyCompleteFragment)
                 }
             }

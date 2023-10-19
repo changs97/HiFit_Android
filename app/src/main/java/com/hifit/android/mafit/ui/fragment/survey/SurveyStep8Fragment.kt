@@ -14,11 +14,14 @@ class SurveyStep8Fragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        var isCheckedRadio = false
+
         binding.surveyStep8ImgBack.setOnClickListener {
             findNavController().popBackStack()
         }
 
         binding.surveyStep8RadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            isCheckedRadio = true
             when (checkedId) {
                 R.id.survey_step8_radio_btn1 -> {
                     binding.surveyStep8RadioBtn1.setCompoundDrawablesWithIntrinsicBounds(
@@ -60,7 +63,7 @@ class SurveyStep8Fragment :
         }
 
         binding.surveyStep8BtnContinue.setOnClickListener {
-            findNavController().navigate(R.id.action_surveyStep8Fragment_to_surveyStep9Fragment)
+            if (isCheckedRadio) findNavController().navigate(R.id.action_surveyStep8Fragment_to_surveyStep9Fragment)
         }
     }
 }

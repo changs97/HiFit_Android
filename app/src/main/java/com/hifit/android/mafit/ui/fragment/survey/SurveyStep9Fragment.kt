@@ -17,7 +17,10 @@ class SurveyStep9Fragment : BaseFragment<FragmentSurveyStep9Binding>(R.layout.fr
             findNavController().popBackStack()
         }
 
+        var isCheckedRadio = false
+
         binding.surveyStep9RadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            isCheckedRadio = true
             when (checkedId) {
                 R.id.survey_step9_radio_btn1 -> {
                     binding.surveyStep9RadioBtn1.setCompoundDrawablesWithIntrinsicBounds(
@@ -59,7 +62,7 @@ class SurveyStep9Fragment : BaseFragment<FragmentSurveyStep9Binding>(R.layout.fr
         }
 
         binding.surveyStep9BtnContinue.setOnClickListener {
-            findNavController().navigate(R.id.action_surveyStep9Fragment_to_surveyStep10Fragment)
+            if (isCheckedRadio) findNavController().navigate(R.id.action_surveyStep9Fragment_to_surveyStep10Fragment)
         }
     }
 }
