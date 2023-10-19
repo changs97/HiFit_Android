@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/orderFragment"
-        android:name="com.hifit.android.mafit.ui.fragment.product.OrderFragment"
+        android:name="com.hifit.android.mafit.ui.fragment.order.OrderFragment"
         tools:layout="@layout/fragment_order"
         android:label="fragment_order">
         <argument
