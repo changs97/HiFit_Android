@@ -3,6 +3,8 @@ package com.hifit.android.mafit.ui.fragment.survey
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -39,18 +41,160 @@ class SurveyCompleteFragment :
         }
 
         viewModel.bodyInfo.observe(viewLifecycleOwner) { bodyInfo ->
+            with(binding) {
+                surveyCompleteTxtBmi1.visibility = INVISIBLE
+                surveyCompleteTxtBmi2.visibility = INVISIBLE
+                surveyCompleteTxtBmi3.visibility = INVISIBLE
+                surveyCompleteTxtBmi4.visibility = INVISIBLE
+                surveyCompleteTxtBmi5.visibility = INVISIBLE
+                surveyCompleteTxtBmi6.visibility = INVISIBLE
+                surveyCompleteTxtBmi7.visibility = INVISIBLE
+                surveyCompleteTxtBmi8.visibility = INVISIBLE
+                surveyCompleteTxtBmi9.visibility = INVISIBLE
+                surveyCompleteTxtBmi10.visibility = INVISIBLE
+                surveyCompleteTxtBmi11.visibility = INVISIBLE
+                surveyCompleteTxtBmi12.visibility = INVISIBLE
+                surveyCompleteTxtBmi13.visibility = INVISIBLE
+                surveyCompleteTxtBmi14.visibility = INVISIBLE
+                surveyCompleteTxtBmi15.visibility = INVISIBLE
+                surveyCompleteTxtBmi16.visibility = INVISIBLE
+                surveyCompleteTxtBmi17.visibility = INVISIBLE
+                surveyCompleteTxtBmi18.visibility = INVISIBLE
+                surveyCompleteTxtBmi19.visibility = INVISIBLE
+                surveyCompleteTxtBmi20.visibility = INVISIBLE
+                surveyCompleteTxtBmi21.visibility = INVISIBLE
+                surveyCompleteTxtBmi22.visibility = INVISIBLE
+                surveyCompleteTxtBmi23.visibility = INVISIBLE
+                surveyCompleteTxtBmi24.visibility = INVISIBLE
+                surveyCompleteTxtBmi25.visibility = INVISIBLE
+            }
+
             bodyInfo?.currentBmi?.let {
                 val bmi = String.format("%.1f", it)
-
+                // 각 범위 5등분 (가장 왼쪽/중앙에서 살짝 왼쪽/중앙/중앙에서 살짝 오른쪽/가장 오른쪽)
                 val bmiName = if (it <= 18.5) {
+                    when (it) {
+                        in 0.0..5.0 -> {
+                            binding.surveyCompleteTxtBmi1.visibility = VISIBLE
+                            binding.surveyCompleteTxtBmi1.text = bmi
+                        }
+                        in 5.0..8.0 -> {
+                            binding.surveyCompleteTxtBmi2.visibility = VISIBLE
+                            binding.surveyCompleteTxtBmi2.text = bmi
+                        }
+                        in 8.0..9.5 -> {
+                            binding.surveyCompleteTxtBmi3.visibility = VISIBLE
+                            binding.surveyCompleteTxtBmi3.text = bmi
+                        }
+                        in 9.5..18.0 -> {
+                            binding.surveyCompleteTxtBmi4.visibility = VISIBLE
+                            binding.surveyCompleteTxtBmi4.text = bmi
+                        }
+                        in 18.0..18.5 -> {
+                            binding.surveyCompleteTxtBmi5.visibility = VISIBLE
+                            binding.surveyCompleteTxtBmi5.text = bmi
+                        }
+                    }
                     "저체중"
                 } else if (it > 18.5 && it <= 22.9) {
+                    when (it) {
+                        in 18.5..19.5 -> {
+                            binding.surveyCompleteTxtBmi6.visibility = VISIBLE
+                            binding.surveyCompleteTxtBmi6.text = bmi
+                        }
+                        in 19.5..20.5 -> {
+                            binding.surveyCompleteTxtBmi7.visibility = VISIBLE
+                            binding.surveyCompleteTxtBmi7.text = bmi
+                        }
+                        in 20.5..21.5 -> {
+                            binding.surveyCompleteTxtBmi8.visibility = VISIBLE
+                            binding.surveyCompleteTxtBmi8.text = bmi
+                        }
+                        in 21.5..22.5 -> {
+                            binding.surveyCompleteTxtBmi9.visibility = VISIBLE
+                            binding.surveyCompleteTxtBmi9.text = bmi
+                        }
+                        in 22.5..22.9 -> {
+                            binding.surveyCompleteTxtBmi10.visibility = VISIBLE
+                            binding.surveyCompleteTxtBmi10.text = bmi
+                        }
+                    }
                     "정상체중"
                 } else if (it in 23.0..24.9) {
+                    when (it) {
+                        in 23.0..23.5 -> {
+                            binding.surveyCompleteTxtBmi11.visibility = VISIBLE
+                            binding.surveyCompleteTxtBmi11.text = bmi
+                        }
+                        in 23.5..24.0 -> {
+                            binding.surveyCompleteTxtBmi12.visibility = VISIBLE
+                            binding.surveyCompleteTxtBmi12.text = bmi
+                        }
+                        in 24.0..24.5 -> {
+                            binding.surveyCompleteTxtBmi13.visibility = VISIBLE
+                            binding.surveyCompleteTxtBmi13.text = bmi
+                        }
+                        in 24.5..24.8 -> {
+                            binding.surveyCompleteTxtBmi14.visibility = VISIBLE
+                            binding.surveyCompleteTxtBmi14.text = bmi
+                        }
+                        in 24.8..24.9 -> {
+                            binding.surveyCompleteTxtBmi15.visibility = VISIBLE
+                            binding.surveyCompleteTxtBmi15.text = bmi
+                        }
+                    }
                     "과체중"
                 } else if (it in 25.0..29.9) {
+                    when (it) {
+                        in 25.0..25.5 -> {
+                            binding.surveyCompleteTxtBmi16.visibility = VISIBLE
+                            binding.surveyCompleteTxtBmi16.text = bmi
+                        }
+                        in 25.5..26.0 -> {
+                            binding.surveyCompleteTxtBmi17.visibility = VISIBLE
+                            binding.surveyCompleteTxtBmi17.text = bmi
+                        }
+                        in 26.0..28.0 -> {
+                            binding.surveyCompleteTxtBmi18.visibility = VISIBLE
+                            binding.surveyCompleteTxtBmi18.text = bmi
+                        }
+                        in 28.0..29.0 -> {
+                            binding.surveyCompleteTxtBmi19.visibility = VISIBLE
+                            binding.surveyCompleteTxtBmi19.text = bmi
+                        }
+                        in 29.0..29.9 -> {
+                            binding.surveyCompleteTxtBmi20.visibility = VISIBLE
+                            binding.surveyCompleteTxtBmi20.text = bmi
+                        }
+                    }
                     "비만"
-                } else "고도비만"
+                } else {
+                    when (it) {
+                        in 29.9..32.0 -> {
+                            binding.surveyCompleteTxtBmi21.visibility = VISIBLE
+                            binding.surveyCompleteTxtBmi21.text = bmi
+                        }
+                        in 32.0..35.0 -> {
+                            binding.surveyCompleteTxtBmi22.visibility = VISIBLE
+                            binding.surveyCompleteTxtBmi22.text = bmi
+                        }
+                        in 35.0..38.0 -> {
+                            binding.surveyCompleteTxtBmi23.visibility = VISIBLE
+                            binding.surveyCompleteTxtBmi23.text = bmi
+                        }
+                        in 38.0..40.0 -> {
+                            binding.surveyCompleteTxtBmi24.visibility = VISIBLE
+                            binding.surveyCompleteTxtBmi24.text = bmi
+                        }
+                        else -> {
+                            binding.surveyCompleteTxtBmi25.visibility = VISIBLE
+                            binding.surveyCompleteTxtBmi25.text = bmi
+                        }
+                    }
+                    "고도비만"
+                }
+
+
 
                 binding.surveyCompleteTxtBmi.text = "$bmi $bmiName"
             }
@@ -70,6 +214,15 @@ class SurveyCompleteFragment :
                         DecimalFormat("#,###").format(recommendedCalorie.toInt())
 
                     val proteinIntake = weight * 1.2
+
+                    binding.surveyCompleteTxtContent6Kcal.text =
+                        DecimalFormat("#,###").format(proteinIntake.toInt()) + "g"
+
+                    val egg = (proteinIntake / 9).toInt()
+                    val tofu = (proteinIntake / 9).toInt()
+                    val chicken =  (proteinIntake / 20).toInt()
+                    binding.surveyCompleteTxtGuide.text = getString(R.string.nutrition_intake_guide).format(chicken, egg, tofu)
+
 
                     binding.surveyCompleteTxtContent5Intake.text =
                         DecimalFormat("#,###").format(proteinIntake.toInt())

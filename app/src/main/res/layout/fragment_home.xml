@@ -292,23 +292,404 @@
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/home_ll_bmi_container"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/home_cl_bmi_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="40dp"
-                    android:orientation="horizontal">
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/survey_complete_ll_result_container">
+
+                    <TextView
+                        android:id="@+id/home_txt_bmi_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_balloon"
+                        tools:text="30"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:layout_marginTop="2dp"
+                        android:visibility="invisible"
+                        android:textColor="@color/violet6"
+                        app:layout_constraintTop_toBottomOf="@id/home_ll_bmi1"
+                        app:layout_constraintStart_toStartOf="@id/home_ll_bmi1" />
+
+                    <TextView
+                        android:id="@+id/home_txt_bmi_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_balloon"
+                        tools:text="30"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:visibility="invisible"
+                        android:textColor="@color/violet6"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="10dp"
+                        app:layout_constraintTop_toBottomOf="@id/home_ll_bmi1"
+                        app:layout_constraintStart_toStartOf="@id/home_ll_bmi1"
+                        app:layout_constraintEnd_toEndOf="@id/home_ll_bmi1" />
+
+                    <TextView
+                        android:id="@+id/home_txt_bmi_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_balloon"
+                        tools:text="30"
+                        android:visibility="invisible"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:textColor="@color/violet6"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginStart="10dp"
+                        app:layout_constraintTop_toBottomOf="@id/home_ll_bmi1"
+                        app:layout_constraintStart_toStartOf="@id/home_ll_bmi1"
+                        app:layout_constraintEnd_toEndOf="@id/home_ll_bmi1" />
+                    <TextView
+                        android:id="@+id/home_txt_bmi_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_balloon"
+                        tools:text="30"
+                        android:visibility="invisible"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:layout_marginTop="2dp"
+                        android:textColor="@color/violet6"
+                        app:layout_constraintTop_toBottomOf="@id/home_ll_bmi1"
+                        app:layout_constraintStart_toStartOf="@id/home_ll_bmi1"
+                        app:layout_constraintEnd_toEndOf="@id/home_ll_bmi1" />
+
+                    <TextView
+                        android:id="@+id/home_txt_bmi_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_balloon"
+                        tools:text="30"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:visibility="invisible"
+                        android:textSize="14sp"
+                        android:textColor="@color/violet6"
+                        app:layout_constraintEnd_toStartOf="@id/home_ll_bmi2"
+                        app:layout_constraintStart_toEndOf="@+id/home_ll_bmi1"
+                        app:layout_constraintTop_toBottomOf="@id/home_ll_bmi1"/>
+
+                    <TextView
+                        android:id="@+id/home_txt_bmi_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_balloon"
+                        tools:text="30"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:layout_marginTop="2dp"
+                        android:visibility="invisible"
+                        android:textColor="@color/violet6"
+                        app:layout_constraintTop_toBottomOf="@id/home_ll_bmi2"
+                        app:layout_constraintStart_toStartOf="@id/home_ll_bmi2" />
+
+                    <TextView
+                        android:id="@+id/home_txt_bmi_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_balloon"
+                        tools:text="30"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:visibility="invisible"
+                        android:textColor="@color/violet6"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="10dp"
+                        app:layout_constraintTop_toBottomOf="@id/home_ll_bmi2"
+                        app:layout_constraintStart_toStartOf="@id/home_ll_bmi2"
+                        app:layout_constraintEnd_toEndOf="@id/home_ll_bmi2" />
+
+                    <TextView
+                        android:id="@+id/home_txt_bmi_8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_balloon"
+                        tools:text="30"
+                        android:visibility="invisible"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:textColor="@color/violet6"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginStart="10dp"
+                        app:layout_constraintTop_toBottomOf="@id/home_ll_bmi2"
+                        app:layout_constraintStart_toStartOf="@id/home_ll_bmi2"
+                        app:layout_constraintEnd_toEndOf="@id/home_ll_bmi2" />
+                    <TextView
+                        android:id="@+id/home_txt_bmi_9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_balloon"
+                        tools:text="30"
+                        android:visibility="invisible"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:layout_marginTop="2dp"
+                        android:textColor="@color/violet6"
+                        app:layout_constraintTop_toBottomOf="@id/home_ll_bmi2"
+                        app:layout_constraintStart_toStartOf="@id/home_ll_bmi2"
+                        app:layout_constraintEnd_toEndOf="@id/home_ll_bmi2" />
+
+                    <TextView
+                        android:id="@+id/home_txt_bmi_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_balloon"
+                        tools:text="30"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:visibility="invisible"
+                        android:textSize="14sp"
+                        android:textColor="@color/violet6"
+                        app:layout_constraintEnd_toStartOf="@id/home_ll_bmi3"
+                        app:layout_constraintStart_toEndOf="@+id/home_ll_bmi2"
+                        app:layout_constraintTop_toBottomOf="@id/home_ll_bmi2"/>
+
+                    <TextView
+                        android:id="@+id/home_txt_bmi_11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_balloon"
+                        tools:text="30"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:layout_marginTop="2dp"
+                        android:visibility="invisible"
+                        android:textColor="@color/violet6"
+                        app:layout_constraintTop_toBottomOf="@id/home_ll_bmi3"
+                        app:layout_constraintStart_toStartOf="@id/home_ll_bmi3" />
+
+                    <TextView
+                        android:id="@+id/home_txt_bmi_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_balloon"
+                        tools:text="30"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:visibility="invisible"
+                        android:textColor="@color/violet6"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="10dp"
+                        app:layout_constraintTop_toBottomOf="@id/home_ll_bmi3"
+                        app:layout_constraintStart_toStartOf="@id/home_ll_bmi3"
+                        app:layout_constraintEnd_toEndOf="@id/home_ll_bmi3" />
+
+                    <TextView
+                        android:id="@+id/home_txt_bmi_13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_balloon"
+                        tools:text="30"
+                        android:visibility="invisible"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:textColor="@color/violet6"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginStart="10dp"
+                        app:layout_constraintTop_toBottomOf="@id/home_ll_bmi3"
+                        app:layout_constraintStart_toStartOf="@id/home_ll_bmi3"
+                        app:layout_constraintEnd_toEndOf="@id/home_ll_bmi3" />
+                    <TextView
+                        android:id="@+id/home_txt_bmi_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_balloon"
+                        tools:text="30"
+                        android:visibility="invisible"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:layout_marginTop="2dp"
+                        android:textColor="@color/violet6"
+                        app:layout_constraintTop_toBottomOf="@id/home_ll_bmi3"
+                        app:layout_constraintStart_toStartOf="@id/home_ll_bmi3"
+                        app:layout_constraintEnd_toEndOf="@id/home_ll_bmi3" />
+
+                    <TextView
+                        android:id="@+id/home_txt_bmi_15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_balloon"
+                        tools:text="30"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:visibility="invisible"
+                        android:textSize="14sp"
+                        android:textColor="@color/violet6"
+                        app:layout_constraintEnd_toStartOf="@id/home_ll_bmi4"
+                        app:layout_constraintStart_toEndOf="@+id/home_ll_bmi3"
+                        app:layout_constraintTop_toBottomOf="@id/home_ll_bmi3"/>
+
+                    <TextView
+                        android:id="@+id/home_txt_bmi_16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_balloon"
+                        tools:text="30"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:layout_marginTop="2dp"
+                        android:visibility="invisible"
+                        android:textColor="@color/violet6"
+                        app:layout_constraintTop_toBottomOf="@id/home_ll_bmi4"
+                        app:layout_constraintStart_toStartOf="@id/home_ll_bmi4" />
+
+                    <TextView
+                        android:id="@+id/home_txt_bmi_17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_balloon"
+                        tools:text="30"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:visibility="invisible"
+                        android:textColor="@color/violet6"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="10dp"
+                        app:layout_constraintTop_toBottomOf="@id/home_ll_bmi4"
+                        app:layout_constraintStart_toStartOf="@id/home_ll_bmi4"
+                        app:layout_constraintEnd_toEndOf="@id/home_ll_bmi4" />
+
+                    <TextView
+                        android:id="@+id/home_txt_bmi_18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_balloon"
+                        tools:text="30"
+                        android:visibility="invisible"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:textColor="@color/violet6"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginStart="10dp"
+                        app:layout_constraintTop_toBottomOf="@id/home_ll_bmi4"
+                        app:layout_constraintStart_toStartOf="@id/home_ll_bmi4"
+                        app:layout_constraintEnd_toEndOf="@id/home_ll_bmi4" />
+                    <TextView
+                        android:id="@+id/home_txt_bmi_19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_balloon"
+                        tools:text="30"
+                        android:visibility="invisible"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:layout_marginTop="2dp"
+                        android:textColor="@color/violet6"
+                        app:layout_constraintTop_toBottomOf="@id/home_ll_bmi4"
+                        app:layout_constraintStart_toStartOf="@id/home_ll_bmi4"
+                        app:layout_constraintEnd_toEndOf="@id/home_ll_bmi4" />
+
+                    <TextView
+                        android:id="@+id/home_txt_bmi_20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_balloon"
+                        tools:text="30"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:visibility="invisible"
+                        android:textSize="14sp"
+                        android:textColor="@color/violet6"
+                        app:layout_constraintEnd_toStartOf="@id/home_ll_bmi5"
+                        app:layout_constraintStart_toEndOf="@+id/home_ll_bmi4"
+                        app:layout_constraintTop_toBottomOf="@id/home_ll_bmi4"/>
+
+                    <TextView
+                        android:id="@+id/home_txt_bmi_21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_balloon"
+                        tools:text="30"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:layout_marginTop="2dp"
+                        android:visibility="invisible"
+                        android:textColor="@color/violet6"
+                        app:layout_constraintTop_toBottomOf="@id/home_ll_bmi5"
+                        app:layout_constraintStart_toStartOf="@id/home_ll_bmi5" />
+
+                    <TextView
+                        android:id="@+id/home_txt_bmi_22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_balloon"
+                        tools:text="30"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:visibility="invisible"
+                        android:textColor="@color/violet6"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="10dp"
+                        app:layout_constraintTop_toBottomOf="@id/home_ll_bmi5"
+                        app:layout_constraintStart_toStartOf="@id/home_ll_bmi5"
+                        app:layout_constraintEnd_toEndOf="@id/home_ll_bmi5" />
+
+                    <TextView
+                        android:id="@+id/home_txt_bmi_23"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_balloon"
+                        tools:text="30"
+                        android:visibility="invisible"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:textColor="@color/violet6"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginStart="10dp"
+                        app:layout_constraintTop_toBottomOf="@id/home_ll_bmi5"
+                        app:layout_constraintStart_toStartOf="@id/home_ll_bmi5"
+                        app:layout_constraintEnd_toEndOf="@id/home_ll_bmi5" />
+                    <TextView
+                        android:id="@+id/home_txt_bmi_24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_balloon"
+                        tools:text="30"
+                        android:visibility="invisible"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:layout_marginTop="2dp"
+                        android:textColor="@color/violet6"
+                        app:layout_constraintTop_toBottomOf="@id/home_ll_bmi5"
+                        app:layout_constraintStart_toStartOf="@id/home_ll_bmi5"
+                        app:layout_constraintEnd_toEndOf="@id/home_ll_bmi5" />
+
+                    <TextView
+                        android:id="@+id/home_txt_bmi_25"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_balloon"
+                        tools:text="30"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:visibility="invisible"
+                        android:textSize="14sp"
+                        android:textColor="@color/violet6"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/home_ll_bmi5"/>
 
                     <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/home_ll_bmi1"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/background_radius_left_20dp_solid_blue"
                         android:gravity="center_vertical"
                         android:orientation="vertical"
                         android:paddingHorizontal="6dp"
-                        android:paddingVertical="8dp">
+                        android:paddingVertical="8dp"
+                        app:layout_constraintEnd_toStartOf="@id/home_ll_bmi2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -330,14 +711,18 @@
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                     <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/home_ll_bmi2"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@color/green"
                         android:gravity="center_vertical"
                         android:orientation="vertical"
                         android:paddingHorizontal="6dp"
-                        android:paddingVertical="8dp">
+                        android:paddingVertical="8dp"
+                        app:layout_constraintEnd_toStartOf="@id/home_ll_bmi3"
+                        app:layout_constraintStart_toEndOf="@id/home_ll_bmi1"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -359,14 +744,18 @@
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                     <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/home_ll_bmi3"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@color/yellow"
                         android:gravity="center_vertical"
                         android:orientation="vertical"
                         android:paddingHorizontal="6dp"
-                        android:paddingVertical="8dp">
+                        android:paddingVertical="8dp"
+                        app:layout_constraintEnd_toStartOf="@id/home_ll_bmi4"
+                        app:layout_constraintStart_toEndOf="@id/home_ll_bmi2"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -388,14 +777,18 @@
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                     <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/home_ll_bmi4"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@color/orange"
                         android:gravity="center_vertical"
                         android:orientation="vertical"
                         android:paddingHorizontal="6dp"
-                        android:paddingVertical="8dp">
+                        android:paddingVertical="8dp"
+                        app:layout_constraintEnd_toStartOf="@id/home_ll_bmi5"
+                        app:layout_constraintStart_toEndOf="@id/home_ll_bmi3"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -417,14 +810,18 @@
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                     <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/home_ll_bmi5"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/background_radius_right_20dp_solid_red"
                         android:gravity="center_vertical"
                         android:orientation="vertical"
                         android:paddingHorizontal="6dp"
-                        android:paddingVertical="8dp">
+                        android:paddingVertical="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/home_ll_bmi4"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -445,7 +842,7 @@
                             android:textSize="10sp" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
-                </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
