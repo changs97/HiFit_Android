@@ -37,6 +37,7 @@ class SurveyStep2Fragment : BaseFragment<FragmentSurveyStep2Binding>(R.layout.fr
                 showCustomToast("나이를 입력해주세요")
             } else {
                 viewModel.userAge = binding.surveyStep2Edit.text.toString().toInt()
+                viewModel.surveyInfo.age = binding.surveyStep2Edit.text.toString().toInt()
                 findNavController().navigate(R.id.action_surveyStep2Fragment_to_surveyStep3Fragment)
             }
         }

@@ -39,11 +39,13 @@ class SurveyStep1Fragment :
             gender = when (checkedId) {
                 R.id.survey_step1_radio_btn_male -> {
                     viewModel.userGender = "MALE"
+                    viewModel.surveyInfo.gender = "MALE"
                     "MALE"
                 }
 
                 R.id.survey_step1_radio_btn_female -> {
                     viewModel.userGender = "FEMALE"
+                    viewModel.surveyInfo.gender = "FEMALE"
                     "FEMALE"
                 }
 

@@ -17,7 +17,7 @@
     <string name="survey_step1_male">남성</string>
     <string name="survey_step1_female">여성</string>
     <string name="survey_continue">다음</string>
-    <string name="survey_step2_hint">나이를 입력해주세요</string>
+    <string name="survey_step2_hint">만 나이를 입력해주세요</string>
     <string name="survey_step2_question">나이가 어떻게 되시나요?</string>
     <string name="survey_step2_content">나이에 따라서 필요한 운동 및 영양 정보가\n달라질 수 있어요</string>
     <string name="survey_step3_content">근감소증 예측에 체질랑지수(BMI)를\n활용합니다</string>

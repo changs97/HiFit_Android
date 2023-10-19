@@ -14,5 +14,9 @@ data class HealthInfoRequestBody(
     @SerializedName("waistSize")
     var waistSize: Int = 0,
     @SerializedName("weight")
-    var weight: Int = 0
+    var weight: Int = 0,
+    @SerializedName("age")
+    var age: Int = 0,
+    @SerializedName("gender")
+    var gender: String = "MALE"
 )
