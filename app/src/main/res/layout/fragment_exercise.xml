@@ -94,11 +94,11 @@
                     android:elevation="10dp"
                     app:cardCornerRadius="@dimen/common_radius_8">
 
-                    <LinearLayout
+                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:background="@drawable/background_radius_10dp_stroke_violet"
+                        android:background="@drawable/background_radius_10dp_stroke_violet_solid_white"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="10dp">
 
@@ -188,7 +188,7 @@
                                 tools:text="80.8" />
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
-                    </LinearLayout>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
                 </androidx.cardview.widget.CardView>
 
             </androidx.appcompat.widget.LinearLayoutCompat>

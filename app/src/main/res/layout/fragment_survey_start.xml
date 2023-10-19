@@ -49,26 +49,29 @@
             app:layout_constraintTop_toBottomOf="@+id/survey_start_txt_title" />
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/appCompatImageView"
             android:layout_width="254dp"
             android:layout_height="254dp"
             android:src="@drawable/img_start_survey"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/textView3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/survey_start_txt_explanation1" />
 
         <TextView
+            android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/survey_start_touch"
             android:textColor="@color/gray"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/textView3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/survey_start_txt_explanation1" />
 
         <TextView
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp"

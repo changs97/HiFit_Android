@@ -609,7 +609,7 @@
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:id="@+id/survey_complete_ll_bmi1"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_weight="1"
                         android:background="@drawable/background_radius_left_20dp_solid_blue"
                         android:gravity="center_vertical"
@@ -642,7 +642,7 @@
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:id="@+id/survey_complete_ll_bmi2"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_weight="1"
                         android:background="@color/green"
                         android:gravity="center_vertical"
@@ -675,7 +675,7 @@
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:id="@+id/survey_complete_ll_bmi3"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_weight="1"
                         android:background="@color/yellow"
                         android:gravity="center_vertical"
@@ -708,7 +708,7 @@
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:id="@+id/survey_complete_ll_bmi4"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_weight="1"
                         android:background="@color/orange"
                         android:gravity="center_vertical"
@@ -741,7 +741,7 @@
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:id="@+id/survey_complete_ll_bmi5"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_weight="1"
                         android:background="@drawable/background_radius_right_20dp_solid_red"
                         android:gravity="center_vertical"
