@@ -1,26 +1,14 @@
-package com.hifit.android.mafit.ui.fragment.product
+package com.hifit.android.mafit.ui.fragment.order
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.google.android.material.tabs.TabLayoutMediator
 import com.hifit.android.mafit.R
 import com.hifit.android.mafit.base.BaseFragment
-import com.hifit.android.mafit.data.model.ExerciseItem
-import com.hifit.android.mafit.data.model.ProductItem
-import com.hifit.android.mafit.databinding.FragmentExerciseBinding
 import com.hifit.android.mafit.databinding.FragmentOrderBinding
-import com.hifit.android.mafit.databinding.FragmentProductBinding
-import com.hifit.android.mafit.ui.fragment.exercise.adapter.ExerciseAdapterListener
-import com.hifit.android.mafit.ui.fragment.exercise.adapter.ExercisePageAdapter
-import com.hifit.android.mafit.ui.fragment.product.adapter.ProductAdapter
-import com.hifit.android.mafit.ui.fragment.product.adapter.ProductAdapterListener
 import com.hifit.android.mafit.util.toKRW
 import com.hifit.android.mafit.viewmodel.MainViewModel
 import java.text.DecimalFormat
@@ -44,6 +32,10 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(R.layout.fragment_order
 
         binding.orderTxtProductCoin.text = samplePrice.toKRW()
         binding.orderTxtAmount.text = samplePrice.toKRW()
+
+        binding.orderImgBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         var curQuantity = 1
         var maxQuantity = 10
