@@ -11,160 +11,160 @@
             type="com.hifit.android.mafit.viewmodel.MainViewModel" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
+
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp">
+
+            <ImageView
+                android:id="@+id/order_img_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="선물 교환하기"
+                android:textColor="@color/gray4"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/order_img"
+            android:layout_width="match_parent"
+            android:layout_height="360dp"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/ic_sample1" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <TextView
+                android:id="@+id/order_txt_product_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp">
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/gray4"
+                android:textSize="18sp"
+                tools:text="[스타벅스] SS 사이렌 ㅡ토퍼 콜드컵 531ml" />
 
-                <ImageView
-                    android:id="@+id/order_img_back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_arrow"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="선물 교환하기"
-                    android:textColor="@color/gray4"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/order_img"
-                android:layout_width="match_parent"
-                android:layout_height="360dp"
-                android:scaleType="centerCrop"
-                tools:src="@drawable/ic_sample1" />
-
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <TextView
+                android:id="@+id/order_txt_product_coin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:id="@+id/order_txt_product_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxLines="2"
-                    android:textColor="@color/gray4"
-                    android:textSize="18sp"
-                    tools:text="[스타벅스] SS 사이렌 ㅡ토퍼 콜드컵 531ml" />
-
-                <TextView
-                    android:id="@+id/order_txt_product_coin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/gray4"
-                    android:textSize="18sp"
-                    android:layout_marginTop="8dp"
-                    android:textStyle="bold"
-                    tools:text="80코인" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/gray5"
-                android:padding="15dp">
-
-                <LinearLayout
-                    android:id="@+id/linearLayout"
-                    android:layout_width="86dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:id="@+id/order_img_decrease"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_cart_item_minus_off" />
-
-                    <TextView
-                        android:id="@+id/order_txt_product_count"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textColor="@color/gray4"
-                        android:textStyle="bold"
-                        android:textSize="16sp"
-                        android:text="1" />
-
-                    <ImageView
-                        android:id="@+id/order_img_increase"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_cart_item_plus_on" />
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:text="총 합계"
-                    android:textColor="@color/gray"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/order_txt_amount"
-                    app:layout_constraintEnd_toStartOf="@+id/order_txt_amount"
-                    app:layout_constraintTop_toTopOf="@+id/order_txt_amount" />
-
-                <TextView
-                    android:id="@+id/order_txt_amount"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="end"
-                    tools:text="12,000 코인"
-                    android:textColor="@color/violet4"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/order_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="26dp"
-                android:layout_marginTop="133dp"
-                android:layout_marginBottom="20dp"
-                android:paddingHorizontal="24dp"
-                android:background="@drawable/background_radius_10dp_solid_violet4"
-                android:gravity="center"
-                android:paddingVertical="11dp"
-                android:text="교환하기"
-                android:textColor="@color/gray5"
-                android:textSize="16sp"
-          />
+                android:layout_marginTop="8dp"
+                android:textColor="@color/gray4"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="80코인" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
-    </androidx.core.widget.NestedScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray5"
+            android:padding="15dp">
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="86dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/order_img_decrease"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cart_item_minus_off" />
+
+                <TextView
+                    android:id="@+id/order_txt_product_count"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="@color/gray4"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/order_img_increase"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cart_item_plus_on" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="총 합계"
+                android:textColor="@color/gray"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/order_txt_amount"
+                app:layout_constraintEnd_toStartOf="@+id/order_txt_amount"
+                app:layout_constraintTop_toTopOf="@+id/order_txt_amount" />
+
+            <TextView
+                android:id="@+id/order_txt_amount"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:textColor="@color/violet4"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="12,000 코인" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/order_btn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="26dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/background_radius_10dp_solid_violet4"
+            android:gravity="center"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="11dp"
+            android:text="교환하기"
+            android:textColor="@color/gray5"
+            android:textSize="16sp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </layout>

@@ -52,7 +52,6 @@
             android:text="@string/survey_step2_content"
             android:textColor="@color/gray6"
             android:textSize="16sp"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/survey_step2_txt_title"
             app:layout_constraintTop_toBottomOf="@+id/survey_step2_txt_title" />
 
@@ -83,6 +82,7 @@
             android:paddingVertical="12dp"
             android:textColor="@color/gray5"
             android:text="@string/survey_continue"
+            style="?android:attr/borderlessButtonStyle"
             android:background="@drawable/background_radius_10dp_solid_violet4"
             android:layout_marginBottom="20dp"
             android:textSize="16sp"

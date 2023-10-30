@@ -106,6 +106,7 @@ tools:context=".ui.fragment.survey.SurveyStep8Fragment">
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="26dp"
         android:layout_marginBottom="30dp"
+        style="?android:attr/borderlessButtonStyle"
         android:background="@drawable/background_radius_10dp_solid_violet4"
         android:gravity="center"
         android:paddingVertical="12dp"

@@ -108,6 +108,7 @@
             android:layout_marginBottom="30dp"
             android:background="@drawable/background_radius_10dp_solid_violet4"
             android:gravity="center"
+            style="?android:attr/borderlessButtonStyle"
             android:paddingVertical="12dp"
             android:text="@string/survey_continue"
             android:textColor="@color/gray5"

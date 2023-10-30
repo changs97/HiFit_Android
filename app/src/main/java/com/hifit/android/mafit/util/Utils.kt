@@ -29,4 +29,4 @@ private fun isColorDark(color: Int): Boolean {
     return darkness >= 0.5
 }
 
-fun Int.toKRW() = "${DecimalFormat("#,###").format(this)}원"
+fun Int.formatWithCommas() = "${DecimalFormat("#,###").format(this)}"

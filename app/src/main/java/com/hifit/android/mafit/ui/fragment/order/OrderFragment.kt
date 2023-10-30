@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.hifit.android.mafit.R
 import com.hifit.android.mafit.base.BaseFragment
 import com.hifit.android.mafit.databinding.FragmentOrderBinding
-import com.hifit.android.mafit.util.toKRW
+import com.hifit.android.mafit.util.formatWithCommas
 import com.hifit.android.mafit.viewmodel.MainViewModel
 import java.text.DecimalFormat
 
@@ -26,12 +26,10 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(R.layout.fragment_order
         Glide.with(this).load(productItem.img).centerCrop().into(binding.orderImg)
 
         binding.orderTxtProductName.text = productItem.name
-        binding.orderTxtProductCoin.text = "${productItem.coin}코인"
 
-        val samplePrice = productItem.coin
-
-        binding.orderTxtProductCoin.text = samplePrice.toKRW()
-        binding.orderTxtAmount.text = samplePrice.toKRW()
+        val coin = productItem.coin
+        binding.orderTxtProductCoin.text = "${coin.formatWithCommas()}코인"
+        binding.orderTxtAmount.text = "${coin.formatWithCommas()}코인"
 
         binding.orderImgBack.setOnClickListener {
             findNavController().popBackStack()
@@ -71,7 +69,7 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(R.layout.fragment_order
 
                 binding.orderTxtProductCount.text = "${amountOfItem.inc()}"
                 binding.orderTxtAmount.text =
-                    "${DecimalFormat("#,###").format(samplePrice * amountOfItem.inc())}코인"
+                    "${DecimalFormat("#,###").format(coin  * amountOfItem.inc())}코인"
                 binding.orderImgDecrease.isEnabled = true
                 binding.orderImgDecrease.setImageResource(R.drawable.ic_cart_item_minus_on)
             }
@@ -88,7 +86,7 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(R.layout.fragment_order
 
                 binding.orderTxtProductCount.text = "${amountOfItem.dec()}"
                 binding.orderTxtAmount.text =
-                    "${DecimalFormat("#,###").format(samplePrice * amountOfItem.dec())}코인"
+                    "${DecimalFormat("#,###").format(coin  * amountOfItem.dec())}코인"
                 binding.orderImgIncrease.isEnabled = true
                 binding.orderImgIncrease.setImageResource(R.drawable.ic_cart_item_plus_on)
             }
