@@ -1,6 +1,7 @@
 package com.hifit.android.mafit.ui.fragment.youtubeplayer
 
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
@@ -29,7 +30,5 @@ class YoutubePlayerFragment :
                 youTubePlayer.loadVideo(youtubeId, 0f)
             }
         })
-
-
     }
 }
