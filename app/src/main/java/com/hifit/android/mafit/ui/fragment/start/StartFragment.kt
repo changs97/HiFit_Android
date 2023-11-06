@@ -39,7 +39,7 @@ class StartFragment : BaseFragment<FragmentStartBinding>(R.layout.fragment_start
                     intent.flags = FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                 } else {
-                    findNavController().navigate(R.id.action_startFragment_to_surveyStartFragment)
+                    findNavController().navigate(R.id.action_startFragment_to_survey_graph)
                 }
             } ?: run {
                 findNavController().navigate(R.id.action_startFragment_to_loginFragment)

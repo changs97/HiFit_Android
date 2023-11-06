@@ -1,8 +1,10 @@
 package com.hifit.android.mafit.ui
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +30,7 @@ class HomeActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels { MainViewModel.Factory }
     private val binding: ActivityHomeBinding by lazy { ActivityHomeBinding.inflate(layoutInflater) }
 
+    @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -46,17 +49,26 @@ class HomeActivity : AppCompatActivity() {
                 R.id.homeFragment -> {
                     setStatusBarColor(getColor(R.color.violet3))
                     binding.bottomNav.visibility = View.VISIBLE
+                    requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
                 }
 
                 R.id.exerciseFragment, R.id.productFragment, R.id.myPageFragment -> {
                     setStatusBarColor(getColor(R.color.white))
                     binding.bottomNav.visibility = View.VISIBLE
+                    requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+                }
+
+                R.id.youtubePlayerFragment -> {
+                    setStatusBarColor(getColor(R.color.white))
+                    binding.bottomNav.visibility = View.GONE
+                    requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
                 }
 
 
                 else -> {
                     setStatusBarColor(getColor(R.color.white))
                     binding.bottomNav.visibility = View.GONE
+                    requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
                 }
             }
         }

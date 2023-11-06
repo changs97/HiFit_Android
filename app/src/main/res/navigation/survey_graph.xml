@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/survey_graph"
+    app:startDestination="@id/surveyStartFragment">
+
+    <fragment
+        android:id="@+id/surveyStep7Fragment"
+        android:name="com.hifit.android.mafit.ui.fragment.survey.SurveyStep7Fragment"
+        tools:layout="@layout/fragment_survey_step7"
+        android:label="fragment_survey_step7">
+        <action
+            android:id="@+id/action_surveyStep7Fragment_to_surveyStep8Fragment"
+            app:destination="@id/surveyStep8Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/surveyStep3Fragment"
+        android:name="com.hifit.android.mafit.ui.fragment.survey.SurveyStep3Fragment"
+        tools:layout="@layout/fragment_survey_step3"
+        android:label="fragment_survey_step3">
+        <action
+            android:id="@+id/action_surveyStep3Fragment_to_surveyStep4Fragment"
+            app:destination="@id/surveyStep4Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/surveyStep9Fragment"
+        android:name="com.hifit.android.mafit.ui.fragment.survey.SurveyStep9Fragment"
+        tools:layout="@layout/fragment_survey_step9"
+        android:label="fragment_survey_step9">
+        <action
+            android:id="@+id/action_surveyStep9Fragment_to_surveyStep10Fragment"
+            app:destination="@id/surveyStep10Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/surveyStep10Fragment"
+        android:name="com.hifit.android.mafit.ui.fragment.survey.SurveyStep10Fragment"
+        tools:layout="@layout/fragment_survey_step10"
+        android:label="fragment_survey_step10">
+        <action
+            android:id="@+id/action_surveyStep10Fragment_to_surveyStep11Fragment"
+            app:destination="@id/surveyStep11Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/surveyCompleteFragment"
+        android:name="com.hifit.android.mafit.ui.fragment.survey.SurveyCompleteFragment"
+        tools:layout="@layout/fragment_survey_complete"
+        android:label="fragment_survey_complete" />
+    <fragment
+        android:id="@+id/surveyStep11Fragment"
+        android:name="com.hifit.android.mafit.ui.fragment.survey.SurveyStep11Fragment"
+        tools:layout="@layout/fragment_survey_step11"
+        android:label="fragment_survey_step11">
+        <action
+            android:id="@+id/action_surveyStep11Fragment_to_surveyCompleteFragment"
+            app:destination="@id/surveyCompleteFragment"
+            app:popUpTo="@id/surveyStartFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/surveyStep5Fragment"
+        android:name="com.hifit.android.mafit.ui.fragment.survey.SurveyStep5Fragment"
+        tools:layout="@layout/fragment_survey_step5"
+        android:label="fragment_survey_step5">
+        <action
+            android:id="@+id/action_surveyStep5Fragment_to_surveyStep6Fragment"
+            app:destination="@id/surveyStep6Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/surveyStep4Fragment"
+        android:name="com.hifit.android.mafit.ui.fragment.survey.SurveyStep4Fragment"
+        tools:layout="@layout/fragment_survey_step4"
+        android:label="fragment_survey_step4">
+        <action
+            android:id="@+id/action_surveyStep4Fragment_to_surveyStep5Fragment"
+            app:destination="@id/surveyStep5Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/surveyStep8Fragment"
+        android:name="com.hifit.android.mafit.ui.fragment.survey.SurveyStep8Fragment"
+        tools:layout="@layout/fragment_survey_step8"
+        android:label="fragment_survey_step8">
+        <action
+            android:id="@+id/action_surveyStep8Fragment_to_surveyStep9Fragment"
+            app:destination="@id/surveyStep9Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/surveyStep6Fragment"
+        android:name="com.hifit.android.mafit.ui.fragment.survey.SurveyStep6Fragment"
+        tools:layout="@layout/fragment_survey_step6"
+        android:label="fragment_survey_step6">
+        <action
+            android:id="@+id/action_surveyStep6Fragment_to_surveyStep7Fragment"
+            app:destination="@id/surveyStep7Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/surveyStep2Fragment"
+        android:name="com.hifit.android.mafit.ui.fragment.survey.SurveyStep2Fragment"
+        tools:layout="@layout/fragment_survey_step2"
+        android:label="fragment_survey_step2">
+        <action
+            android:id="@+id/action_surveyStep2Fragment_to_surveyStep3Fragment"
+            app:destination="@id/surveyStep3Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/surveyStep1Fragment"
+        android:name="com.hifit.android.mafit.ui.fragment.survey.SurveyStep1Fragment"
+        tools:layout="@layout/fragment_survey_step1"
+        android:label="fragment_survey_step1">
+        <action
+            android:id="@+id/action_surveyStep1Fragment_to_surveyStep2Fragment"
+            app:destination="@id/surveyStep2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/surveyStartFragment"
+        android:name="com.hifit.android.mafit.ui.fragment.survey.SurveyStartFragment"
+        tools:layout="@layout/fragment_survey_start"
+        android:label="fragment_survey_start">
+        <action
+            android:id="@+id/action_surveyStartFragment_to_surveyStep1Fragment"
+            app:destination="@id/surveyStep1Fragment" />
+    </fragment>
+</navigation>

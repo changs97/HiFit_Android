@@ -66,6 +66,9 @@
         <action
             android:id="@+id/action_myPageFragment_to_calenderFragment"
             app:destination="@id/calenderFragment" />
+        <action
+            android:id="@+id/action_myPageFragment_to_survey_graph"
+            app:destination="@id/survey_graph" />
     </fragment>
     <fragment
         android:id="@+id/calenderFragment"
@@ -79,4 +82,5 @@
             android:name="youtube_id"
             app:argType="string" />
     </fragment>
+    <include app:graph="@navigation/survey_graph" />
 </navigation>

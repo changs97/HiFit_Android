@@ -276,13 +276,9 @@ class SurveyCompleteFragment :
         }
 
         binding.surveyCompleteBtnRecommend.setOnClickListener {
-            if (findNavController().graph.id == R.id.nav_graph) {
-                val intent = Intent(requireContext(), HomeActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(intent)
-            } else {
-                findNavController().navigate(R.id.action_surveyCompleteFragment_to_homeFragment)
-            }
+            val intent = Intent(requireContext(), HomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
         }
     }
 }
