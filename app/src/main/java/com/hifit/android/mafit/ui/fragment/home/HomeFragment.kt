@@ -1,28 +1,40 @@
 package com.hifit.android.mafit.ui.fragment.home
 
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.NavigationUI.onNavDestinationSelected
 import com.hifit.android.mafit.R
 import com.hifit.android.mafit.base.BaseFragment
 import com.hifit.android.mafit.databinding.FragmentHomeBinding
-import com.hifit.android.mafit.databinding.FragmentSurveyCompleteBinding
 import com.hifit.android.mafit.ui.HomeActivity
-import com.hifit.android.mafit.ui.MainActivity
 import com.hifit.android.mafit.viewmodel.MainViewModel
 import timber.log.Timber
-import java.text.DecimalFormat
+
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private val viewModel: MainViewModel by activityViewModels()
+    private lateinit var onBackPressedCallback: OnBackPressedCallback
+    private var clickTime: Long = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.vm = viewModel
+
+        clickTime = 0
+        onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if(System.currentTimeMillis() - clickTime >= 2000) {
+                    clickTime = System.currentTimeMillis()
+                    showCustomToast("'뒤로가기' 버튼을 한번 더 누르시면 앱이 종료됩니다.")
+                } else {
+                    requireActivity().finish()
+                }
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(onBackPressedCallback)
 
         with(viewModel) {
             tryGetUserInfo()
@@ -239,5 +251,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         binding.homeBtnResult.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_surveyCompleteFragment)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        onBackPressedCallback.remove()
     }
 }

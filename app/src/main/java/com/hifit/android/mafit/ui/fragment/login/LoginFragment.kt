@@ -60,32 +60,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
 
         viewModel.navigateNext.observe(viewLifecycleOwner) { event ->
             event.getContentIfNotHandled()?.let {
-                if (it) findNavController().navigate(R.id.action_loginFragment_to_survey_graph)
+                viewModel.tryGetBodyInfo()
             }
         }
-
-        Timber.i("code: $args.code")
-
-        args.code?.let { code ->
-            Timber.i("code: $code")/*            viewLifecycleOwner.lifecycleScope.launch {
-                            try {
-                                isProgressVisible.value = true
-                                val response =
-                                    HiFitApplication.retrofit.create(LoginRetrofitInterface::class.java)
-                                        .postLogin(LoginRequestBody(code))
-
-                                HiFitApplication.sharedPreferences.edit().putString(
-                                    "X_ACCESS_TOKEN", response.data.code
-                                ).apply()
-
-                                isProgressVisible.value = false
-                            } catch (e: Exception) {
-                                isProgressVisible.value = false
-                                Timber.e("network error: $e")
-                            }
-                        }*/
-        }
-
 
         binding.loginImg.setOnClickListener {
             kakaoLogout()
@@ -93,16 +70,19 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
 
         binding.button.setOnClickListener {
             viewModel.getToken()?.let {
-                // TODO: 조건을 유저 검사 결과 조회를 해서 성공적으로 정보를 확인하면 홈, 아니면 설문으로 넘기도록 수정하기
-                if (viewModel.userInfo.value?.name != null) {
-                    val intent = Intent(requireContext(), HomeActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
-                } else {
-                    findNavController().navigate(R.id.action_loginFragment_to_survey_graph)
-                }
+                viewModel.tryGetBodyInfo()
             } ?: run {
                 kakaoLogin()
+            }
+        }
+
+        viewModel.bodyInfo.observe(viewLifecycleOwner) { bodyInfo ->
+            if (bodyInfo.currentBmi != null) {
+                val intent = Intent(requireContext(), HomeActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+            } else {
+                findNavController().navigate(R.id.action_loginFragment_to_survey_graph)
             }
         }
     }

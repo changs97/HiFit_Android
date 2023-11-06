@@ -66,6 +66,19 @@ class SurveyStep11Fragment :
             }
         }
 
+        viewModel.showToast.observe(viewLifecycleOwner) { event ->
+            event.getContentIfNotHandled()?.let {
+                if (it.isNotEmpty()) showCustomToast(it)
+            }
+        }
+
+        viewModel.errorEvent.observe(viewLifecycleOwner) { event ->
+            event.getContentIfNotHandled()?.let {
+                if (it == 40103) activity?.finish()
+            }
+        }
+
+
         viewModel.navigateNext.observe(viewLifecycleOwner) {
             it.getContentIfNotHandled()?.let { next ->
                 if (next && isCheckedRadio) {

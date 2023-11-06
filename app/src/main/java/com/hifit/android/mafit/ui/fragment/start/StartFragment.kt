@@ -25,22 +25,21 @@ class StartFragment : BaseFragment<FragmentStartBinding>(R.layout.fragment_start
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var userSurveyParticipation: UserInfo? = null
-        viewModel.userInfo.observe(viewLifecycleOwner) {
-            userSurveyParticipation = it
+
+        viewModel.bodyInfo.observe(viewLifecycleOwner) { bodyInfo ->
+            if (bodyInfo.currentBmi != null) {
+                val intent = Intent(requireContext(), HomeActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+            } else {
+                findNavController().navigate(R.id.action_loginFragment_to_survey_graph)
+            }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
             delay(1000)
             viewModel.getToken()?.let {
-                Timber.tag("토큰").d("$it")
-                if (userSurveyParticipation != null) {
-                    val intent = Intent(requireContext(), HomeActivity::class.java)
-                    intent.flags = FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
-                } else {
-                    findNavController().navigate(R.id.action_startFragment_to_survey_graph)
-                }
+                viewModel.tryGetBodyInfo()
             } ?: run {
                 findNavController().navigate(R.id.action_startFragment_to_loginFragment)
             }
