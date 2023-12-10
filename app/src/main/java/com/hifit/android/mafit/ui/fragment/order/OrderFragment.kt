@@ -35,9 +35,9 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(R.layout.fragment_order
             findNavController().popBackStack()
         }
 
-        var curQuantity = 1
-        var maxQuantity = 10
-        var minQuantity = 1
+        val curQuantity = 1
+        val maxQuantity = 10
+        val minQuantity = 1
 
         if (curQuantity == 1 && maxQuantity == 1) {
             binding.orderImgIncrease.isEnabled = false
@@ -58,8 +58,7 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(R.layout.fragment_order
             binding.orderImgIncrease.setImageResource(R.drawable.ic_cart_item_plus_off)
         } else {
             binding.orderImgIncrease.setOnClickListener {
-                val amountOfItem = binding.orderTxtProductCount.text.toString().toInt()
-                if (amountOfItem + 1 < maxQuantity) {
+                if (curQuantity + 1 < maxQuantity) {
                     binding.orderImgIncrease.isEnabled = true
                     binding.orderImgIncrease.setImageResource(R.drawable.ic_cart_item_plus_on)
                 } else {
@@ -67,16 +66,15 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(R.layout.fragment_order
                     binding.orderImgIncrease.setImageResource(R.drawable.ic_cart_item_plus_off)
                 }
 
-                binding.orderTxtProductCount.text = "${amountOfItem.inc()}"
+                binding.orderTxtProductCount.text = "${curQuantity.inc()}"
                 binding.orderTxtAmount.text =
-                    "${DecimalFormat("#,###").format(coin  * amountOfItem.inc())}코인"
+                    "${DecimalFormat("#,###").format(coin  * curQuantity.inc())}코인"
                 binding.orderImgDecrease.isEnabled = true
                 binding.orderImgDecrease.setImageResource(R.drawable.ic_cart_item_minus_on)
             }
 
             binding.orderImgDecrease.setOnClickListener {
-                val amountOfItem = binding.orderTxtProductCount.text.toString().toInt()
-                if (amountOfItem - 1 > minQuantity) {
+                if (curQuantity - 1 > minQuantity) {
                     binding.orderImgDecrease.isEnabled = true
                     binding.orderImgDecrease.setImageResource(R.drawable.ic_cart_item_minus_on)
                 } else {
@@ -84,26 +82,12 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(R.layout.fragment_order
                     binding.orderImgDecrease.setImageResource(R.drawable.ic_cart_item_minus_off)
                 }
 
-                binding.orderTxtProductCount.text = "${amountOfItem.dec()}"
+                binding.orderTxtProductCount.text = "${curQuantity.dec()}"
                 binding.orderTxtAmount.text =
-                    "${DecimalFormat("#,###").format(coin  * amountOfItem.dec())}코인"
+                    "${DecimalFormat("#,###").format(coin  * curQuantity.dec())}코인"
                 binding.orderImgIncrease.isEnabled = true
                 binding.orderImgIncrease.setImageResource(R.drawable.ic_cart_item_plus_on)
             }
-
-            if (minQuantity >= curQuantity) {
-                binding.orderImgDecrease.isEnabled = false
-                binding.orderImgDecrease.setImageResource(R.drawable.ic_cart_item_minus_off)
-            } else if (maxQuantity <= curQuantity) {
-                binding.orderImgIncrease.isEnabled = false
-                binding.orderImgIncrease.setImageResource(R.drawable.ic_cart_item_plus_off)
-            } else {
-                binding.orderImgDecrease.isEnabled = true
-                binding.orderImgIncrease.isEnabled = true
-                binding.orderImgDecrease.setImageResource(R.drawable.ic_cart_item_minus_on)
-                binding.orderImgIncrease.setImageResource(R.drawable.ic_cart_item_plus_on)
-            }
-
         }
     }
 }

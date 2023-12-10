@@ -133,8 +133,6 @@ class CalenderFragment : BaseFragment<FragmentCalenderBinding>(R.layout.fragment
                     }
                 }
             }
-
-
     }
 
     private fun YearMonth.displayText(short: Boolean = false): String {

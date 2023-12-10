@@ -12,6 +12,7 @@ import com.hifit.android.mafit.base.BaseFragment
 import com.hifit.android.mafit.data.model.ExerciseItem
 import com.hifit.android.mafit.databinding.FragmentExerciseBinding
 import com.hifit.android.mafit.test.LivePreviewActivity
+import com.hifit.android.mafit.ui.MainActivity
 import com.hifit.android.mafit.ui.fragment.exercise.adapter.ExerciseAdapterListener
 import com.hifit.android.mafit.ui.fragment.exercise.adapter.ExercisePageAdapter
 import com.hifit.android.mafit.viewmodel.MainViewModel
@@ -42,7 +43,11 @@ class ExerciseFragment : BaseFragment<FragmentExerciseBinding>(R.layout.fragment
 
         viewModel.errorEvent.observe(viewLifecycleOwner) { event ->
             event.getContentIfNotHandled()?.let {
-                if (it == 40103) activity?.finish()
+                if (it == 40103) {
+                    val intent = Intent(requireContext(), MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                }
             }
         }
 
@@ -50,17 +55,13 @@ class ExerciseFragment : BaseFragment<FragmentExerciseBinding>(R.layout.fragment
             arrayListOf(
                 ExerciseItem(
                     "https://youtu.be/BTJOlvhgbV8"
-                ),
-                ExerciseItem(
+                ), ExerciseItem(
                     "https://youtu.be/-cgWO4JM_pw"
-                ),
-                ExerciseItem(
+                ), ExerciseItem(
                     "https://youtu.be/gXHu0ctL2Ew"
-                ),
-                ExerciseItem(
+                ), ExerciseItem(
                     "https://youtu.be/RsNN049810U"
-                ),
-                ExerciseItem(
+                ), ExerciseItem(
                     "https://youtu.be/1_Vj7_O9I3k"
                 )
             )
@@ -70,11 +71,11 @@ class ExerciseFragment : BaseFragment<FragmentExerciseBinding>(R.layout.fragment
         binding.exercisePager.adapter = adapter
         adapter.submitList(sampleData)
 
-/*        val tabTitles = listOf("전체", "팔", "다리", "가슴", "어깨", "등", "복부", "힙", "전신")
+        /*        val tabTitles = listOf("전체", "팔", "다리", "가슴", "어깨", "등", "복부", "힙", "전신")
 
-        TabLayoutMediator(binding.exerciseTab, binding.exercisePager) { tab, position ->
-            tab.text = tabTitles[position]
-        }.attach()*/
+                TabLayoutMediator(binding.exerciseTab, binding.exercisePager) { tab, position ->
+                    tab.text = tabTitles[position]
+                }.attach()*/
 
         viewModel.navigateNext.observe(viewLifecycleOwner) { event ->
             event.getContentIfNotHandled()?.let {
@@ -82,7 +83,10 @@ class ExerciseFragment : BaseFragment<FragmentExerciseBinding>(R.layout.fragment
                     val videoId = link.substringAfterLast("/")
                     Timber.tag("테스트").d("Video link: $videoId")
 
-                    val action = ExerciseFragmentDirections.actionExerciseFragmentToYoutubePlayerFragment(videoId)
+                    val action =
+                        ExerciseFragmentDirections.actionExerciseFragmentToYoutubePlayerFragment(
+                            videoId
+                        )
                     findNavController().navigate(action)
                 }
             }

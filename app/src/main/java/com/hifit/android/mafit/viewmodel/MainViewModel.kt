@@ -71,7 +71,7 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
     // TODO: API ERROR 분기 처리를 위한 API 요청 반환 값 Response 래퍼 씌우기,
     //  토큰 만료 시 deleteToken 요청 후 로그인 화면으로 이동하도록 처리
 
-    fun deleteUserInfo() {
+    suspend fun deleteUserInfo() {
         _isProgressVisible.value = true
         viewModelScope.launch {
             try {
@@ -251,8 +251,20 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
                 if (response.isSuccessful && response.body() != null) {
                     _bodyInfo.value = response.body()!!.data
                 } else {
-                    Timber.e("network error: ${response.message()}")
-                    _showToast.value = Event("네트워크 에러가 발생했습니다.")
+                    val errorBody = response.errorBody()?.string().run {
+                        Gson().fromJson(this, BaseResponse::class.java)
+                    }
+
+                    val message = errorBody.message
+                    val code = errorBody.code
+
+                    if (code == 40103) {
+                        deleteUserInfo()
+                        _errorEvent.value = Event(40103)
+                    }
+
+                    Timber.e("network error: $message")
+                    _showToast.value = Event(message)
                 }
             } catch (e: Exception) {
                 Timber.e("network error: $e")

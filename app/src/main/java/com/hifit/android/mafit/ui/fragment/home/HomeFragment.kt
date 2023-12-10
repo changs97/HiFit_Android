@@ -1,5 +1,6 @@
 package com.hifit.android.mafit.ui.fragment.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -10,6 +11,7 @@ import com.hifit.android.mafit.R
 import com.hifit.android.mafit.base.BaseFragment
 import com.hifit.android.mafit.databinding.FragmentHomeBinding
 import com.hifit.android.mafit.ui.HomeActivity
+import com.hifit.android.mafit.ui.MainActivity
 import com.hifit.android.mafit.viewmodel.MainViewModel
 import timber.log.Timber
 
@@ -51,7 +53,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
         viewModel.errorEvent.observe(viewLifecycleOwner) { event ->
             event.getContentIfNotHandled()?.let {
-                if (it == 40103) activity?.finish()
+                if (it == 40103) {
+                    val intent = Intent(requireContext(), MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                }
             }
         }
 

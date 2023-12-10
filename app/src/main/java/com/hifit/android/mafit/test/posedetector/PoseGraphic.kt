@@ -55,10 +55,10 @@ internal constructor(
     whitePaint.textSize = IN_FRAME_LIKELIHOOD_TEXT_SIZE
     leftPaint = Paint()
     leftPaint.strokeWidth = STROKE_WIDTH
-    leftPaint.color = Color.GREEN
+    leftPaint.color = Color.WHITE
     rightPaint = Paint()
     rightPaint.strokeWidth = STROKE_WIDTH
-    rightPaint.color = Color.YELLOW
+    rightPaint.color = Color.WHITE
   }
 
   override fun draw(canvas: Canvas) {
@@ -181,15 +181,6 @@ internal constructor(
 
   internal fun drawPoint(canvas: Canvas, landmark: PoseLandmark, paint: Paint) {
     val point = landmark.position3D
-    updatePaintColorByZValue(
-      paint,
-      canvas,
-      visualizeZ,
-      rescaleZForVisualization,
-      point.z,
-      zMin,
-      zMax
-    )
     canvas.drawCircle(translateX(point.x), translateY(point.y), DOT_RADIUS, paint)
   }
 
@@ -201,18 +192,6 @@ internal constructor(
   ) {
     val start = startLandmark!!.position3D
     val end = endLandmark!!.position3D
-
-    // Gets average z for the current body line
-    val avgZInImagePixel = (start.z + end.z) / 2
-    updatePaintColorByZValue(
-      paint,
-      canvas,
-      visualizeZ,
-      rescaleZForVisualization,
-      avgZInImagePixel,
-      zMin,
-      zMax
-    )
 
     canvas.drawLine(
       translateX(start.x),

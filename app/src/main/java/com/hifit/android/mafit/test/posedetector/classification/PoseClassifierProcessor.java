@@ -46,8 +46,10 @@ public class PoseClassifierProcessor {
   // for your pose samples.
   private static final String PUSHUPS_CLASS = "pushups_down";
   private static final String SQUATS_CLASS = "squats_down";
+
+  private static final String PRESS_CLASS = "shoulder_press_down";
   private static final String[] POSE_CLASSES = {
-    PUSHUPS_CLASS, SQUATS_CLASS
+    PUSHUPS_CLASS, SQUATS_CLASS, PRESS_CLASS
   };
 
   private final boolean isStreamMode;

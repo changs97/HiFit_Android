@@ -1,18 +1,22 @@
 package com.hifit.android.mafit.ui.fragment.my
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.hifit.android.mafit.HiFitApplication
 import com.hifit.android.mafit.R
 import com.hifit.android.mafit.base.BaseFragment
 import com.hifit.android.mafit.databinding.FragmentMyPageBinding
+import com.hifit.android.mafit.ui.MainActivity
 import com.hifit.android.mafit.viewmodel.MainViewModel
 import com.kakao.sdk.user.UserApiClient
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 
@@ -21,6 +25,8 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.vm = viewModel
+
+        viewModel.tryGetWorkoutInfo()
 
         binding.myLlPointStampContainer.setOnClickListener {
             findNavController().navigate(R.id.action_myPageFragment_to_calenderFragment)
@@ -34,6 +40,22 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
             HiFitApplication.sharedPreferences.edit().clear().apply()
             kakaoLogout()
         }
+
+        viewModel.showToast.observe(viewLifecycleOwner) { event ->
+            event.getContentIfNotHandled()?.let {
+                if (it.isNotEmpty()) showCustomToast(it)
+            }
+        }
+
+        viewModel.errorEvent.observe(viewLifecycleOwner) { event ->
+            event.getContentIfNotHandled()?.let {
+                if (it == 40103) {
+                    val intent = Intent(requireContext(), MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                }
+            }
+        }
     }
 
     private fun kakaoLogout() {
@@ -42,8 +64,12 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
                 Timber.e("연결 끊기 실패", error)
             } else {
                 Timber.i("연결 끊기 성공")
-                viewModel.deleteUserInfo()
-                activity?.finish()
+                viewLifecycleOwner.lifecycleScope.launch {
+                    viewModel.deleteUserInfo()
+                    val intent = Intent(requireContext(), MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                }
             }
         }
     }

@@ -46,18 +46,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.showToast.observe(viewLifecycleOwner) { event ->
-            event.getContentIfNotHandled()?.let {
-                if (it.isNotEmpty()) showCustomToast(it)
-            }
-        }
-
-        viewModel.errorEvent.observe(viewLifecycleOwner) { event ->
-            event.getContentIfNotHandled()?.let {
-                if (it == 40103) activity?.finish()
-            }
-        }
-
         viewModel.navigateNext.observe(viewLifecycleOwner) { event ->
             event.getContentIfNotHandled()?.let {
                 viewModel.tryGetBodyInfo()
@@ -94,8 +82,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
                 Timber.e("연결 끊기 실패", error)
             } else {
                 Timber.i("연결 끊기 성공")
-                viewModel.deleteUserInfo()
-                activity?.finish()
+                viewLifecycleOwner.lifecycleScope.launch {
+                    viewModel.deleteUserInfo()
+                    activity?.finish()
+                }
             }
         }
     }

@@ -14,6 +14,7 @@ import com.hifit.android.mafit.base.BaseFragment
 import com.hifit.android.mafit.data.source.local.UserInfo
 import com.hifit.android.mafit.databinding.FragmentStartBinding
 import com.hifit.android.mafit.ui.HomeActivity
+import com.hifit.android.mafit.ui.MainActivity
 import com.hifit.android.mafit.viewmodel.MainViewModel
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.coroutines.delay
@@ -26,6 +27,23 @@ class StartFragment : BaseFragment<FragmentStartBinding>(R.layout.fragment_start
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            delay(1000)
+            viewModel.getToken()?.let {
+                viewModel.tryGetBodyInfo()
+            } ?: run {
+                findNavController().navigate(R.id.action_startFragment_to_loginFragment)
+            }
+        }
+
+        viewModel.errorEvent.observe(viewLifecycleOwner) { event ->
+            event.getContentIfNotHandled()?.let {
+                if (it == 40103) {
+                    findNavController().navigate(R.id.action_startFragment_to_loginFragment)
+                }
+            }
+        }
+
         viewModel.bodyInfo.observe(viewLifecycleOwner) { bodyInfo ->
             if (bodyInfo.currentBmi != null) {
                 val intent = Intent(requireContext(), HomeActivity::class.java)
@@ -36,31 +54,6 @@ class StartFragment : BaseFragment<FragmentStartBinding>(R.layout.fragment_start
             }
         }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            delay(1000)
-            viewModel.getToken()?.let {
-                viewModel.tryGetBodyInfo()
-            } ?: run {
-                findNavController().navigate(R.id.action_startFragment_to_loginFragment)
-            }
-        }
-
-        binding.startImg.setOnClickListener {
-            HiFitApplication.sharedPreferences.edit().clear().apply()
-            kakaoLogout()
-        }
-    }
-
-    private fun kakaoLogout() {
-        UserApiClient.instance.unlink { error ->
-            if (error != null) {
-                Timber.e("연결 끊기 실패", error)
-            } else {
-                Timber.i("연결 끊기 성공")
-                viewModel.deleteUserInfo()
-                activity?.finish()
-            }
-        }
     }
 
 }

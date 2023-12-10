@@ -18,5 +18,13 @@ data class HealthInfoRequestBody(
     @SerializedName("age")
     var age: Int = 0,
     @SerializedName("gender")
-    var gender: String = "MALE"
+    var gender: String = "MALE",
+    @SerializedName("liftPear")
+    var liftPear: Int = 0,
+    @SerializedName("stairs")
+    var stairs: Int = 0,
+    @SerializedName("walkChairToChair")
+    var walkChairToChair: Int = 0,
+    @SerializedName("walkSideToSide")
+    var walkSideToSide: Int = 0
 )

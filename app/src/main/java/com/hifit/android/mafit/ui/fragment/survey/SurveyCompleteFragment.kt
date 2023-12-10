@@ -12,6 +12,7 @@ import com.hifit.android.mafit.R
 import com.hifit.android.mafit.base.BaseFragment
 import com.hifit.android.mafit.databinding.FragmentSurveyCompleteBinding
 import com.hifit.android.mafit.ui.HomeActivity
+import com.hifit.android.mafit.ui.MainActivity
 import com.hifit.android.mafit.viewmodel.MainViewModel
 import timber.log.Timber
 import java.text.DecimalFormat
@@ -36,7 +37,11 @@ class SurveyCompleteFragment :
 
         viewModel.errorEvent.observe(viewLifecycleOwner) { event ->
             event.getContentIfNotHandled()?.let {
-                if (it == 40103) activity?.finish()
+                if (it == 40103) {
+                    val intent = Intent(requireContext(), MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                }
             }
         }
 
@@ -193,7 +198,6 @@ class SurveyCompleteFragment :
                     }
                     "고도비만"
                 }
-
 
 
                 binding.surveyCompleteTxtBmi.text = "$bmi $bmiName"
