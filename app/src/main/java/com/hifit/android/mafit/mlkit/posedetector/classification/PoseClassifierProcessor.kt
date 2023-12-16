@@ -14,13 +14,17 @@ import java.io.InputStreamReader
 import java.util.Locale
 
 class PoseClassifierProcessor @WorkerThread constructor(
-    context: Context, isStreamMode: Boolean, private val repsChangedListener: (Int) -> Unit
+    context: Context,
+    isStreamMode: Boolean,
+    private val repsChangedListener: (Int) -> Unit,
+    private val startListener: () -> Unit
 ) {
     private val isStreamMode: Boolean
     private var emaSmoothing: EMASmoothing? = null
     private var repCounters: MutableList<RepetitionCounter>? = null
     private var poseClassifier: PoseClassifier? = null
     private var lastRepResult: String? = null
+    private var startFlag: Boolean = true
 
     init {
         Preconditions.checkState(Looper.myLooper() != Looper.getMainLooper())
@@ -112,6 +116,11 @@ class PoseClassifierProcessor @WorkerThread constructor(
 
         // Add maxConfidence class of current frame to result if pose is found.
         if (!pose.allPoseLandmarks.isEmpty()) {
+            if (startFlag) {
+                startListener()
+                startFlag = false
+            }
+
             val maxConfidenceClass = classification.maxConfidenceClass
             val maxConfidenceClassResult = String.format(
                 Locale.US,

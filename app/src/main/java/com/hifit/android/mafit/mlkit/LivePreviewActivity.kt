@@ -16,13 +16,16 @@
 
 package com.hifit.android.mafit.mlkit
 
+import android.animation.Animator
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.CompoundButton
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.airbnb.lottie.LottieDrawable
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
 import com.google.android.gms.common.annotation.KeepName
@@ -30,9 +33,7 @@ import com.hifit.android.mafit.mlkit.posedetector.PoseDetectorProcessor
 import com.hifit.android.mafit.R
 import com.hifit.android.mafit.databinding.ActivityLivePreviewBinding
 import com.hifit.android.mafit.util.setStatusBarColor
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+import com.hifit.android.mafit.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
 import java.io.IOException
 
@@ -40,18 +41,39 @@ import java.io.IOException
 @KeepName
 class LivePreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeListener {
     val binding by lazy { ActivityLivePreviewBinding.inflate(layoutInflater) }
+    private val viewModel: MainViewModel by viewModels()
+
     private var cameraSource: CameraSource? = null
 
     private var selectedModel = POSE_DETECTION
 
-    private var reps: Int = 0
-    private var repsChangedListener: (Int) -> Unit = { reps ->
-        this.reps = reps
+    private val startListener: () -> Unit = {
+        lifecycleScope.launch {
+            binding.lotti.addAnimatorListener( object : Animator.AnimatorListener {
+                override fun onAnimationStart(animation: Animator) {
+                }
 
-        if (reps >= 15) {
-            binding.livePreviewPreviewView.stop()
-            cameraSource?.release()
+                override fun onAnimationEnd(animation: Animator) {
+                    binding.lotti.visibility = View.INVISIBLE
+                    binding.lotti.setAnimation(R.raw.gift)
+                    binding.lotti.repeatCount = LottieDrawable.INFINITE
+                }
+
+                override fun onAnimationCancel(animation: Animator) {
+                }
+
+                override fun onAnimationRepeat(animation: Animator) {
+                }
+            })
+            binding.lotti.repeatCount = 0
+            binding.lotti.visibility = View.VISIBLE
+            binding.lotti.playAnimation()
         }
+    }
+
+    private var reps: Int = 0
+    private val repsChangedListener: (Int) -> Unit = { reps ->
+        this.reps = reps
 
         lifecycleScope.launch {
             binding.livePreviewProgress.progress = reps
@@ -63,7 +85,22 @@ class LivePreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeL
                 .duration(1000)
                 .repeat(1)
                 .playOn(binding.livePreviewTxtGood)
+
+            if (reps >= 15) {
+                binding.livePreviewPreviewView.stop()
+                cameraSource?.release()
+
+                binding.lotti.visibility = View.VISIBLE
+                binding.lotti.playAnimation()
+                binding.lotti.setOnClickListener {
+                    // TODO: 포인트 적립 API 호출
+                    binding.lotti.visibility = View.INVISIBLE
+                    Toast.makeText(this@LivePreviewActivity, "운동 인증 완료", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+            }
         }
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -119,7 +156,8 @@ class LivePreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeL
                             rescaleZ,
                             runClassification,/* isStreamMode = */
                             true,
-                            repsChangedListener
+                            repsChangedListener,
+                            startListener
                         )
                     )
                 }
