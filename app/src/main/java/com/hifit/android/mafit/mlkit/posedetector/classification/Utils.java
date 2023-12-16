@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.hifit.android.mafit.test.posedetector.classification;
+package com.hifit.android.mafit.mlkit.posedetector.classification;
 
 import static com.google.common.primitives.Floats.max;
 

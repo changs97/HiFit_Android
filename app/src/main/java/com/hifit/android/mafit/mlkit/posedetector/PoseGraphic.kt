@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.hifit.android.mafit.test.posedetector
+package com.hifit.android.mafit.mlkit.posedetector
 
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import com.google.mlkit.vision.pose.Pose
 import com.google.mlkit.vision.pose.PoseLandmark
-import com.hifit.android.mafit.test.GraphicOverlay
+import com.hifit.android.mafit.mlkit.GraphicOverlay
 import java.lang.Math.max
 import java.lang.Math.min
 import java.util.Locale

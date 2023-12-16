@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.hifit.android.mafit.test.posedetector
+package com.hifit.android.mafit.mlkit.posedetector
 
 import android.content.Context
 import android.util.Log
@@ -25,9 +25,9 @@ import com.google.mlkit.vision.pose.Pose
 import com.google.mlkit.vision.pose.PoseDetection
 import com.google.mlkit.vision.pose.PoseDetector
 import com.google.mlkit.vision.pose.PoseDetectorOptionsBase
-import com.hifit.android.mafit.test.GraphicOverlay
-import com.hifit.android.mafit.test.VisionProcessorBase
-import com.hifit.android.mafit.test.posedetector.classification.PoseClassifierProcessor
+import com.hifit.android.mafit.mlkit.GraphicOverlay
+import com.hifit.android.mafit.mlkit.VisionProcessorBase
+import com.hifit.android.mafit.mlkit.posedetector.classification.PoseClassifierProcessor
 import java.util.ArrayList
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors

@@ -1,17 +1,15 @@
 package com.hifit.android.mafit.ui.fragment.exercise
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.tabs.TabLayoutMediator
 import com.hifit.android.mafit.R
 import com.hifit.android.mafit.base.BaseFragment
 import com.hifit.android.mafit.data.model.ExerciseItem
 import com.hifit.android.mafit.databinding.FragmentExerciseBinding
-import com.hifit.android.mafit.test.LivePreviewActivity
+import com.hifit.android.mafit.mlkit.LivePreviewActivity
 import com.hifit.android.mafit.ui.MainActivity
 import com.hifit.android.mafit.ui.fragment.exercise.adapter.ExerciseAdapterListener
 import com.hifit.android.mafit.ui.fragment.exercise.adapter.ExercisePageAdapter

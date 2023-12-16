@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.hifit.android.mafit.test
+package com.hifit.android.mafit.mlkit
 
 import android.app.ActivityManager
 import android.content.Context

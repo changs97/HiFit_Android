@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.hifit.android.mafit.test.posedetector.classification;
+package com.hifit.android.mafit.mlkit.posedetector.classification;
 
 
-import static com.hifit.android.mafit.test.posedetector.classification.Utils.average;
-import static com.hifit.android.mafit.test.posedetector.classification.Utils.l2Norm2D;
-import static com.hifit.android.mafit.test.posedetector.classification.Utils.multiplyAll;
-import static com.hifit.android.mafit.test.posedetector.classification.Utils.subtract;
-import static com.hifit.android.mafit.test.posedetector.classification.Utils.subtractAll;
+import static com.hifit.android.mafit.mlkit.posedetector.classification.Utils.average;
+import static com.hifit.android.mafit.mlkit.posedetector.classification.Utils.l2Norm2D;
+import static com.hifit.android.mafit.mlkit.posedetector.classification.Utils.multiplyAll;
+import static com.hifit.android.mafit.mlkit.posedetector.classification.Utils.subtract;
+import static com.hifit.android.mafit.mlkit.posedetector.classification.Utils.subtractAll;
 
 import com.google.mlkit.vision.common.PointF3D;
 import com.google.mlkit.vision.pose.PoseLandmark;

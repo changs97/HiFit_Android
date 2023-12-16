@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.hifit.android.mafit.test
+package com.hifit.android.mafit.mlkit
 
 import android.content.Intent
 import android.os.Bundle
@@ -25,7 +25,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import android.widget.ToggleButton
 import com.google.android.gms.common.annotation.KeepName
-import com.hifit.android.mafit.test.posedetector.PoseDetectorProcessor
+import com.hifit.android.mafit.mlkit.posedetector.PoseDetectorProcessor
 import com.hifit.android.mafit.R
 import java.io.IOException
 

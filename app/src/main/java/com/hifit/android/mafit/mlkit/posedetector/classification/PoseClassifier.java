@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package com.hifit.android.mafit.test.posedetector.classification;
+package com.hifit.android.mafit.mlkit.posedetector.classification;
 
 
-import static com.hifit.android.mafit.test.posedetector.classification.PoseEmbedding.getPoseEmbedding;
-import static com.hifit.android.mafit.test.posedetector.classification.Utils.maxAbs;
-import static com.hifit.android.mafit.test.posedetector.classification.Utils.multiply;
-import static com.hifit.android.mafit.test.posedetector.classification.Utils.multiplyAll;
-import static com.hifit.android.mafit.test.posedetector.classification.Utils.subtract;
-import static com.hifit.android.mafit.test.posedetector.classification.Utils.sumAbs;
+import static com.hifit.android.mafit.mlkit.posedetector.classification.PoseEmbedding.getPoseEmbedding;
+import static com.hifit.android.mafit.mlkit.posedetector.classification.Utils.maxAbs;
+import static com.hifit.android.mafit.mlkit.posedetector.classification.Utils.multiply;
+import static com.hifit.android.mafit.mlkit.posedetector.classification.Utils.multiplyAll;
+import static com.hifit.android.mafit.mlkit.posedetector.classification.Utils.subtract;
+import static com.hifit.android.mafit.mlkit.posedetector.classification.Utils.sumAbs;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
