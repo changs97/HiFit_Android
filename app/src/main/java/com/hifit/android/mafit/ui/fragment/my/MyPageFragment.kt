@@ -14,6 +14,7 @@ import com.hifit.android.mafit.R
 import com.hifit.android.mafit.base.BaseFragment
 import com.hifit.android.mafit.databinding.FragmentMyPageBinding
 import com.hifit.android.mafit.ui.MainActivity
+import com.hifit.android.mafit.util.LogoutDialog
 import com.hifit.android.mafit.viewmodel.MainViewModel
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.coroutines.launch
@@ -36,9 +37,22 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
             findNavController().navigate(R.id.action_myPageFragment_to_survey_graph)
         }
 
+        binding.myTxtSurvey.setOnClickListener {
+            showCustomToast("아직 구현되지 않은 기능입니다.")
+        }
+
+        binding.myTxtWithdrawal.setOnClickListener {
+            showCustomToast("아직 구현되지 않은 기능입니다.")
+        }
+
         binding.myTxtLogout.setOnClickListener {
-            HiFitApplication.sharedPreferences.edit().clear().apply()
-            kakaoLogout()
+            val dialog = LogoutDialog {
+                HiFitApplication.sharedPreferences.edit().clear().apply()
+                kakaoLogout()
+            }
+
+            dialog.show(parentFragmentManager, null)
+
         }
 
         viewModel.showToast.observe(viewLifecycleOwner) { event ->

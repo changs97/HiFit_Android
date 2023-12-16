@@ -13,6 +13,7 @@ import com.hifit.android.mafit.util.formatWithCommas
 import com.hifit.android.mafit.viewmodel.MainViewModel
 import java.text.DecimalFormat
 
+@Suppress("KotlinConstantConditions")
 class OrderFragment : BaseFragment<FragmentOrderBinding>(R.layout.fragment_order) {
     private val viewModel: MainViewModel by activityViewModels()
     private val args: OrderFragmentArgs by navArgs()
@@ -35,6 +36,11 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(R.layout.fragment_order
             findNavController().popBackStack()
         }
 
+        binding.orderBtn.setOnClickListener {
+            showCustomToast("아직 구현되지 않은 기능입니다.")
+        }
+
+        // API 연동되면 상품마다 동적 수량으로 변경될 예정
         val curQuantity = 1
         val maxQuantity = 10
         val minQuantity = 1
@@ -68,7 +74,7 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(R.layout.fragment_order
 
                 binding.orderTxtProductCount.text = "${curQuantity.inc()}"
                 binding.orderTxtAmount.text =
-                    "${DecimalFormat("#,###").format(coin  * curQuantity.inc())}코인"
+                    "${DecimalFormat("#,###").format(coin * curQuantity.inc())}코인"
                 binding.orderImgDecrease.isEnabled = true
                 binding.orderImgDecrease.setImageResource(R.drawable.ic_cart_item_minus_on)
             }
@@ -84,7 +90,7 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(R.layout.fragment_order
 
                 binding.orderTxtProductCount.text = "${curQuantity.dec()}"
                 binding.orderTxtAmount.text =
-                    "${DecimalFormat("#,###").format(coin  * curQuantity.dec())}코인"
+                    "${DecimalFormat("#,###").format(coin * curQuantity.dec())}코인"
                 binding.orderImgIncrease.isEnabled = true
                 binding.orderImgIncrease.setImageResource(R.drawable.ic_cart_item_plus_on)
             }
