@@ -39,6 +39,12 @@ class LivePreviewActivity :
   private var graphicOverlay: GraphicOverlay? = null
   private var selectedModel = POSE_DETECTION
 
+  private var reps: Int = 0
+  private var repsChangedListener: (Int) -> Unit = { reps ->
+    this.reps = reps
+    Log.d("테스트", reps.toString())
+  }
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     Log.d(TAG, "onCreate")
@@ -54,15 +60,8 @@ class LivePreviewActivity :
       Log.d(TAG, "graphicOverlay is null")
     }
 
-    val settingsButton = findViewById<ImageView>(R.id.settings_button)
-    settingsButton.setOnClickListener {
-      val intent = Intent(applicationContext, SettingsActivity::class.java)
-      intent.putExtra(SettingsActivity.EXTRA_LAUNCH_SOURCE, SettingsActivity.LaunchSource.LIVE_PREVIEW)
-      startActivity(intent)
-    }
-
-    val facingSwitch = findViewById<ToggleButton>(R.id.facing_switch)
-    facingSwitch.setOnCheckedChangeListener(this)
+/*    val facingSwitch = findViewById<ToggleButton>(R.id.facing_switch)
+    facingSwitch.setOnCheckedChangeListener(this)*/
   }
 
 
@@ -91,11 +90,12 @@ class LivePreviewActivity :
         POSE_DETECTION -> {
           val poseDetectorOptions = PreferenceUtils.getPoseDetectorOptionsForLivePreview(this)
           Log.i(TAG, "Using Pose Detector with options $poseDetectorOptions")
-          val shouldShowInFrameLikelihood =
-            PreferenceUtils.shouldShowPoseDetectionInFrameLikelihoodLivePreview(this)
+          val shouldShowInFrameLikelihood = false
+            // PreferenceUtils.shouldShowPoseDetectionInFrameLikelihoodLivePreview(this)
           val visualizeZ = PreferenceUtils.shouldPoseDetectionVisualizeZ(this)
           val rescaleZ = PreferenceUtils.shouldPoseDetectionRescaleZForVisualization(this)
-          val runClassification = PreferenceUtils.shouldPoseDetectionRunClassification(this)
+          val runClassification = true
+            // PreferenceUtils.shouldPoseDetectionRunClassification(this)
           cameraSource!!.setMachineLearningFrameProcessor(
             PoseDetectorProcessor(
               this,
@@ -104,7 +104,8 @@ class LivePreviewActivity :
               visualizeZ,
               rescaleZ,
               runClassification,
-              /* isStreamMode = */ true
+              /* isStreamMode = */ true,
+              repsChangedListener
             )
           )
         }

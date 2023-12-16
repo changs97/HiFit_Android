@@ -40,7 +40,8 @@ class PoseDetectorProcessor(
     private val visualizeZ: Boolean,
     private val rescaleZForVisualization: Boolean,
     private val runClassification: Boolean,
-    private val isStreamMode: Boolean
+    private val isStreamMode: Boolean,
+    private val repsChangedListener: (Int) -> Unit
 ) : VisionProcessorBase<PoseDetectorProcessor.PoseWithClassification>(context) {
 
     private val detector: PoseDetector
@@ -62,17 +63,18 @@ class PoseDetectorProcessor(
     }
 
     override fun detectInImage(image: InputImage): Task<PoseWithClassification> {
-        return detector.process(image).continueWith(classificationExecutor, { task ->
-            val pose = task.getResult()
+        return detector.process(image).continueWith(classificationExecutor) { task ->
+            val pose = task.result
             var classificationResult: List<String> = ArrayList()
             if (runClassification) {
                 if (poseClassifierProcessor == null) {
-                    poseClassifierProcessor = PoseClassifierProcessor(context, isStreamMode)
+                    poseClassifierProcessor =
+                        PoseClassifierProcessor(context, isStreamMode, repsChangedListener)
                 }
                 classificationResult = poseClassifierProcessor!!.getPoseResult(pose)
             }
             PoseWithClassification(pose, classificationResult)
-        })
+        }
     }
 
     override fun detectInImage(image: MlImage): Task<PoseWithClassification> {
@@ -83,7 +85,8 @@ class PoseDetectorProcessor(
             var classificationResult: List<String> = ArrayList()
             if (runClassification) {
                 if (poseClassifierProcessor == null) {
-                    poseClassifierProcessor = PoseClassifierProcessor(context, isStreamMode)
+                    poseClassifierProcessor =
+                        PoseClassifierProcessor(context, isStreamMode, repsChangedListener)
                 }
                 classificationResult = poseClassifierProcessor!!.getPoseResult(pose)
             }
