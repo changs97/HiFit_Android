@@ -240,5 +240,6 @@
     <string name="survey_step5_hint">허리 둘레를 입력해주세요</string>
     <string name="survey_continue2">계속</string>
     <string name="nutrition_intake_guide">대표적인 단백질 식품인 닭가슴살의 경우 1회 섭취 100g 당 단백질을 약20g 을 함유하고 있고, 두부 한 모와 계란 한 개에는 단백질 약 9g 이 포함되어 있습니다.\n닭가슴살 %d 덩이, 달걀 %d개, 두부 %d 모를 이용해 식단을 구성 하시길 추천드려요.</string>
+    <string name="mission">오늘의 미션 <b>스쿼트 15회</b></string>
 
 </resources>
