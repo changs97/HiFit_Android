@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_exerciseFragment_to_youtubePlayerFragment"
             app:destination="@id/youtubePlayerFragment" />
+        <action
+            android:id="@+id/action_exerciseFragment_to_exerciseGuideFragment"
+            app:destination="@id/exerciseGuideFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -83,4 +86,8 @@
             app:argType="string" />
     </fragment>
     <include app:graph="@navigation/survey_graph" />
+    <fragment
+        android:id="@+id/exerciseGuideFragment"
+        android:name="com.hifit.android.mafit.ui.fragment.guide.ExerciseGuideFragment"
+        android:label="ExerciseGuideFragment" />
 </navigation>

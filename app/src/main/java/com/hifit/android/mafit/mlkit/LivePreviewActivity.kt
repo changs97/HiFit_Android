@@ -17,12 +17,14 @@
 package com.hifit.android.mafit.mlkit
 
 import android.animation.Animator
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.CompoundButton
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.airbnb.lottie.LottieDrawable
@@ -32,6 +34,8 @@ import com.google.android.gms.common.annotation.KeepName
 import com.hifit.android.mafit.mlkit.posedetector.PoseDetectorProcessor
 import com.hifit.android.mafit.R
 import com.hifit.android.mafit.databinding.ActivityLivePreviewBinding
+import com.hifit.android.mafit.ui.HomeActivity
+import com.hifit.android.mafit.ui.MainActivity
 import com.hifit.android.mafit.util.setStatusBarColor
 import com.hifit.android.mafit.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
@@ -42,6 +46,8 @@ import java.io.IOException
 class LivePreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeListener {
     val binding by lazy { ActivityLivePreviewBinding.inflate(layoutInflater) }
     private val viewModel: MainViewModel by viewModels()
+
+    private lateinit var onBackPressedCallback: OnBackPressedCallback
 
     private var cameraSource: CameraSource? = null
 
@@ -108,11 +114,22 @@ class LivePreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeL
         setContentView(binding.root)
         setStatusBarColor(getColor(R.color.black))
 
-        binding.livePreviewImgBack.setOnClickListener {
-            finish()
+        onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val intent = Intent(this@LivePreviewActivity, HomeActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+            }
         }
-        /*    val facingSwitch = findViewById<ToggleButton>(R.id.facing_switch)
-            facingSwitch.setOnCheckedChangeListener(this)*/
+
+        onBackPressedDispatcher.addCallback(onBackPressedCallback)
+
+        binding.livePreviewImgBack.setOnClickListener {
+            val intent = Intent(this@LivePreviewActivity, HomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
+
     }
 
 
@@ -209,6 +226,7 @@ class LivePreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeL
         super.onDestroy()
         if (cameraSource != null) {
             cameraSource?.release()
+            onBackPressedCallback.remove()
         }
     }
 

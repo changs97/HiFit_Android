@@ -29,8 +29,7 @@ class ExerciseFragment : BaseFragment<FragmentExerciseBinding>(R.layout.fragment
         viewModel.tryGetBodyInfo()
 
         binding.exerciseBtnStartExercise.setOnClickListener {
-            val intent = Intent(requireContext(), LivePreviewActivity::class.java)
-            startActivity(intent)
+            findNavController().navigate(R.id.action_exerciseFragment_to_exerciseGuideFragment)
         }
 
         viewModel.showToast.observe(viewLifecycleOwner) { event ->

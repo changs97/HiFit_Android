@@ -126,6 +126,9 @@ dependencies {
     // Animation
     implementation 'com.daimajia.androidanimations:library:2.4@aar'
 
+    // Exoplayer
+    implementation 'com.google.android.exoplayer:exoplayer:2.18.0'
+
     //Room
     def room_version = "2.5.0"
     implementation "androidx.room:room-runtime:$room_version"
