@@ -53,7 +53,8 @@
         <activity android:name=".ui.HomeActivity"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".mlkit.LivePreviewActivity" />
+        <activity android:name=".mlkit.LivePreviewActivity"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
