@@ -46,6 +46,11 @@ class HomeActivity : AppCompatActivity() {
 
         navHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
+                R.id.exerciseGuideFragment -> {
+                    setStatusBarColor(getColor(R.color.black))
+                    binding.bottomNav.visibility = View.GONE
+                    requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+                }
                 R.id.homeFragment -> {
                     setStatusBarColor(getColor(R.color.violet3))
                     binding.bottomNav.visibility = View.VISIBLE
