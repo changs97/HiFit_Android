@@ -3,6 +3,7 @@ package com.hifit.android.mafit.ui.fragment.guide
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
@@ -21,6 +22,10 @@ class ExerciseGuideFragment :
     private var playbackPosition = 0L
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.exerciseGuideImgBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         binding.exerciseGuideBtnSkip.setOnClickListener {
             val intent = Intent(requireContext(), LivePreviewActivity::class.java)
