@@ -33,6 +33,8 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
+    val reps: MutableLiveData<Int> = MutableLiveData(0)
+
     val userInfo: LiveData<UserInfo> = repository.userInfo.asLiveData()
     var userAge = 0
     var userGender = "MALE"

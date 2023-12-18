@@ -19,13 +19,14 @@ package com.hifit.android.mafit.mlkit
 import android.animation.Animator
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.airbnb.lottie.LottieDrawable
 import com.daimajia.androidanimations.library.Techniques
@@ -45,7 +46,7 @@ import java.io.IOException
 @KeepName
 class LivePreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeListener {
     val binding by lazy { ActivityLivePreviewBinding.inflate(layoutInflater) }
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: MainViewModel by viewModels { MainViewModel.Factory }
 
     private lateinit var onBackPressedCallback: OnBackPressedCallback
 
@@ -61,11 +62,10 @@ class LivePreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeL
 
                 override fun onAnimationEnd(animation: Animator) {
                     binding.lotti.visibility = View.INVISIBLE
-                    binding.lotti.setAnimation(R.raw.gift)
-                    binding.lotti.repeatCount = LottieDrawable.INFINITE
                 }
 
                 override fun onAnimationCancel(animation: Animator) {
+                    binding.lotti.visibility = View.INVISIBLE
                 }
 
                 override fun onAnimationRepeat(animation: Animator) {
@@ -77,14 +77,10 @@ class LivePreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeL
         }
     }
 
-    private var reps: Int = 0
     private val repsChangedListener: (Int) -> Unit = { reps ->
-        this.reps = reps
+        viewModel.reps.postValue((viewModel.reps.value ?: 0) + 1)
 
         lifecycleScope.launch {
-            binding.livePreviewProgress.progress = reps
-            binding.livePreviewTxtReps.text = "${reps}/15회"
-
             YoYo.with(Techniques.Bounce)
                 .onStart { binding.livePreviewTxtGood.visibility = View.VISIBLE }
                 .onEnd { binding.livePreviewTxtGood.visibility = View.INVISIBLE }
@@ -92,10 +88,12 @@ class LivePreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeL
                 .repeat(1)
                 .playOn(binding.livePreviewTxtGood)
 
-            if (reps >= 15) {
+            if ((viewModel.reps.value ?: 0) >= 15) {
                 binding.livePreviewPreviewView.stop()
                 cameraSource?.release()
 
+                binding.lotti.setAnimation(R.raw.gift)
+                binding.lotti.repeatCount = LottieDrawable.INFINITE
                 binding.lotti.visibility = View.VISIBLE
                 binding.lotti.playAnimation()
                 binding.lotti.setOnClickListener {
@@ -113,6 +111,11 @@ class LivePreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeL
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setStatusBarColor(getColor(R.color.black))
+
+        viewModel.reps.observe(this@LivePreviewActivity) {
+            binding.livePreviewProgress.progress = it
+            binding.livePreviewTxtReps.text = "${it}/15회"
+        }
 
         onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -212,22 +215,32 @@ class LivePreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeL
 
     public override fun onResume() {
         super.onResume()
-        createCameraSource(selectedModel)
-        startCameraSource()
+        if (viewModel.reps.value!! >= 15) {
+            binding.lotti.isVisible = true
+            binding.lotti.playAnimation()
+        } else {
+            createCameraSource(selectedModel)
+            startCameraSource()
+            binding.lotti.isVisible = false
+            binding.lotti.cancelAnimation()
+        }
     }
 
     /** Stops the camera. */
     override fun onPause() {
         super.onPause()
         binding.livePreviewPreviewView.stop()
+        binding.lotti.isVisible = false
+        binding.lotti.cancelAnimation()
     }
 
     public override fun onDestroy() {
         super.onDestroy()
         if (cameraSource != null) {
             cameraSource?.release()
-            onBackPressedCallback.remove()
         }
+
+        onBackPressedCallback.remove()
     }
 
     companion object {
