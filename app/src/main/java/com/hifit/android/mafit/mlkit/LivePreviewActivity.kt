@@ -99,7 +99,7 @@ class LivePreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeL
                 binding.lotti.setOnClickListener {
                     // TODO: 포인트 적립 API 호출
                     binding.lotti.visibility = View.INVISIBLE
-                    Toast.makeText(this@LivePreviewActivity, "운동 인증을 완료", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LivePreviewActivity, "운동 인증 완료", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this@LivePreviewActivity, HomeActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
