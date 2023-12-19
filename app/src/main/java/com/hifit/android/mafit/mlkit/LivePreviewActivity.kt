@@ -56,7 +56,7 @@ class LivePreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeL
 
     private val startListener: () -> Unit = {
         lifecycleScope.launch {
-            binding.lotti.addAnimatorListener( object : Animator.AnimatorListener {
+            binding.lotti.addAnimatorListener(object : Animator.AnimatorListener {
                 override fun onAnimationStart(animation: Animator) {
                 }
 
@@ -83,10 +83,8 @@ class LivePreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeL
         lifecycleScope.launch {
             YoYo.with(Techniques.Bounce)
                 .onStart { binding.livePreviewTxtGood.visibility = View.VISIBLE }
-                .onEnd { binding.livePreviewTxtGood.visibility = View.INVISIBLE }
-                .duration(1000)
-                .repeat(1)
-                .playOn(binding.livePreviewTxtGood)
+                .onEnd { binding.livePreviewTxtGood.visibility = View.INVISIBLE }.duration(1000)
+                .repeat(1).playOn(binding.livePreviewTxtGood)
 
             if ((viewModel.reps.value ?: 0) >= 15) {
                 binding.livePreviewPreviewView.stop()
@@ -97,12 +95,8 @@ class LivePreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeL
                 binding.lotti.visibility = View.VISIBLE
                 binding.lotti.playAnimation()
                 binding.lotti.setOnClickListener {
-                    // TODO: 포인트 적립 API 호출
+                    viewModel.tryPostPoint()
                     binding.lotti.visibility = View.INVISIBLE
-                    Toast.makeText(this@LivePreviewActivity, "운동 인증 완료", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this@LivePreviewActivity, HomeActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
                 }
             }
         }
@@ -113,6 +107,18 @@ class LivePreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeL
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setStatusBarColor(getColor(R.color.black))
+
+        viewModel.navigateNext.observe(this@LivePreviewActivity) {
+            it.getContentIfNotHandled()?.let {
+                Toast.makeText(
+                    this@LivePreviewActivity, "운동 인증 완료! 50포인트가 적립되었습니다.", Toast.LENGTH_SHORT
+                ).show()
+
+                val intent = Intent(this@LivePreviewActivity, HomeActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+            }
+        }
 
         viewModel.reps.observe(this@LivePreviewActivity) {
             binding.livePreviewProgress.progress = it

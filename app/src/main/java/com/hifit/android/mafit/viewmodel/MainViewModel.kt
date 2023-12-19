@@ -22,6 +22,7 @@ import com.hifit.android.mafit.data.model.home.ExerciseData
 import com.hifit.android.mafit.data.model.home.ExerciseResponse
 import com.hifit.android.mafit.data.model.home.WorkoutInfoData
 import com.hifit.android.mafit.data.model.home.WorkoutInfoResponse
+import com.hifit.android.mafit.data.model.home.WorkoutStatusResponse
 import com.hifit.android.mafit.data.model.login.LoginRequestBody
 import com.hifit.android.mafit.data.model.survey.HealthInfoRequestBody
 import com.hifit.android.mafit.data.repo.UserInfoRepository
@@ -54,6 +55,9 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
     val diet: LiveData<DietData> get() = _diet
     private val _diet: MutableLiveData<DietData> = MutableLiveData()
 
+    val workoutStatus: LiveData<Event<WorkoutStatusResponse>> get() = _workoutStatus
+    private val _workoutStatus: MutableLiveData<Event<WorkoutStatusResponse>> = MutableLiveData()
+
     val isProgressVisible: LiveData<Boolean> get() = _isProgressVisible
     private val _isProgressVisible: MutableLiveData<Boolean> = MutableLiveData(false)
 
@@ -69,9 +73,6 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
     val errorEvent: LiveData<Event<Int>>
         get() = _errorEvent
 
-
-    // TODO: API ERROR 분기 처리를 위한 API 요청 반환 값 Response 래퍼 씌우기,
-    //  토큰 만료 시 deleteToken 요청 후 로그인 화면으로 이동하도록 처리
 
     suspend fun deleteUserInfo() {
         _isProgressVisible.value = true
@@ -372,6 +373,72 @@ class MainViewModel(private val repository: UserInfoRepository) : ViewModel() {
             }
         }
     }
+
+    fun tryGetWorkoutStatus() {
+        viewModelScope.launch {
+            _isProgressVisible.value = true
+            try {
+                val response = repository.getWorkoutStatus()
+                if (response.isSuccessful && response.body() != null) {
+                    _workoutStatus.value = Event(response.body() as WorkoutStatusResponse)
+                } else {
+                    val errorBody = response.errorBody()?.string().run {
+                        Gson().fromJson(this, BaseResponse::class.java)
+                    }
+
+                    val message = errorBody.message
+                    val code = errorBody.code
+
+                    if (code == 40103) {
+                        deleteUserInfo()
+                        _errorEvent.value = Event(40103)
+                    }
+
+                    Timber.e("network error: $message")
+                    _showToast.value = Event(message)
+                }
+            } catch (e: Exception) {
+                Timber.e("network error: $e")
+                _showToast.value = Event("네트워크 에러가 발생했습니다.")
+            } finally {
+                _isProgressVisible.value = false
+            }
+        }
+    }
+
+    fun tryPostPoint() {
+        viewModelScope.launch {
+            _isProgressVisible.value = true
+            try {
+                val response = repository.postPoints()
+                if (response.isSuccessful && response.body() != null) {
+                    _navigateNext.value = Event(true)
+                } else {
+                    val errorBody = response.errorBody()?.string().run {
+                        Gson().fromJson(this, BaseResponse::class.java)
+                    }
+
+                    val message = errorBody.message
+                    val code = errorBody.code
+
+                    if (code == 40103) {
+                        deleteUserInfo()
+                        _errorEvent.value = Event(40103)
+                    }
+
+                    Timber.e("network error: $message")
+                    _showToast.value = Event(message)
+                }
+            } catch (e: Exception) {
+                Timber.e("network error: $e")
+                _showToast.value = Event("네트워크 에러가 발생했습니다.")
+            } finally {
+                _isProgressVisible.value = false
+            }
+        }
+    }
+
+
 
     private fun storeToken(token: String) {
         try {

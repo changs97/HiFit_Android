@@ -2,17 +2,19 @@ package com.hifit.android.mafit.ui.fragment.exercise
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.hifit.android.mafit.HiFitApplication
 import com.hifit.android.mafit.R
 import com.hifit.android.mafit.base.BaseFragment
 import com.hifit.android.mafit.data.model.ExerciseItem
 import com.hifit.android.mafit.databinding.FragmentExerciseBinding
-import com.hifit.android.mafit.mlkit.LivePreviewActivity
 import com.hifit.android.mafit.ui.MainActivity
 import com.hifit.android.mafit.ui.fragment.exercise.adapter.ExerciseAdapterListener
 import com.hifit.android.mafit.ui.fragment.exercise.adapter.ExercisePageAdapter
+import com.hifit.android.mafit.util.Constant
 import com.hifit.android.mafit.viewmodel.MainViewModel
 import timber.log.Timber
 
@@ -29,7 +31,14 @@ class ExerciseFragment : BaseFragment<FragmentExerciseBinding>(R.layout.fragment
         viewModel.tryGetBodyInfo()
 
         binding.exerciseBtnStartExercise.setOnClickListener {
-            findNavController().navigate(R.id.action_exerciseFragment_to_exerciseGuideFragment)
+            viewModel.tryGetWorkoutStatus()
+        }
+
+        viewModel.workoutStatus.observe(viewLifecycleOwner) { result ->
+            result.getContentIfNotHandled()?.let {
+                if (!it.data) findNavController().navigate(R.id.action_exerciseFragment_to_exerciseGuideFragment)
+                else showCustomToast("오늘은 포인트를 이미 적립했어요.\n내일 다시 적립하실 수 있어요.")
+            }
         }
 
         viewModel.showToast.observe(viewLifecycleOwner) { event ->

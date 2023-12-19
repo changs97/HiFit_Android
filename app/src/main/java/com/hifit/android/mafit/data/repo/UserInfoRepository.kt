@@ -51,6 +51,12 @@ class UserInfoRepository(private val userInfoDao: UserInfoDao, private val retro
     suspend fun getWorkoutInfo() =
         retrofit.create(HomeRetrofitInterface::class.java).getWorkoutInfo()
 
+    suspend fun getWorkoutStatus() =
+        retrofit.create(HomeRetrofitInterface::class.java).getWorkoutStatus()
+
+    suspend fun postPoints() =
+        retrofit.create(HomeRetrofitInterface::class.java).postPoints()
+
     fun storeToken(code: String) {
         HiFitApplication.sharedPreferences.edit().putString(
             Constant.X_ACCESS_TOKEN, "Bearer $code"

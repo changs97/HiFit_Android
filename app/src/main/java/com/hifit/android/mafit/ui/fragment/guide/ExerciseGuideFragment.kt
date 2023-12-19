@@ -1,6 +1,7 @@
 package com.hifit.android.mafit.ui.fragment.guide
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
@@ -70,8 +71,10 @@ class ExerciseGuideFragment :
     private fun initializePlayer() {
         player = ExoPlayer.Builder(requireActivity()).build().also { exoPlayer ->
             binding.exerciseGuidePlayerView.player = exoPlayer
-            val mediaItem =
+            // val mediaItem =
                 MediaItem.fromUri("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
+            val videoUri = Uri.parse("android.resource://"+ requireActivity().packageName+"/raw/guide")
+            val mediaItem = MediaItem.fromUri(videoUri)
             exoPlayer.setMediaItem(mediaItem)
 
             exoPlayer.playWhenReady = playWhenReady
