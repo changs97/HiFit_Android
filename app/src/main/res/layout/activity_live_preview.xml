@@ -47,7 +47,7 @@
             android:id="@+id/live_preview_txt_good"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Good~!"
+            android:text="GOOD~!"
             android:textColor="@color/white"
             android:textSize="40sp"
             android:textStyle="bold"
