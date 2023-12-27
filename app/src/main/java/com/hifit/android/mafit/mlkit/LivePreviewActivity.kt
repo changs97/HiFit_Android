@@ -123,6 +123,7 @@ class LivePreviewActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeL
         viewModel.reps.observe(this@LivePreviewActivity) {
             binding.livePreviewProgress.progress = it
             binding.livePreviewTxtReps.text = "${it}/15회"
+            binding.livePreviewTxtRepsTop.text = "${it}/15회"
         }
 
         onBackPressedCallback = object : OnBackPressedCallback(true) {
