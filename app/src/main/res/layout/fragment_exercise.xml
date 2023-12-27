@@ -194,28 +194,36 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:gravity="center_vertical"
-                android:layout_gravity="end"
-                android:layout_marginEnd="16dp"
+                android:paddingHorizontal="16dp"
                 android:orientation="horizontal">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/exercise_title"
-                    android:layout_marginEnd="4dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/gray4"
-                    android:textSize="16sp" />
-
-                <ImageView
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/exercise_btn_start_exercise"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/btn_arrow"/>
-
+                    android:layout_weight="1"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/background_radius_10dp_solid_violet4"
+                    android:gravity="center"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:paddingVertical="12dp"
+                    android:text="운동하기"
+                    android:textColor="@color/gray5"
+                    android:textSize="16sp" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/exercise_btn_start_exercise_certification"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_radius_10dp_solid_violet4"
+                    android:gravity="center"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:paddingVertical="12dp"
+                    android:text="운동 인증하기"
+                    android:textColor="@color/gray5"
+                    android:textSize="16sp" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <View
