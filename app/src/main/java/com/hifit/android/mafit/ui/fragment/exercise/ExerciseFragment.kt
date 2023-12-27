@@ -79,11 +79,11 @@ class ExerciseFragment : BaseFragment<FragmentExerciseBinding>(R.layout.fragment
 
         viewModel.tryGetBodyInfo()
 
-        binding.exerciseBtnStartExercise.setOnClickListener {
+        binding.exerciseBtnStartExerciseCertification.setOnClickListener {
             viewModel.tryGetWorkoutStatus()
         }
 
-        binding.exerciseBtnStartExerciseCertification.setOnClickListener {
+        binding.exerciseBtnStartExercise.setOnClickListener {
             val randomElement = getRandomElementShuffled(allExerciseList)
             if (randomElement != null) {
                 onExerciseClicked(randomElement.link)
