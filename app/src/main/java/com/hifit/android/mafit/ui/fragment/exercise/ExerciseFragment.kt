@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayoutMediator
 import com.hifit.android.mafit.HiFitApplication
 import com.hifit.android.mafit.R
 import com.hifit.android.mafit.base.BaseFragment
@@ -57,31 +59,71 @@ class ExerciseFragment : BaseFragment<FragmentExerciseBinding>(R.layout.fragment
             }
         }
 
-        val sampleData = arrayListOf(
-            arrayListOf(
-                ExerciseItem(
-                    "https://youtu.be/BTJOlvhgbV8"
-                ), ExerciseItem(
-                    "https://youtu.be/-cgWO4JM_pw"
-                ), ExerciseItem(
-                    "https://youtu.be/gXHu0ctL2Ew"
-                ), ExerciseItem(
-                    "https://youtu.be/RsNN049810U"
-                ), ExerciseItem(
-                    "https://youtu.be/1_Vj7_O9I3k"
-                )
+        val lowExerciseList = arrayListOf(
+            ExerciseItem(
+                "https://youtu.be/RsNN049810U"
+            ), ExerciseItem(
+                "https://youtu.be/0R1GataJEXA"
+            ), ExerciseItem(
+                "https://youtu.be/xf_927z_Gys"
+            ), ExerciseItem(
+                "https://youtu.be/jGKfihuxWIo"
+            ), ExerciseItem(
+                "https://youtu.be/08UrZHEdfHg"
+            ), ExerciseItem(
+                "https://youtu.be/BTJOlvhgbV8"
+            ), ExerciseItem(
+                "https://youtu.be/-cgWO4JM_pw"
             )
         )
 
+        val mediumExerciseList = arrayListOf(
+            ExerciseItem(
+                "https://youtu.be/gXHu0ctL2Ew"
+            ), ExerciseItem(
+                "https://youtu.be/7IAC2lgXL7U"
+            ), ExerciseItem(
+                "https://youtu.be/0PN6LghWX_w"
+            ), ExerciseItem(
+                "https://youtu.be/TY9O1tDVRW0"
+            ), ExerciseItem(
+                "https://youtu.be/VbKrvLys1uU"
+            ), ExerciseItem(
+                "https://youtu.be/joVCXX7wan4"
+            )
+        )
+
+        val highExerciseList = arrayListOf(
+            ExerciseItem(
+                "https://youtu.be/HuinxgpBvmM"
+            ), ExerciseItem(
+                "https://youtu.be/1dgrO_YBBXc"
+            ), ExerciseItem(
+                "https://youtu.be/OgaGRaBkKxY"
+            ), ExerciseItem(
+                "https://youtu.be/_D7VLi4cjgU"
+            )
+        )
+
+        val allExerciseList = arrayListOf<ExerciseItem>()
+        allExerciseList.addAll(lowExerciseList)
+        allExerciseList.addAll(mediumExerciseList)
+        allExerciseList.addAll(highExerciseList)
+
+
         val adapter = ExercisePageAdapter(this)
         binding.exercisePager.adapter = adapter
-        adapter.submitList(sampleData)
+        adapter.submitList(
+            arrayListOf(
+                allExerciseList, lowExerciseList, mediumExerciseList, highExerciseList
+            )
+        )
 
-        /*        val tabTitles = listOf("전체", "팔", "다리", "가슴", "어깨", "등", "복부", "힙", "전신")
+        val tabTitles = listOf("전체", "저강도", "중강도", "고강도")
 
-                TabLayoutMediator(binding.exerciseTab, binding.exercisePager) { tab, position ->
-                    tab.text = tabTitles[position]
-                }.attach()*/
+        TabLayoutMediator(binding.exerciseTab, binding.exercisePager) { tab, position ->
+            tab.text = tabTitles[position]
+        }.attach()
 
         viewModel.navigateNext.observe(viewLifecycleOwner) { event ->
             event.getContentIfNotHandled()?.let {
